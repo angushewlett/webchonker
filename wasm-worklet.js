@@ -6,8 +6,6 @@ class WasmToneProcessor extends AudioWorkletProcessor {
     this.midiEvents = [];
 
     const bytes = options.processorOptions.wasmBytes;
-    this.freq = options.processorOptions.freq || 440.0;
-    this.gain = options.processorOptions.gain || 0.2;
     this.x = 0;
 
     // Receive messages from main thread
@@ -50,7 +48,7 @@ async _initWasm(bytes) {
       proc_exit: () => {}
     }
   };
-  console.log("Ready 2.0");
+  console.log("Ready @1");
 
   try
   {
@@ -64,20 +62,18 @@ async _initWasm(bytes) {
 
   const exports = this.instance.exports;
 
-  console.log("Ready 2.0.1");
-
-  this.audio_init       = exports.audio_init;
-  this.audio_render     = exports.audio_render;
-  this.process_midi     = exports.process_midi;
-  this.get_audio_buffer = exports.get_audio_buffer;
-  this.__wasm_call_ctors       = exports.__wasm_call_ctors;
+  this.audio_init        = exports.audio_init;
+  this.audio_render      = exports.audio_render;
+  this.process_midi      = exports.process_midi;
+  this.get_audio_buffer  = exports.get_audio_buffer;
+  this.__wasm_call_ctors = exports.__wasm_call_ctors;
 
   // memory is exported by the module
   this.memory = exports.memory;
   this.mem = new Float32Array(this.memory.buffer);
 
   this.bufferPtr = this.get_audio_buffer();
-  console.log("Ready 2.1");
+  console.log("Ready @2");
 
   try
   {
@@ -92,11 +88,7 @@ async _initWasm(bytes) {
   catch (e) {
 	console.error("WASM assert / abort during init:", e);
   }
-  // MIDI hookup
-  //await this.initMidi();
-
-
-  console.log("Ready 2.2");
+  console.log("Ready @3");
 }
 
 
@@ -113,16 +105,14 @@ async _initWasm(bytes) {
   }
 
 
-
   process(inputs, outputs) {
     this.x = this.x + 1;
 
     if (!this.ready) 
 	{
-                if (this.x % 1000 == 1) console.log("not ready.");
+        if (this.x % 1000 == 1) console.log("not ready.");
 		return true;
 	}
-    //if (this.x % 1000 == 1) console.log("proc.");
 
     // Apply MIDI events → update synth state
     this._handleMidiEvents();

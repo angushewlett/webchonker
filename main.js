@@ -69,7 +69,7 @@ let midiInput = null;
 let currentPreset = 0;
 let currentBank = 0;
 
-async function onSelectBank(int bank)
+async function onSelectBank(bank)
 {
   currentBank = bank - 1;
 
@@ -84,7 +84,7 @@ async function onSelectBank(int bank)
       }  
 }
 
-async function onSelectPreset(int preset)
+async function onSelectPreset(preset)
 {
   currentPreset = preset - 1;
 

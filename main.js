@@ -43,17 +43,29 @@ let midiInput = null;
   }
     
   midiAccess = await navigator.requestMIDIAccess({ sysex: false });
+
+  // Populate the dropdown once and whenever devices change
+  midiAccess.onstatechange = () => {
+    populateMidiInputs();
+  };
+  populateMidiInputs();
+
+  // Change handler for the dropdown
+  const select = document.getElementById("midi-input-select");
+  select.addEventListener("change", () => {
+    selectMidiInput(select.value);
+  });  
       
   // Pick the first input for now
-  const inputs = Array.from(midiAccess.inputs.values());
-  if (!inputs.length) {
-    console.warn("No MIDI inputs found.");
-    return;
-  }
+  //const inputs = Array.from(midiAccess.inputs.values());
+  //if (!inputs.length) {
+  //  console.warn("No MIDI inputs found.");
+  //  return;
+  //}
     
-  midiInput = inputs[0];  
-  console.log("Using MIDI input:", midiInput.name);
-   
+  //midiInput = inputs[0];  
+  //console.log("Using MIDI input:", midiInput.name);
+   /*
   midiInput.onmidimessage = (e) => {
       if (node)
       {
@@ -63,8 +75,88 @@ let midiInput = null;
         timestamp: e.timeStamp
       });
       }
-  };
+  };*/
 }  
+
+function populateMidiInputs() {
+  const select = document.getElementById("midi-input-select");
+  select.innerHTML = "";
+
+  if (!midiAccess) {
+    select.innerHTML = '<option value="">(MIDI not available)</option>';
+    select.disabled = true;
+    return;
+  }
+
+  const inputs = Array.from(midiAccess.inputs.values());
+
+  if (inputs.length === 0) {
+    select.innerHTML = '<option value="">(No MIDI inputs)</option>';
+    select.disabled = true;
+    return;
+  }
+
+  select.disabled = false;
+
+  // Add an explicit "none" option
+  const noneOption = document.createElement("option");
+  noneOption.value = "";
+  noneOption.textContent = "(No input selected)";
+  select.appendChild(noneOption);
+
+  for (const input of inputs) {
+    const opt = document.createElement("option");
+    opt.value = input.id;
+    opt.textContent = input.name || `Input ${input.id}`;
+    select.appendChild(opt);
+  }
+
+  // If currentInput is gone, clear it
+  if (currentInput && !midiAccess.inputs.has(currentInput.id)) {
+    currentInput = null;
+  }
+
+  // Auto-select first real device if nothing chosen
+  if (!currentInput && inputs.length > 0) {
+    select.value = inputs[0].id;
+    selectMidiInput(inputs[0].id);
+  } else if (currentInput) {
+    select.value = currentInput.id;
+  } else {
+    select.value = "";
+  }
+}
+
+
+function selectMidiInput(inputId) {
+  // Detach handler from previous input
+  if (currentInput) {
+    currentInput.onmidimessage = null;
+    currentInput = null;
+  }
+
+  if (!inputId || !midiAccess) return;
+
+  const input = midiAccess.inputs.get(inputId);
+  if (!input) {
+    console.warn("Selected MIDI input not found:", inputId);
+    return;
+  }
+
+  currentInput = input;
+  console.log("Using MIDI input:", currentInput.name);
+
+  currentInput.onmidimessage = (e) => {
+    if (!node) return; // audio not started yet
+
+    // Forward raw MIDI bytes to the AudioWorklet
+    node.port.postMessage({
+      type: "midi",
+      data: Array.from(e.data),  // e.g. [status, data1, data2]
+      timestamp: e.timeStamp
+    });
+  };
+}
 
 let currentPreset = 0;
 let currentBank = 0;

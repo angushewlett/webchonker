@@ -32,10 +32,12 @@ async function startAudio()
   console.log("Audio started, let's go!");
 }
 
-async function initMidi()
-{
 let midiAccess = null; 
 let midiInput = null;
+
+
+async function initMidi()
+{
     
   if (!navigator.requestMIDIAccess) {
     console.warn("Web MIDI API not supported in this browser.");

@@ -33,7 +33,7 @@ async function startAudio()
 }
 
 let midiAccess = null; 
-let midiInput = null;
+let currentInput = null;
 
 
 async function initMidi()

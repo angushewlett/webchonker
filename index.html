@@ -21,6 +21,13 @@
   <h1>This is a demo of the Chonker synth engine running in WASM.</h1>
   <button id="start-audio-btn">Start Audio</button> <small><em><- You need to press this for anything to happen. Sorry, them's the rules. Plug in your MIDI controller first if need be.</em></small>
 
+  <div class="row">
+    <label for="midi-input-select">MIDI Input:&nbsp;</label>
+    <select id="midi-input-select">
+      <option value="">(No MIDI / Not initialized)</option>
+    </select>
+  </div>
+  
   <div>
   <h1>Bank select</h1>    
   <button id="bank.1">Bass 1</button>

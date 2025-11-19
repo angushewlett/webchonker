@@ -1,8 +1,9 @@
-// main.js or your app's JS
+// Webchonker - main.js
 
 let node = null;
 
-async function startAudio() {
+async function startAudio() 
+{
   const audioContext = new AudioContext();
   await audioContext.audioWorklet.addModule('wasm-worklet.js');
 
@@ -31,8 +32,8 @@ async function startAudio() {
   console.log("Audio started, let's go!");
 }
 
-async function initMidi() {
-
+async function initMidi()
+{
 let midiAccess = null; 
 let midiInput = null;
     
@@ -54,20 +55,16 @@ let midiInput = null;
   console.log("Using MIDI input:", midiInput.name);
    
   midiInput.onmidimessage = (e) => {
-    // Forward raw MIDI bytes to the worklet
-//    if (audioNode) {
+      if (node)
+      {
       node.port.postMessage({
         type: "midi", 
         data: Array.from(e.data), // [status, data1, data2]
         timestamp: e.timeStamp
       });
-  //  }
+      }
   };
 }  
 
-document.getElementById('start-audio-btn').addEventListener('click', () => {
-
-
-  startAudio().catch(console.error);
-});
+document.getElementById('start-audio-btn').addEventListener('click', () => { startAudio().catch(console.error); });
 

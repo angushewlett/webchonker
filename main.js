@@ -179,9 +179,17 @@ function onParameterChange(paramName, paramValue)
     console.log("Param: ", paramName, " ; value: ", paramValue);
     if (node)
     {
+        const encoder = new TextEncoder();
+        
+        // 1. UTF-8 encode with explicit null terminator
+        const utf8 = encoder.encode(paramName);
+        const bytes = new Uint8Array(utf8.length + 1);
+        bytes.set(utf8);
+        bytes[utf8.length] = 0; // null-terminate
+
         node.port.postMessage({
             type: "param",
-            name: paramName,
+            name: bytes,
             value: paramValue
         });
     }

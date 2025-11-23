@@ -1,4 +1,18 @@
 class WasmToneProcessor extends AudioWorkletProcessor {
+    
+    allocCStringInWasm(str) {
+
+      // 2. Allocate in WASM memory
+      const ptr = this.malloc(str.length);
+
+      // 3. Copy into WASM memory
+      const mem = new Uint8Array(this.memory.buffer, ptr, buf.length);
+      mem.set(buf);
+
+      return ptr; // caller is responsible for free()
+    }
+
+    
   constructor(options) {
     super();
 
@@ -16,7 +30,7 @@ class WasmToneProcessor extends AudioWorkletProcessor {
       }
       if (msg.type === "param")
       {
-          const ptr = allocCStringInWasm(msg.name);
+          const ptr = this.allocCStringInWasm(msg.name);
           this.wasm_set_parameter(ptr, msg.value / 100.0);
           this.free(ptr);
       }
@@ -28,24 +42,6 @@ class WasmToneProcessor extends AudioWorkletProcessor {
     console.log("Ready 3");
   }
     
-    const encoder = new TextEncoder();
-
-    allocCStringInWasm(str) {
-      // 1. UTF-8 encode with explicit null terminator
-      const utf8 = encoder.encode(str);
-      const buf = new Uint8Array(utf8.length + 1);
-      buf.set(utf8);
-      buf[utf8.length] = 0; // null-terminate
-
-      // 2. Allocate in WASM memory
-      const ptr = this.malloc(buf.length);
-
-      // 3. Copy into WASM memory
-      const mem = new Uint8Array(this.memory.buffer, ptr, buf.length);
-      mem.set(buf);
-
-      return ptr; // caller is responsible for free()
-    }
 
 
 async _initWasm(bytes) {

@@ -1,77 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>WebChonker - Audiosloth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 2rem;
-    }
-    button {
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>This is a demo of the Chonker synth engine running in WASM.</h1>
-  <button id="start-audio-btn">Start Audio</button> <small><em><- You need to press this for anything to happen. Sorry, them's the rules. Plug in your MIDI controller first if need be.</em></small>
-
-  <div class="row">
-    <label for="midi-input-select">MIDI Input:&nbsp;</label>
-    <select id="midi-input-select">
-      <option value="">(No MIDI / Not initialized)</option>
-    </select>
-  </div>
-  
-  <div>
-  <h1>Bank select</h1>    
-  <button id="bank.1">Bass 1</button>
-  <button id="bank.2">Bass 2</button>
-  <button id="bank.3">Keys 1</button>
-  <button id="bank.4">Keys 2</button>
-  <button id="bank.5">Leads</button>
-  <button id="bank.6"> Pads </button>
-  <button id="bank.7">Plucks</button>
-  <button id="bank.8">Synths</button>
-  </div>
-  
-  <div>
-  <h1>Preset select</h1>    
-  <button id="preset.1">1</button>
-  <button id="preset.2">2</button>
-  <button id="preset.3">3</button>
-  <button id="preset.4">4</button>
-  <button id="preset.5">5</button>
-  <button id="preset.6">6</button>
-  <button id="preset.7">7</button>
-  <button id="preset.8">8</button>
-  </div>
-
-  <script src="main.js"></script>
-  
-  <h3>What's all this then?</h3>
-  <p>You're looking at - and hopefully listening to - a WebAssembly port of my new virtual instrument synth, Chonker.
-  It's inspired and influenced by analogue classics, and named in honour of my cat and rubberduck-debugging-assistant.</p>
-  <p>It's a fully-featured VA subtractive synth with a production-grade audio engine. It'll connect to your default MIDI input device via WebMIDI - try it and let me know how you get on.</p>  
-  <ul>
-    <li>Supported browsers: Chrome, Firefox, Edge. <small>(Sorry, no Safari due to its lack of WebMIDI - <a href="https://jazz-soft.net/">this</a> may help, untested.)</small></li>
-    <li>Supported CPUs: Anything capable of running WASM SIMD - Apple Silicon, Intel/AMD x64, ARMv8. <small>Running on something more exotic? Do let me know.</small></li>
-    <li>Audio engine: 4x oversampled, fully SIMD vectorised. A thing of beauty. <small><em>though I do say so myself.</em></small></li>
-    <li>Oscillators: Standard, supersaw, SUB and various other goodies. Aliasing-free CLIO waveforms. <small><em>If you've seen my ADC2025 talk, those ones. Want to collab on a DAFx paper? HMU.</em></small></li>
-    <li>Filters: 0DF circuit modeled. "American", "Japan", SVFs... various circuits and response curves. <small><em>32 of these at 4x in a browser? Yes, it turns out we in fact can. So why not.</em></small></li>
-    <li>Effects: Multimode polyphonic FX and master effects chain. <small><em>Not intended to set the world on fire. Hopefully nor your computer either. But some nice original tones you won't normally get from a subtractive VA.</em></small></li>
-  </ul>
-  <p>There's no front-end on this Web version yet - I need to port that from native code to JS. Watch this space....</p>
-  <p>I've built this version with 64 presets included. The real thing has more.</p>  
-  <p>The full plug-in will be available to buy in 2026 - I've been working on it for a while, but there are still some finishing touches needed.</p>
-  <p>If you're interested in licensing the engine for your desktop, mobile or Web-based project, <a href="https://www.linkedin.com/in/angusfx/">get in touch.</a></p>
-  <p>Enjoy it!</p>
-  <p>- Angus H., November 2025</p>
-  <p>PS - this page & its accessory JS are free to use (<a href="https://github.com/angushewlett/webchonker">public repo</a>). The WASM and its sources are proprietary and Copyright 2023-2025 Angus F. Hewlett, all rights reserved.</p>  
-</body>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>WebChonker - Audiosloth</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <script type="module" src="knob.js"></script>
+        <script type="module" src="slider.js"></script>
+        <style>
+            button {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+            synth-knob-large {
+                width: 45px;
+                height: 45px;
+                display: inline-block;
+            }
+            synth-knob-small {
+                width: 25px;
+                height: 25px;
+                display: inline-block;
+            }
+            synth-slider {
+                width: 40px;
+                height: 80px;
+                display: inline-block;
+            }
+            body {
+                background: #222;
+                color: #eee;
+                font-family: system-ui, sans-serif;
+                margin: 2rem;
+            }
+            #panel {
+                position: relative;
+                width: 1600px;
+                height: 720px;
+                margin: 20px auto;
+                border: 2px solid #555;
+                background: #333;
+                box-shadow: 0 0 12px rgba(0,0,0,0.6);
+            }
+            /* generic “control” styling if you want */
+            #panel > * {
+                /* all dynamically created controls land here */
+            }
+        </style>
+    </head>
+    <body>
+        <h1>This is a demo of the Chonker synth engine running in WASM.</h1>
+        <button id="start-audio-btn">Start Audio</button><em>← You need to press this for anything to happen. Sorry, thems the rules.</em>
+        
+        <div class="row">
+            <select id="midi-input-select">
+                <option value="">(No MIDI / Not initialized)</option>
+            </select>
+            <label for="midi-input-select"><em>← Then choose your MIDI controller (you did plug it in, right?) from this list.</em></label>
+        </div>
+        
+        <div id="panel"></div>
+                
+        <script type="module">
+            async function loadPanelLayout()
+            {
+                const response = await fetch('./Panel.json');
+                if (!response.ok) {
+                    console.error('Failed to load Panel.json', response.status);
+                    return;
+                }
+                
+                const data = await response.json();
+                const panel = document.getElementById('panel');
+                
+                if (!data || !Array.isArray(data.controls))
+                {
+                    console.error('Panel.json missing "controls" array');
+                    return;
+                }
+                
+                for (const ctrl of data.controls)
+                {
+                    // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
+                    const key = Object.keys(ctrl)[0];
+                    
+                    
+                    if (!key) {
+                        console.warn('Control without tag, skipping:', ctrl);
+                        continue;
+                    }
+                    const tag = Object.keys(ctrl)[0];
+                    const cfg = ctrl[tag]; // control config object
+                    
+                    // Create wrapper container
+                    const wrapper = document.createElement("div");
+                    wrapper.style.position = "absolute";
+                    
+                    // Get centre positions from "at"
+                    const [xStr, yStr] = cfg.at.split(',');
+                    const x = parseFloat(xStr) * 2;
+                    const y = parseFloat(yStr) * 2;
+                    
+                    wrapper.style.position = "absolute";
+                    wrapper.style.left = x + "px";
+                    wrapper.style.top  = y + "px";
+                    wrapper.style.transform = "translate(-50%, -50%) scale(200%, 200%)";
+                    
+                    // Let wrapper size to fit its children
+                    wrapper.style.display = "flex";
+                    wrapper.style.flexDirection = "column";
+                    wrapper.style.alignItems = "center";     // horizontally centre contents
+                    wrapper.style.pointerEvents = "none";    // wrapper passes events through to controls
+                                        
+                    const el = document.createElement(key);
+                    
+                    if (el instanceof HTMLUnknownElement) continue;
+                    
+                    el.id = cfg.id;
+                    el.style.pointerEvents = 'auto';
+                    
+                    el.addEventListener('input', () => { onParameterChange(el.id, el._value); } );
+                    
+                    // === LABEL ===
+                    const label = document.createElement("div");
+                    label.textContent = cfg.id || "";
+                    label.style.marginTop = "4px";
+                    label.style.fontSize = "6px";
+                    label.style.textAlign = "center";
+                    label.style.color = "#ddd";
+                    label.style.pointerEvents = "none";
+                    
+                    // Add control + label to wrapper
+                    wrapper.appendChild(el);
+                    wrapper.appendChild(label);
+                
+                    // Copy some common attributes if present in JSON
+                    const attrNames = ['min', 'max', 'value', 'step', 'param', 'law'];
+                    //for (const name of attrNames) {
+                    //  if (ctrl[name] !== undefined && ctrl[name] !== null) {
+                    //    el.setAttribute(name, String(ctrl[name]));
+                    //  }
+                    // }
+                    
+                    panel.appendChild(wrapper);
+                }
+            }
+            
+            // Run once DOM is ready
+            window.addEventListener('DOMContentLoaded', () => {
+                loadPanelLayout().catch(err => console.error(err));
+            });
+        </script>
+        
+        <div>
+            <h1>Bank select</h1>
+            <button id="bank.1">Bass 1</button>
+            <button id="bank.2">Bass 2</button>
+            <button id="bank.3">Keys 1</button>
+            <button id="bank.4">Keys 2</button>
+            <button id="bank.5">Leads</button>
+            <button id="bank.6"> Pads </button>
+            <button id="bank.7">Plucks</button>
+            <button id="bank.8">Synths</button>
+        </div>
+        
+        <div>
+            <h1>Preset select</h1>
+            <button id="preset.1">1</button>
+            <button id="preset.2">2</button>
+            <button id="preset.3">3</button>
+            <button id="preset.4">4</button>
+            <button id="preset.5">5</button>
+            <button id="preset.6">6</button>
+            <button id="preset.7">7</button>
+            <button id="preset.8">8</button>
+        </div>
+        
+        <script src="main.js"></script>
+        
+        <h3>What's all this then?</h3>
+        <p>You're looking at - and hopefully listening to - a WebAssembly port of my new virtual instrument synth, Chonker.
+        It's inspired and influenced by analogue classics, and named in honour of my cat and rubberduck-debugging-assistant.</p>
+        <p>It's a fully-featured VA subtractive synth with a production-grade audio engine. It'll connect to your default MIDI input device via WebMIDI - try it and let me know how you get on.</p>
+        <ul>
+            <li>Supported browsers: Chrome, Firefox, Edge. <small>(Sorry, no Safari due to its lack of WebMIDI - <a href="https://jazz-soft.net/">this</a> may help, untested.)</small></li>
+            <li>Supported CPUs: Anything capable of running WASM SIMD - Apple Silicon, Intel/AMD x64, ARMv8. <small>Running on something more exotic? Do let me know.</small></li>
+            <li>Audio engine: 4x oversampled, fully SIMD vectorised. A thing of beauty. <small><em>though I do say so myself.</em></small></li>
+            <li>Oscillators: Standard, supersaw, SUB and various other goodies. Aliasing-free CLIO waveforms. <small><em>If you've seen my ADC2025 talk, those ones. Want to collab on a DAFx paper? HMU.</em></small></li>
+            <li>Filters: 0DF circuit modeled. "American", "Japan", SVFs... various circuits and response curves. <small><em>32 of these at 4x in a browser? Yes, it turns out we in fact can. So why not.</em></small></li>
+            <li>Effects: Multimode polyphonic FX and master effects chain. <small><em>Not intended to set the world on fire. Hopefully nor your computer either. But some nice original tones you won't normally get from a subtractive VA.</em></small></li>
+        </ul>
+        <p>There's no front-end on this Web version yet - I need to port that from native code to JS. Watch this space....</p>
+        <p>I've built this version with 64 presets included. The real thing has more.</p>
+        <p>The full plug-in will be available to buy in 2026 - I've been working on it for a while, but there are still some finishing touches needed.</p>
+        <p>If you're interested in licensing the engine for your desktop, mobile or Web-based project, <a href="https://www.linkedin.com/in/angusfx/">get in touch.</a></p>
+        <p>Enjoy it!</p>
+        <p>- Angus H., November 2025</p>
+        <p>PS - this page & its accessory JS are free to use (<a href="https://github.com/angushewlett/webchonker">public repo</a>). The WASM and its sources are proprietary and Copyright 2023-2025 Angus F. Hewlett, all rights reserved.</p>
+    </body>
 </html>

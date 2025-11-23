@@ -2,7 +2,8 @@
 
 let node = null;
 
-async function startAudio() 
+
+async function startAudio()
 {
   const audioContext = new AudioContext();
   await audioContext.audioWorklet.addModule('wasm-worklet.js');
@@ -58,26 +59,6 @@ async function initMidi()
     selectMidiInput(select.value);
   });  
       
-  // Pick the first input for now
-  //const inputs = Array.from(midiAccess.inputs.values());
-  //if (!inputs.length) {
-  //  console.warn("No MIDI inputs found.");
-  //  return;
-  //}
-    
-  //midiInput = inputs[0];  
-  //console.log("Using MIDI input:", midiInput.name);
-   /*
-  midiInput.onmidimessage = (e) => {
-      if (node)
-      {
-      node.port.postMessage({
-        type: "midi", 
-        data: Array.from(e.data), // [status, data1, data2]
-        timestamp: e.timeStamp
-      });
-      }
-  };*/
 }  
 
 function populateMidiInputs() {
@@ -191,6 +172,19 @@ async function onSelectPreset(preset)
         timestamp: 0
       });
       }  
+}
+
+function onParameterChange(paramName, paramValue)
+{
+    console.log("Param: ", paramName, " ; value: ", paramValue);
+    if (node)
+    {
+        node.port.postMessage({
+            type: "param",
+            name: paramName,
+            value: paramValue
+        });
+    }
 }
 
 

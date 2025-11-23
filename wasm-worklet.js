@@ -14,6 +14,10 @@ class WasmToneProcessor extends AudioWorkletProcessor {
       if (msg.type === "midi") {
         this.midiEvents.push(msg);
       }
+      if (msg.type === "param")
+      {
+          this.wasm_set_parameter(msg.name, msg.value / 100.0);          
+      }
     };
 
 
@@ -67,6 +71,7 @@ async _initWasm(bytes) {
   this.process_midi      = exports.process_midi;
   this.get_audio_buffer  = exports.get_audio_buffer;
   this.__wasm_call_ctors = exports.__wasm_call_ctors;
+  this.wasm_set_parameter = exports.wasm_set_parameter;
 
   // memory is exported by the module
   this.memory = exports.memory;

@@ -6,8 +6,8 @@ class WasmToneProcessor extends AudioWorkletProcessor {
       const ptr = this.malloc(str.length);
 
       // 3. Copy into WASM memory
-      const mem = new Uint8Array(this.memory.buffer, ptr, buf.length);
-      mem.set(buf);
+      const mem = new Uint8Array(this.memory.buffer, ptr, str.length);
+      mem.set(str);
 
       return ptr; // caller is responsible for free()
     }

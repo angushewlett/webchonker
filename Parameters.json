@@ -1,0 +1,78 @@
+{"parameters": {
+    "Lfo.Rate":        "Speed" ,
+    "Lfo.Shape":       "Shape",
+    
+    "Trig.Rate":       "Rate",
+    "Trig.Mode":       "Trig Mode",
+    
+    "Osc.Mode":        "Osc Mode",
+    "Osc.SawSqr":      "Shape",
+    "Osc.Pitch":       "Pitch",
+    "Osc.Fine":        "Fine",
+    "Osc.PwmDepth":    "PWM",
+    "Osc.ModDepth":    "Pitch Mod",
+    "Osc.Pw":          "PW",
+    "Osc.Level":       "Level",
+    "Osc.ModSource":   "Mod Src",
+    "Osc.PwSource":    "PWM Src",
+    
+    "Sub.Shape":       "Shape",
+    "Sub.ShapeDepth":  "Depth",
+    "Sub.Level":       "Level",
+    "Sub.ShapeSource": "Shape Src",
+    "Sub.Mode":        "Mode",
+    
+    "Noise.Level":     "Level",
+    "Noise.Mode":      "Noise Mode",
+    
+    "Filter.FilterMode":   "Filter Mode",
+    "Filter.Cutoff":       "Cutoff",
+    "Filter.CutoffEnv":    "Cutoff Env",
+    "Filter.FmDepth":      "FM",
+    "Filter.Res":          "Resonance",
+    "Filter.ResponseMode": "Filter Shape",
+    "Filter.FmSource":     "FM Src",
+    
+    "Xform.Mode":      "PFX Mode",
+    "Xform.Shift":     "Shift",
+    "Xform.Routing.Mode":  "Routing",
+    "Xform.Stereo":        "Stereo",
+    
+    "Amp.Gain":        "Gain",
+    "Amp.Mode":        "Amp Mode",
+    "Amp.Velocity":    "Velocity",
+    
+    "Env.Atk":         "A",
+    "Env.Dec":         "D",
+    "Env.Sus":         "S",
+    "Env.Rel":         "R",
+    
+    "Fx.1.Mix":        "FX1 Mix",
+    "Fx.2.Amount":     "FX2 Amt",
+    "Fx.3.Send":       "FX3 Send",
+    "Fx.4.Send":       "FX4 Send",
+    "Fx.1.Power":   "ON",
+    "Fx.2.Power":   "ON",
+    "Fx.3.Power":   "ON",
+    "Fx.4.Power":   "ON",
+    "Fx.1.Mode":    "Mode",
+    "Fx.2.Mode":    "Mode",
+    "Fx.3.Mode":    "Mode",
+    "Fx.4.Mode":    "Mode",
+    
+    "Lfo.Power":    "ON",
+    "Trig.Power":   "ON",
+    "Osc.Power":    "ON",
+    "Sub.Power":    "ON",
+    "Noise.Power":  "ON",
+    "Filter.Power": "ON",
+    "Xform.Power":  "ON",
+    "Env.Power":    "ON",
+    
+    "Layer.Macro1":      "Macro A",
+    "Layer.Macro2":      "Macro B",
+    "Settings.Poly":     "Poly",
+    "Settings.Unison":   "Unison",
+    "Global.Macro1":     "Macro X",
+    "Global.Macro2":     "Macro Y"
+}}

@@ -78,12 +78,19 @@
                 const data = await response.json();
                 const panel = document.getElementById('panel');
                 
+                const response2 = await fetch('./Parameters.json');
+                const data2 = await response2.json();
+
+                
+                
                 if (!data || !Array.isArray(data.controls))
                 {
                     console.error('Panel.json missing "controls" array');
                     return;
                 }
                 
+                const paramMap = data2.parameters;
+                                
                 for (const ctrl of data.controls)
                 {
                     // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
@@ -128,7 +135,11 @@
                     
                     // === LABEL ===
                     const label = document.createElement("div");
-                    label.textContent = cfg.id || "";
+                    
+                    const labelText = paramMap[cfg.id];
+                    
+                    
+                    label.textContent = labelText || "";
                     label.style.marginTop = "4px";
                     label.style.fontSize = "6px";
                     label.style.textAlign = "center";

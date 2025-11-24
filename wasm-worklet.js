@@ -1,3 +1,15 @@
+
+function asciiCStringFromWasm(ptr, memory) {
+  const bytes = new Uint8Array(memory.buffer);
+  let s = "";
+  let i = ptr;
+  while (bytes[i] !== 0) {
+    s += String.fromCharCode(bytes[i++]);
+  }
+  return s;
+}
+
+
 class WasmToneProcessor extends AudioWorkletProcessor {
     
     allocCStringInWasm(str) {
@@ -43,12 +55,15 @@ class WasmToneProcessor extends AudioWorkletProcessor {
   }
     
 
-
 async _initWasm(bytes) {
   const importObject = {
     env: {
       // Emscripten sometimes expects these; harmless no-ops.
       abort: () => {},
+        wasm_report_event: (eventId, value) => {
+        const name = asciiCStringFromWasm(eventId, this.memory);
+          this.port.postMessage({ type: "event", name, value });
+        },
     },
     wasi_snapshot_preview1: {
       // No-op stubs to satisfy any WASI-style imports.
@@ -163,4 +178,5 @@ async _initWasm(bytes) {
 }
 
 registerProcessor('wasm-tone-processor', WasmToneProcessor);
+
 

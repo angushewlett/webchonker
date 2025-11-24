@@ -23,6 +23,20 @@ async function startAudio()
   });
 
   node.connect(audioContext.destination);
+    
+    node.port.onmessage = (event) => {
+      //console.log(event);
+      const msg = event.data;
+      if (msg.type === "event") {
+          console.log(msg.name, msg.value);
+          let el = document.getElementById(msg.name);
+          const val = msg.value * 100;
+          if (el)
+          {
+              el.setAttribute('value', val);
+          }
+      }
+    };
 
   await initMidi();
 
@@ -176,7 +190,7 @@ async function onSelectPreset(preset)
 
 function onParameterChange(paramName, paramValue)
 {
-    console.log("Param: ", paramName, " ; value: ", paramValue);
+    // console.log("Param: ", paramName, " ; value: ", paramValue);
     if (node)
     {
         const encoder = new TextEncoder();

@@ -1,11 +1,14 @@
 {"controls": [
     
+        {"title":     {"id": "Lfo.Title",        "at": "24,20" }},
         {"synth-slider":     {"id": "Lfo.Rate",        "at": "24,100" }},
         {"CoStepRa2x3NoOff": {"id": "Lfo.Shape",  "at": "24,180"}},
 
+        {"title":     {"id": "Trig.Title",        "at": "67,20" }},
         {"synth-slider":     {"id": "Trig.Rate",       "at": "67,100" }},
         {"CoStepRaLHSV":     {"id": "Trig.Mode",  "at": "67,180"}},
 
+        {"title":     {"id": "Osc.Title",        "at": "160,20" }},
         {"CoComboTop":  {"id": "Osc.Mode",        "at": "222,42" }},
 
         {"synth-knob-large":   {"id": "Osc.SawSqr",      "at": "181,93" }},
@@ -18,15 +21,18 @@
         {"CoStepRaLHS": {"id": "Osc.ModSource",   "at": "142,170"}},
         {"CoStepRaRHS": {"id": "Osc.PwSource",    "at": "195,170"}},
 
+        {"title":     {"id": "Sub.Title",        "at": "284,20" }},
         {"synth-knob-large":   {"id": "Sub.Shape",       "at": "284,94" }},
         {"synth-knob-small": {"id": "Sub.ShapeDepth",  "at": "284,168"}},
         {"synth-slider":     {"id": "Sub.Level",       "at": "335,100"}},
         {"CoStepRaRHSV":     {"id": "Sub.ShapeSource",   "at": "313,180"}},
         {"CoStepRaLHSV":     {"id": "Sub.Mode",          "at": "335,180"}},
 
+        {"title":     {"id": "Noise.Title",        "at": "374,20" }},
         {"synth-slider":     {"id": "Noise.Level",     "at": "374,100"}},
         {"CoStepRaLHSVOff":  {"id": "Noise.Mode", "at": "374,180"}},
 
+        {"title":     {"id": "Filter.Title",        "at": "450,20" }},
         {"CoComboTop":  {"id": "Filter.FilterMode","at": "474,42"}},
         {"synth-slider":     {"id": "Filter.Cutoff",   "at": "410,100"}},
         {"synth-slider":     {"id": "Filter.CutoffEnv","at": "466,100"}},
@@ -35,20 +41,24 @@
         {"CoStepRaLHS": {"id": "Filter.ResponseMode","at": "412,170"}},
         {"CoStepRaLHS": {"id": "Filter.FmSource",   "at": "465,170"}},
 
+        {"title":     {"id": "Xform.Title",        "at": "520,20" }},
         {"CoComboTop":  {"id": "Xform.Mode",        "at": "550,42" }},
         {"synth-slider":     {"id": "Xform.Shift",       "at": "536,100"}},
         {"CoStepRaLHS": {"id": "Xform.Routing.Mode","at": "520,170"}},
         {"CoStepLHS1":  {"id": "Xform.Stereo",      "at": "520,195"}},
 
+        {"title":     {"id": "Amp.Title",        "at": "590,20" }},
         {"synth-slider":     {"id": "Amp.Gain",        "at": "591,100"}},
         {"CoStepRaLHS": {"id": "Amp.Mode",        "at": "585,170"}},
         {"CoStepLHS1":  {"id": "Amp.Velocity",    "at": "585,195"}},
 
+        {"title":     {"id": "Env.Title",        "at": "660,20" }},
         {"synth-slider":     {"id": "Env.Atk",         "at": "627,100"}},
         {"synth-slider":     {"id": "Env.Dec",         "at": "650,100"}},
         {"synth-slider":     {"id": "Env.Sus",         "at": "673,100"}},
         {"synth-slider":     {"id": "Env.Rel",         "at": "696,100"}},
 
+        {"title":     {"id": "Fx.Title",        "at": "740,20" }},
         {"synth-knob-small": {"id": "Fx.1.Mix",        "at": "726,71"}},
         {"synth-knob-small": {"id": "Fx.2.Amount",     "at": "726,109"}},
         {"synth-knob-small": {"id": "Fx.3.Send",       "at": "726,147"}},

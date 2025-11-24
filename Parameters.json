@@ -1,10 +1,13 @@
 {"parameters": {
+    "Lfo.Title":       "=== LFO ===" ,
     "Lfo.Rate":        "Speed" ,
     "Lfo.Shape":       "Shape",
     
+    "Trig.Title":      "=== TRIG ===" ,
     "Trig.Rate":       "Rate",
     "Trig.Mode":       "Trig Mode",
     
+    "Osc.Title":      "======== VCO ========" ,
     "Osc.Mode":        "Osc Mode",
     "Osc.SawSqr":      "Shape",
     "Osc.Pitch":       "Pitch",
@@ -16,15 +19,18 @@
     "Osc.ModSource":   "Mod Src",
     "Osc.PwSource":    "PWM Src",
     
+    "Sub.Title":      "==== SUB OSC ====" ,
     "Sub.Shape":       "Shape",
     "Sub.ShapeDepth":  "Depth",
     "Sub.Level":       "Level",
     "Sub.ShapeSource": "Shape Src",
     "Sub.Mode":        "Mode",
     
+    "Noise.Title":      "==== NOISE ====" ,
     "Noise.Level":     "Level",
     "Noise.Mode":      "Noise Mode",
     
+    "Filter.Title":      "======== VCF ========" ,
     "Filter.FilterMode":   "Filter Mode",
     "Filter.Cutoff":       "Cutoff",
     "Filter.CutoffEnv":    "Cutoff Env",
@@ -33,20 +39,24 @@
     "Filter.ResponseMode": "Filter Shape",
     "Filter.FmSource":     "FM Src",
     
+    "Xform.Title":      "=== POLY FX ===" ,
     "Xform.Mode":      "PFX Mode",
     "Xform.Shift":     "Shift",
     "Xform.Routing.Mode":  "Routing",
     "Xform.Stereo":        "Stereo",
     
+    "Amp.Title":       "=== VCA ===" ,
     "Amp.Gain":        "Gain",
     "Amp.Mode":        "Amp Mode",
     "Amp.Velocity":    "Velocity",
     
+    "Env.Title":       "=== ENVELOPE ===" ,
     "Env.Atk":         "A",
     "Env.Dec":         "D",
     "Env.Sus":         "S",
     "Env.Rel":         "R",
     
+    "Fx.Title":       "=== EFFECTS ===" ,
     "Fx.1.Mix":        "FX1 Mix",
     "Fx.2.Amount":     "FX2 Amt",
     "Fx.3.Send":       "FX3 Send",

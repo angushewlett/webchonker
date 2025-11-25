@@ -155,6 +155,26 @@ function selectMidiInput(inputId) {
   };
 }
 
+function noteOn(note)
+{
+    if (node)
+        node.port.postMessage({
+          type: "midi",
+          data: Array.from([0x90, note, 0x7F]),  // e.g. [status, data1, data2]
+          timestamp: 0
+        });
+}
+
+function noteOff(note)
+{
+    if (node)
+        node.port.postMessage({
+          type: "midi",
+          data: Array.from([0x80, note, 0x00]),  // e.g. [status, data1, data2]
+          timestamp: 0
+        });
+}
+
 let currentPreset = 0;
 let currentBank = 0;
 
@@ -227,4 +247,6 @@ document.getElementById('preset.5').addEventListener('click', () => { onSelectPr
 document.getElementById('preset.6').addEventListener('click', () => { onSelectPreset(6); });
 document.getElementById('preset.7').addEventListener('click', () => { onSelectPreset(7); });
 document.getElementById('preset.8').addEventListener('click', () => { onSelectPreset(8); });
+
+
 

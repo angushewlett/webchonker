@@ -28,12 +28,34 @@ async function startAudio()
       //console.log(event);
       const msg = event.data;
       if (msg.type === "event") {
-          console.log(msg.name, msg.value);
+          //console.log(msg.name, msg.value);
           let el = document.getElementById(msg.name);
-          const val = msg.value * 100;
           if (el)
           {
+              const val = msg.value;
               el.setAttribute('value', val);
+          }
+          else
+          {
+              try
+              {
+                  const val = msg.value;
+                  const jd = JSON.parse(msg.name);
+                  const key = Object.keys(jd)[0];
+                  if (key)
+                  {
+                      let el = document.getElementById(key);
+                      if (el)
+                      {
+                          el.setAttribute('options', Object.values(jd)[0]);
+                          el.setAttribute('value', el.options[Math.round(val)]);
+                      }
+                  }
+              }
+              catch(error)
+              {
+                  
+              }
           }
       }
     };
@@ -220,12 +242,30 @@ function onParameterChange(paramName, paramValue)
         const bytes = new Uint8Array(utf8.length + 1);
         bytes.set(utf8);
         bytes[utf8.length] = 0; // null-terminate
-
-        node.port.postMessage({
-            type: "param",
-            name: bytes,
-            value: paramValue
-        });
+        
+        if (typeof paramValue === 'string' )
+        {
+            let el = document.getElementById(paramName);
+            if (el)
+            {
+                let opts = el.options;
+                let paramValueInt = opts.indexOf(paramValue);
+                node.port.postMessage({
+                    type: "param",
+                    name: bytes,
+                    value: paramValueInt
+                });
+            }
+            
+        }
+        else
+        {
+            node.port.postMessage({
+                type: "param",
+                name: bytes,
+                value: paramValue
+            });
+        }
     }
 }
 

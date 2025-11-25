@@ -9,7 +9,7 @@
         {"CoStepRaLHSV":     {"id": "Trig.Mode",  "at": "67,180"}},
 
         {"title":     {"id": "Osc.Title",        "at": "160,20" }},
-        {"CoComboTop":  {"id": "Osc.Mode",        "at": "222,42" }},
+        {"synth-dropdown":  {"id": "Osc.Mode",        "at": "222,42" }},
 
         {"synth-knob-large":   {"id": "Osc.SawSqr",      "at": "181,93" }},
         {"synth-knob-large":   {"id": "Osc.Pitch",       "at": "111,93" }},
@@ -33,7 +33,7 @@
         {"CoStepRaLHSVOff":  {"id": "Noise.Mode", "at": "374,180"}},
 
         {"title":     {"id": "Filter.Title",        "at": "450,20" }},
-        {"CoComboTop":  {"id": "Filter.FilterMode","at": "474,42"}},
+        {"synth-dropdown":  {"id": "Filter.FilterMode","at": "474,42"}},
         {"synth-slider":     {"id": "Filter.Cutoff",   "at": "410,100"}},
         {"synth-slider":     {"id": "Filter.CutoffEnv","at": "466,100"}},
         {"synth-slider":     {"id": "Filter.FmDepth",  "at": "489,100"}},
@@ -42,7 +42,7 @@
         {"CoStepRaLHS": {"id": "Filter.FmSource",   "at": "465,170"}},
 
         {"title":     {"id": "Xform.Title",        "at": "520,20" }},
-        {"CoComboTop":  {"id": "Xform.Mode",        "at": "550,42" }},
+        {"synth-dropdown":  {"id": "Xform.Mode",        "at": "550,42" }},
         {"synth-slider":     {"id": "Xform.Shift",       "at": "536,100"}},
         {"CoStepRaLHS": {"id": "Xform.Routing.Mode","at": "520,170"}},
         {"CoStepLHS1":  {"id": "Xform.Stereo",      "at": "520,195"}},
@@ -67,10 +67,10 @@
         {"CoLedSwitch": {"id": "Fx.2.Power",      "at": "746,101"}},
         {"CoLedSwitch": {"id": "Fx.3.Power",      "at": "746,139"}},
         {"CoLedSwitch": {"id": "Fx.4.Power",      "at": "746,177"}},
-        {"CoComboPanel":{"id": "Fx.1.Mode",       "at": "768,76"}},
-        {"CoComboPanel":{"id": "Fx.2.Mode",       "at": "768,114"}},
-        {"CoComboPanel":{"id": "Fx.3.Mode",       "at": "768,152"}},
-        {"CoComboPanel":{"id": "Fx.4.Mode",       "at": "768,190"}},
+        {"synth-dropdown":{"id": "Fx.1.Mode",       "at": "768,76"}},
+        {"synth-dropdown":{"id": "Fx.2.Mode",       "at": "768,114"}},
+        {"synth-dropdown":{"id": "Fx.3.Mode",       "at": "768,152"}},
+        {"synth-dropdown":{"id": "Fx.4.Mode",       "at": "768,190"}},
 
         {"CoLedSwitch": {"id": "Lfo.Power",    "at": "11,43"}},
         {"CoLedSwitch": {"id": "Trig.Power",   "at": "52,43"}},

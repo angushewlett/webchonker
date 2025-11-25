@@ -7,9 +7,9 @@ class SynthSlider extends HTMLElement {
   constructor() {
     super();
 
-    this._min = 0;
-    this._max = 100;
-    this._value = 50;
+    this._min = 0.0;
+    this._max = 1.0;
+    this._value = 0.5;
 
     this._dragging = false;
     this._startY = 0;

@@ -43,7 +43,7 @@ class WasmToneProcessor extends AudioWorkletProcessor {
       if (msg.type === "param")
       {
           const ptr = this.allocCStringInWasm(msg.name);
-          this.wasm_set_parameter(ptr, msg.value / 100.0);
+          this.wasm_set_parameter(ptr, msg.value);
           this.free(ptr);
       }
     };

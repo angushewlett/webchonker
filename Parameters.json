@@ -23,8 +23,8 @@
     "Sub.Shape":       "Shape",
     "Sub.ShapeDepth":  "Depth",
     "Sub.Level":       "Level",
-    "Sub.ShapeSource": "Shape Src",
-    "Sub.Mode":        "Mode",
+    "Sub.ShapeSource": "Mod Src",
+    "Sub.Mode":        "Oct",
     
     "Noise.Title":      "==== NOISE ====" ,
     "Noise.Level":     "Level",

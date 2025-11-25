@@ -15,8 +15,12 @@
         
         <style>
             button {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
+                padding: 0.5rem 0.5rem;
+                font-size: 1.0rem;
+                width: 120px;
+                height: 60px;
+                font-size: 9;
+                display: inline-block;
             }
             synth-knob-large {
                 width: 45px;
@@ -70,8 +74,33 @@
             <label for="midi-input-select"><em>← Then choose your MIDI controller (you did plug it in, right?) from this list.</em></label>
         </div>
         
-        <div id="panel"></div>
+        <div>
+            <h4>Banks / Presets:</h4>
+        </div>
+        <div>
+            <button id="bank.1">Bass 1</button>
+            <button id="bank.2">Bass 2</button>
+            <button id="bank.3">Keys 1</button>
+            <button id="bank.4">Keys 2</button>
+            <button id="bank.5">Leads</button>
+            <button id="bank.6"> Pads </button>
+            <button id="bank.7">Plucks</button>
+            <button id="bank.8">Synths</button>
+        </div>
         
+        <div>
+            <button id="preset.1">1</button>
+            <button id="preset.2">2</button>
+            <button id="preset.3">3</button>
+            <button id="preset.4">4</button>
+            <button id="preset.5">5</button>
+            <button id="preset.6">6</button>
+            <button id="preset.7">7</button>
+            <button id="preset.8">8</button>
+        </div>
+        
+        <div id="panel"></div>
+
 
         <script type="module">
             async function loadPanelLayout()
@@ -187,30 +216,7 @@
                 loadPanelLayout().catch(err => console.error(err));
             });
         </script>
-        
-        <div>
-            <h1>Bank select</h1>
-            <button id="bank.1">Bass 1</button>
-            <button id="bank.2">Bass 2</button>
-            <button id="bank.3">Keys 1</button>
-            <button id="bank.4">Keys 2</button>
-            <button id="bank.5">Leads</button>
-            <button id="bank.6"> Pads </button>
-            <button id="bank.7">Plucks</button>
-            <button id="bank.8">Synths</button>
-        </div>
-        
-        <div>
-            <h1>Preset select</h1>
-            <button id="preset.1">1</button>
-            <button id="preset.2">2</button>
-            <button id="preset.3">3</button>
-            <button id="preset.4">4</button>
-            <button id="preset.5">5</button>
-            <button id="preset.6">6</button>
-            <button id="preset.7">7</button>
-            <button id="preset.8">8</button>
-        </div>
+    
         
         <script src="main.js"></script>
 

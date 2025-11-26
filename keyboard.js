@@ -15,22 +15,57 @@ class PianoKeyboard extends HTMLElement {
     this.attachShadow({ mode: 'open' });
 
     this.shadowRoot.innerHTML = `
-      <style>
-        :host {
-          display: inline-block;
-          touch-action: none;
-          user-select: none;
-        }
+    <style>
+      :host {
+        display: inline-block;
+        touch-action: none;
+        user-select: none;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
 
-        svg {
-          width: 100%;
-          height: 100%;
-        }
-      </style>
-      <svg></svg>
+      /* Optional press/highlight styling */
+      g.white-key.pressed * {
+        /* tweak to taste */
+        fill: #ccd5ff;
+      }
+      g.black-key.pressed * {
+        fill: #5555ff;
+      }
+    </style>
+
+    <svg>
+      <defs>
+        <linearGradient id="paint0_linear_0_1" x1="1" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+        <stop stop-color="#6B6B6BFF"/>
+        <stop offset="0.0288462" stop-color="#D9D9D9FF"/>
+        <stop offset="0.899038" stop-color="#D9D9D9FF"/>
+        <stop offset="1.0" stop-color="#D9D9D9FF"/>
+        </linearGradient>
+        <!-- White key template: paste Figma white-key group contents here -->
+        <g id="white-key-template" class="white-key">
+          <!-- Example placeholder; replace with your Figma export -->
+    <rect width="13" height="80" fill="#939393"/>
+    <rect x="1" y="1" width="12" height="78" rx="2" fill="#00000000" stroke="black" stroke-opacity="0.44" stroke-width="3"/>
+    <rect width="13" height="80" rx="2" fill="url(#paint0_linear_0_1)"/>
+    
+        </g>
+        <!-- Black key template: paste Figma black-key group contents here -->
+        <g id="black-key-template" class="black-key">
+          <!-- Example placeholder; replace with your Figma export -->
+          <rect x="4" y="0" width="8" height="48" fill="#000000" stroke="#000000" stroke-width="0.5" />
+        </g>
+    
+      </defs>
+
+    </svg>
     `;
 
     this._svg = this.shadowRoot.querySelector('svg');
+    this._whiteTemplate = this._svg.getElementById('white-key-template');
+    this._blackTemplate = this._svg.getElementById('black-key-template');
 
     //this._onMouseUp = this._onMouseUp.bind(this);
     this._onPointerDown = this._onPointerDown.bind(this);
@@ -82,118 +117,113 @@ class PianoKeyboard extends HTMLElement {
     this.setAttribute('keys', String(v));
   }
 
-  _render() {
-    // Clear SVG
-    while (this._svg.firstChild) {
-      this._svg.removeChild(this._svg.firstChild);
-    }
-    this._keyRects.clear();
-    this._pressedNote = null;
+    _render() {
+      // clear old keys
+      this._keyRects.clear();
+      // this._pressedNote = null;
+    
+        // remove all children except <defs>
+        Array.from(this._svg.children).forEach(child => {
+          if (child.tagName !== 'defs') {
+            this._svg.removeChild(child);
+          }
+        });
+      const numNotes = this._numKeys;
+      const whiteKeyWidth = 14;    // logical spacing; independent of Figma design width
+      const whiteKeyHeight = 80;
 
-    const numNotes = this._numKeys;
-    const whiteKeyWidth = 14;
-    const whiteKeyHeight = 80;
-    const blackKeyWidth = whiteKeyWidth * 0.6;
-    const blackKeyHeight = whiteKeyHeight * 0.6;
+      const blackKeyWidth = whiteKeyWidth * 0.6;
+      const blackKeyHeight = whiteKeyHeight * 0.6;
 
-    // Note pattern (C-major scale, starting at C)
-    // 0:C,1:C#,2:D,3:D#,4:E,5:F,6:F#,7:G,8:G#,9:A,10:A#,11:B
-    const isBlack = [false, true, false, true, false, false, true, false, true, false, true, false];
-    const whiteOffsetInOctave = [0, 0, 1, 1, 2, 3, 3, 4, 4, 5, 5, 6];
+      const isBlack = [false, true, false, true, false, false, true, false, true, false, true, false];
 
-    // First pass: count white keys to know total width
-    let whiteCount = 0;
-    for (let i = 0; i < numNotes; i++) {
-      const noteInOctave = i % 12;
-      if (!isBlack[noteInOctave]) {
-        whiteCount++;
-      }
-    }
-
-    const totalWidth = whiteCount * whiteKeyWidth;
-    const totalHeight = whiteKeyHeight;
-
-    this._svg.setAttribute('viewBox', `0 0 ${totalWidth} ${totalHeight}`);
-
-    // Second pass: compute positions for white keys
-    const whitePositions = new Map(); // noteIndex -> x
-    let whiteIndex = 0;
-
-    for (let i = 0; i < numNotes; i++) {
-      const noteInOctave = i % 12;
-      if (!isBlack[noteInOctave]) {
-        const x = whiteIndex * whiteKeyWidth;
-        whitePositions.set(i, x);
-        whiteIndex++;
-      }
-    }
-
-    // Draw white keys first
-    for (let i = 0; i < numNotes; i++) {
-      const noteInOctave = i % 12;
-      if (!isBlack[noteInOctave]) {
-        const x = whitePositions.get(i);
-        if (x == null) continue;
-
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', x);
-        rect.setAttribute('y', 0);
-        rect.setAttribute('width', whiteKeyWidth);
-        rect.setAttribute('height', whiteKeyHeight);
-        rect.setAttribute('fill', '#ffffff');
-        rect.setAttribute('stroke', '#000000');
-        rect.setAttribute('stroke-width', '0.5');
-
-        rect.dataset.note = String(i);
-       // rect.addEventListener('mousedown', (e) => this._onKeyMouseDown(e, i));
-
-        this._svg.appendChild(rect);
-        this._keyRects.set(i, { rect, isBlack: false, baseFill: '#ffffff' });
-      }
-    }
-
-    // Draw black keys on top
-    for (let i = 0; i < numNotes; i++) {
-      const noteInOctave = i % 12;
-      if (!isBlack[noteInOctave]) continue;
-
-      // approximate x position based on white keys
-      const octaveIndex = Math.floor(i / 12);
-      const baseInOct = noteInOctave;
-
-      // dx in white key units from start of this octave (tuned visually)
-      let dxWhite;
-      switch (baseInOct) {
-        case 1:  dxWhite = 0.9; break; // C#
-        case 3:  dxWhite = 1.9; break; // D#
-        case 6:  dxWhite = 3.9; break; // F#
-        case 8:  dxWhite = 4.9; break; // G#
-        case 10: dxWhite = 5.9; break; // A#
-        default: dxWhite = 0;   break;
+      // count whites for viewBox width
+      let whiteCount = 0;
+      for (let i = 0; i < numNotes; i++) {
+        if (!isBlack[i % 12]) whiteCount++;
       }
 
-      // Where does this octave start in white keys?
-      const octaveWhiteStart = octaveIndex * 7;
-      const x = (octaveWhiteStart + dxWhite) * whiteKeyWidth;
+      const totalWidth = whiteCount * whiteKeyWidth;
+      const totalHeight = whiteKeyHeight;
 
-      if (x < 0 || x > totalWidth) continue;
+      this._svg.setAttribute('viewBox', `0 0 ${totalWidth} ${totalHeight}`);
 
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('x', x - blackKeyWidth / 2);
-      rect.setAttribute('y', 0);
-      rect.setAttribute('width', blackKeyWidth);
-      rect.setAttribute('height', blackKeyHeight);
-      rect.setAttribute('fill', '#000000');
-      rect.setAttribute('stroke', '#000000');
-      rect.setAttribute('stroke-width', '0.5');
+      // re-add defs (we removed everything earlier)
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defs.appendChild(this._whiteTemplate.cloneNode(true));
+      defs.appendChild(this._blackTemplate.cloneNode(true));
+      this._svg.appendChild(defs);
 
-      rect.dataset.note = String(i);
-      //rect.addEventListener('mousedown', (e) => this._onKeyMouseDown(e, i));
+      // recapture template refs from new defs
+      this._whiteTemplate = defs.querySelector('#white-key-template');
+      this._blackTemplate = defs.querySelector('#black-key-template');
 
-      this._svg.appendChild(rect);
-      this._keyRects.set(i, { rect, isBlack: true, baseFill: '#000000' });
+      // 1) positions of white keys
+      const whitePositions = new Map();
+      let whiteIndex = 0;
+
+      for (let i = 0; i < numNotes; i++) {
+        const noteInOct = i % 12;
+        if (!isBlack[noteInOct]) {
+          const x = whiteIndex * whiteKeyWidth;
+          whitePositions.set(i, x);
+          whiteIndex++;
+        }
+      }
+
+      // 2) instantiate white key groups
+      for (let i = 0; i < numNotes; i++) {
+        const noteInOct = i % 12;
+        if (!isBlack[noteInOct]) {
+          const x = whitePositions.get(i);
+          if (x == null) continue;
+
+          const g = this._whiteTemplate.cloneNode(true);
+          g.removeAttribute('id');            // avoid duplicate IDs
+          g.dataset.note = String(i);
+          g.classList.add('white-key');
+          g.setAttribute('transform', `translate(${x}, 0)`);
+
+          // pointer events on group for note press
+          g.addEventListener('pointerdown', (e) => this._onPointerDownKey(e, i));
+
+          this._svg.appendChild(g);
+          this._keyRects.set(i, { group: g, isBlack: false });
+        }
+      }
+
+      // 3) instantiate black key groups (like before, but using template)
+      for (let i = 0; i < numNotes; i++) {
+        const noteInOct = i % 12;
+        if (!isBlack[noteInOct]) continue;
+
+        const octaveIndex = Math.floor(i / 12);
+        let dxWhite;
+        switch (noteInOct) {
+          case 1:  dxWhite = 0.7; break;
+          case 3:  dxWhite = 1.7; break;
+          case 6:  dxWhite = 3.7; break;
+          case 8:  dxWhite = 4.7; break;
+          case 10: dxWhite = 5.7; break;
+          default: dxWhite = 0;   break;
+        }
+        const octaveWhiteStart = octaveIndex * 7;
+        const x = (octaveWhiteStart + dxWhite) * whiteKeyWidth;
+
+        if (x < 0 || x > totalWidth) continue;
+
+        const g = this._blackTemplate.cloneNode(true);
+        g.removeAttribute('id');
+        g.dataset.note = String(i);
+        g.classList.add('black-key');
+        g.setAttribute('transform', `translate(${x - blackKeyWidth / 2}, 0)`);
+
+        g.addEventListener('pointerdown', (e) => this._onPointerDownKey(e, i));
+
+        this._svg.appendChild(g);
+        this._keyRects.set(i, { group: g, isBlack: true });
+      }
     }
-  }
 
   _onKeyMouseDown(e, noteIndex) {
     e.preventDefault();
@@ -234,6 +264,16 @@ class PianoKeyboard extends HTMLElement {
       this._pressNote(noteIndex);
     }
     
+    _onPointerDownKey(e, noteIndex) {
+      e.preventDefault();
+      this._dragging = true;
+      try {
+        this._svg.setPointerCapture(e.pointerId);
+      } catch (_) {}
+      this._updateNoteFromPointer(e); // for gliss logic
+      this._pressNote(noteIndex);
+    }
+    
     _onPointerDown(e) {
       e.preventDefault();
       this._dragging = true;
@@ -243,7 +283,7 @@ class PianoKeyboard extends HTMLElement {
         this._svg.setPointerCapture(e.pointerId);
       } catch (_) {}
 
-      this._updateNoteFromPointer(e);
+      //this._updateNoteFromPointer(e);
     }
 
     _onPointerMove(e) {
@@ -265,9 +305,15 @@ class PianoKeyboard extends HTMLElement {
     }
     
     _updateNoteFromPointer(e) {
-      const hit = this.shadowRoot.elementFromPoint(e.clientX, e.clientY);
+      // Hit-test inside the shadow DOM
+      let hit = this.shadowRoot.elementFromPoint(e.clientX, e.clientY);
 
-      if (!hit || !(hit instanceof SVGRectElement) || !hit.dataset || hit.dataset.note == null) {
+      // Walk up the DOM tree until we find something with data-note
+      while (hit && hit !== this._svg && (!hit.dataset || hit.dataset.note == null)) {
+        hit = hit.parentNode;
+      }
+
+      if (!hit || hit === this._svg || !hit.dataset || hit.dataset.note == null) {
         // Pointer is not over any key: release current note
         if (this._pressedNote != null) {
           this._releaseNote(this._pressedNote);
@@ -283,58 +329,69 @@ class PianoKeyboard extends HTMLElement {
         return;
       }
 
-      // This will release the previous note and fire noteon for the new one
       this._pressNote(noteIndex);
     }
+     /*
+    _updateNoteFromPointer(e) {
+      let hit = this.shadowRoot.elementFromPoint(e.clientX, e.clientY);
 
-  _pressNote(noteIndex) {
-    if (this._pressedNote === noteIndex) return;
+      // climb to the <g data-note="...">
+      while (hit && hit !== this._svg && (!hit.dataset || hit.dataset.note == null)) {
+        hit = hit.parentNode;
+      }
 
-    // Release previous
-    if (this._pressedNote != null) {
-      this._releaseNote(this._pressedNote, true);
+      if (!hit || hit === this._svg || !hit.dataset || hit.dataset.note == null) {
+        if (this._pressedNote != null) {
+          this._releaseNote(this._pressedNote);
+        }
+        return;
+      }
+
+      const noteIndex = Number(hit.dataset.note);
+      if (Number.isNaN(noteIndex)) return;
+      if (this._pressedNote === noteIndex) return;
+
+      this._pressNote(noteIndex);
     }
+*/
 
-    const info = this._keyRects.get(noteIndex);
-    if (!info) return;
+    _pressNote(noteIndex) {
+      if (this._pressedNote === noteIndex) return;
 
-    this._pressedNote = noteIndex;
+      if (this._pressedNote != null) {
+        this._releaseNote(this._pressedNote, true);
+      }
 
-    // Simple highlight: darken/lighten
-    if (info.isBlack) {
-      info.rect.setAttribute('fill', '#333333');
-    } else {
-      info.rect.setAttribute('fill', '#ccccff');
-    }
+      const info = this._keyRects.get(noteIndex);
+      if (!info) return;
 
-    this.dispatchEvent(
-      new CustomEvent('noteon', {
+      this._pressedNote = noteIndex;
+      info.group.classList.add('pressed');
+
+      this.dispatchEvent(new CustomEvent('noteon', {
         bubbles: true,
         detail: { note: noteIndex }
-      })
-    );
-  }
-
-  _releaseNote(noteIndex, sendEvent = true) {
-    const info = this._keyRects.get(noteIndex);
-    if (!info) return;
-
-    // Restore fill
-    info.rect.setAttribute('fill', info.baseFill);
-
-    if (this._pressedNote === noteIndex) {
-      this._pressedNote = null;
+      }));
     }
 
-    if (sendEvent) {
-      this.dispatchEvent(
-        new CustomEvent('noteoff', {
+    _releaseNote(noteIndex, sendEvent = true) {
+      const info = this._keyRects.get(noteIndex);
+      if (!info) return;
+
+      info.group.classList.remove('pressed');
+
+      if (this._pressedNote === noteIndex) {
+        this._pressedNote = null;
+      }
+
+      if (sendEvent) {
+        this.dispatchEvent(new CustomEvent('noteoff', {
           bubbles: true,
           detail: { note: noteIndex }
-        })
-      );
+        }));
+      }
     }
-  }
+
 }
 
 customElements.define('piano-keyboard', PianoKeyboard);

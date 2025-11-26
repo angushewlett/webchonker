@@ -65,7 +65,7 @@ async function startAudio()
   if (audioContext.state === "suspended") {
     await audioContext.resume();
   }
-
+  onSelectPreset(2);
   console.log("Audio started, let's go!");
 }
 

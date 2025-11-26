@@ -18,7 +18,7 @@ class SynthSlider extends HTMLElement {
 
     // SVG track geometry (viewBox units)
     this._trackTop = 10;
-    this._trackBottom = 110;
+    this._trackBottom = 128;
     this._trackHeight = this._trackBottom - this._trackTop;
 
     this.attachShadow({ mode: 'open' });
@@ -34,17 +34,24 @@ class SynthSlider extends HTMLElement {
           height: 100%;
         }
       </style>
-      <svg viewBox="0 0 40 120">
-        <!-- Background / panel -->
-        <rect x="0" y="0" width="40" height="120" fill="none" />
-
-        <!-- Track -->
-        <rect id="track" x="18" y="10" width="4" height="100"
-              rx="2" ry="2"
-              fill="currentColor" opacity="0.25" />
+      <svg viewBox="0 0 23 132">
+    <rect y="7" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
+    <rect y="67" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
+    <rect y="37" width="3" height="1" fill="#D9D9D9" fill-opacity="0.25"/>
+    <rect y="97" width="3" height="1" fill="#D9D9D9" fill-opacity="0.25"/>
+    <rect y="127" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
+    <rect x="20" y="7" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
+    <rect x="20" y="67" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
+    <rect x="20" y="37" width="3" height="1" fill="#D9D9D9" fill-opacity="0.25"/>
+    <rect x="20" y="97" width="3" height="1" fill="#D9D9D9" fill-opacity="0.25"/>
+    <rect x="20" y="127" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 132L9 2.77026C9 1.79257 9.89543 1 11 1C12.1046 1 13 1.79257 13 2.77026L13 132H9Z" fill="#303030"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 131L9 1.77026C9 0.792572 9.89543 0 11 0C12.1046 0 13 0.792572 13 1.77026L13 131H9Z" fill="#101010"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 131L9 2.75676C9 1.78651 9.89543 1 11 1C12.1046 1 13 1.78651 13 2.75676L13 131H9Z" fill="#202020"/>
+    <path d="M9.5 2.75684C9.5 2.12168 10.1087 1.5 11 1.5C11.8913 1.5 12.5 2.12168 12.5 2.75684L12.5 130.5H9.5L9.5 2.75684Z" stroke="black" stroke-opacity="0.2"/>
 
         <!-- Fill (value) -->
-        <rect id="fill" x="18" y="110" width="4" height="0"
+        <rect id="fill" x="10" y="140" width="4" height="0"
               rx="2" ry="2"
               fill="currentColor" opacity="0.9" />
       </svg>

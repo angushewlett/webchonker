@@ -20,9 +20,9 @@
 
         {"synth-knob-large": {"id": "Sub.Shape",          "at": "284,94" }},
         {"synth-knob-small": {"id": "Sub.ShapeDepth",     "at": "264,168"}},
-        {"synth-slider":     {"id": "Sub.Level",          "at": "330,100"}},
+        {"synth-slider":     {"id": "Sub.Level",          "at": "326,100"}},
         {"synth-dropdown-s": {"id": "Sub.ShapeSource",    "at": "294,170"}},
-        {"synth-dropdown-s": {"id": "Sub.Mode",           "at": "330,180"}},
+        {"synth-dropdown-s": {"id": "Sub.Mode",           "at": "326,195"}},
 
         {"synth-slider":     {"id": "Noise.Level",        "at": "368,100"}},
         {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "368,180"}},
@@ -58,10 +58,10 @@
         {"synth-dropdown":   {"id": "Fx.3.Mode",          "at": "768,141"}},
         {"synth-dropdown":   {"id": "Fx.4.Mode",          "at": "768,179"}},
 
-        {"synth-knob-small": {"id": "Layer.Macro1",       "at": "112,220"}},
-        {"synth-knob-small": {"id": "Layer.Macro2",       "at": "147,220"}},
-        {"synth-dropdown-s": {"id": "Settings.Poly",      "at": "302,220"}},
-        {"synth-dropdown-s": {"id": "Settings.Unison",    "at": "502,220"}},
-        {"synth-knob-small": {"id": "Global.Macro1",      "at": "647,220"}},
-        {"synth-knob-small": {"id": "Global.Macro2",      "at": "682,220"}}
+        {"synth-knob-small": {"id": "Layer.Macro1",       "at": "112,222"}},
+        {"synth-knob-small": {"id": "Layer.Macro2",       "at": "147,222"}},
+        {"synth-dropdown-s": {"id": "Settings.Poly",      "at": "302,224"}},
+        {"synth-dropdown-s": {"id": "Settings.Unison",    "at": "502,224"}},
+        {"synth-knob-small": {"id": "Global.Macro1",      "at": "647,222"}},
+        {"synth-knob-small": {"id": "Global.Macro2",      "at": "682,222"}}
 ]}

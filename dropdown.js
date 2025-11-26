@@ -36,7 +36,7 @@ class SynthDropdown extends HTMLElement {
           height: 100%;
           box-sizing: border-box;
           border-radius: 1px;
-          border: 1px solid #555;
+          border: 1px solid #00000020;
           background: #222;
           color: #eee;
           padding: 1px 8px;

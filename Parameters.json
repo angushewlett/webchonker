@@ -8,7 +8,7 @@
     "Trig.Mode":       "Trig Mode",
     
     "Osc.Title":      "======== VCO ========" ,
-    "Osc.Mode":        "Osc Mode",
+    "Osc.Mode":        "",
     "Osc.SawSqr":      "Shape",
     "Osc.Pitch":       "Pitch",
     "Osc.Fine":        "Fine",
@@ -31,7 +31,7 @@
     "Noise.Mode":      "Noise Mode",
     
     "Filter.Title":      "======== VCF ========" ,
-    "Filter.FilterMode":   "Filter Mode",
+    "Filter.FilterMode":   "",
     "Filter.Cutoff":       "Cutoff",
     "Filter.CutoffEnv":    "Cutoff Env",
     "Filter.FmDepth":      "FM",
@@ -40,7 +40,7 @@
     "Filter.FmSource":     "FM Src",
     
     "Xform.Title":      "=== POLY FX ===" ,
-    "Xform.Mode":      "PFX Mode",
+    "Xform.Mode":      "",
     "Xform.Shift":     "Shift",
     "Xform.Routing.Mode":  "Routing",
     "Xform.Stereo":        "Stereo",
@@ -65,10 +65,10 @@
     "Fx.2.Power":   "ON",
     "Fx.3.Power":   "ON",
     "Fx.4.Power":   "ON",
-    "Fx.1.Mode":    "Mode",
-    "Fx.2.Mode":    "Mode",
-    "Fx.3.Mode":    "Mode",
-    "Fx.4.Mode":    "Mode",
+    "Fx.1.Mode":    "",
+    "Fx.2.Mode":    "",
+    "Fx.3.Mode":    "",
+    "Fx.4.Mode":    "",
     
     "Lfo.Power":    "ON",
     "Trig.Power":   "ON",

@@ -35,11 +35,11 @@ class SynthDropdown extends HTMLElement {
           width: 100%;
           height: 100%;
           box-sizing: border-box;
-          border-radius: 2px;
+          border-radius: 1px;
           border: 1px solid #555;
           background: #222;
           color: #eee;
-          padding: 2px 8px;
+          padding: 1px 8px;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -59,13 +59,13 @@ class SynthDropdown extends HTMLElement {
     
     .arrow {
       flex: 0 0 auto;           /* arrow stays fixed */
-      margin-left: 6px;
+      margin-left: 2px;
 
       width: 0;
       height: 0;
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 6px solid #ccc;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-top: 1.5px solid #ccc;
     }    
 
         .list {
@@ -77,7 +77,7 @@ class SynthDropdown extends HTMLElement {
           max-height: 160px;
           overflow-y: auto;
           box-sizing: border-box;
-          border-radius: 4px;
+          border-radius: 2px;
           border: 1px solid #555;
           background: rgba(34, 34, 34, 1.0);     /* <-- fully opaque */    
           box-shadow: 0 4px 12px rgba(0,0,0,0.8);
@@ -89,7 +89,7 @@ class SynthDropdown extends HTMLElement {
         }
 
         .item {
-          padding: 4px 8px;
+          padding: 2px 8px;
           cursor: pointer;
           white-space: nowrap;
         }
@@ -276,5 +276,9 @@ class SynthDropdown extends HTMLElement {
   }
 }
 
+class SynthDropdownSmall extends SynthDropdown {}
+
+
 customElements.define('synth-dropdown', SynthDropdown);
+customElements.define('synth-dropdown-s', SynthDropdownSmall);
 

@@ -33,7 +33,7 @@
     "Filter.Title":      "======== VCF ========" ,
     "Filter.FilterMode":   "",
     "Filter.Cutoff":       "Cutoff",
-    "Filter.CutoffEnv":    "Cutoff Env",
+    "Filter.CutoffEnv":    "Env",
     "Filter.FmDepth":      "FM",
     "Filter.Res":          "Resonance",
     "Filter.ResponseMode": "Filter Shape",

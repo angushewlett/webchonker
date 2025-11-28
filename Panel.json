@@ -2,9 +2,11 @@
     
         {"synth-slider":     {"id": "Lfo.Rate",           "at": "20,100" }},
         {"synth-dropdown-s": {"id": "Lfo.Shape",          "at": "20,180" }},
+        {"synth-led":        {"id": "Lfo.Out",            "at": "20,50" }},
 
         {"synth-slider":     {"id": "Trig.Rate",          "at": "61,100" }},
         {"synth-dropdown-s": {"id": "Trig.Mode",          "at": "61,180" }},
+        {"synth-led":        {"id": "Trig.Out",            "at": "61,50" }},
 
         {"synth-dropdown":   {"id": "Osc.Mode",           "at": "224,41" }},
 
@@ -48,6 +50,7 @@
         {"synth-slider":     {"id": "Env.Dec",            "at": "643,100"}},
         {"synth-slider":     {"id": "Env.Sus",            "at": "666,100"}},
         {"synth-slider":     {"id": "Env.Rel",            "at": "689,100"}},
+        {"synth-led":        {"id": "Env.Out",            "at": "620,50" }},
 
         {"synth-knob-small": {"id": "Fx.1.Mix",           "at": "722,71" }},
         {"synth-knob-small": {"id": "Fx.2.Amount",        "at": "722,109"}},

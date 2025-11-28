@@ -145,6 +145,8 @@ class SynthSlider extends HTMLElement {
 
     window.addEventListener('pointermove', this._onPointerMove);
     window.addEventListener('pointerup', this._onPointerUp);
+    this.dispatchEvent(new Event('mouseDown', { bubbles: true }));
+
   }
 
   _onPointerMove(e) {
@@ -181,6 +183,7 @@ class SynthSlider extends HTMLElement {
     window.removeEventListener('pointerup', this._onPointerUp);
 
     this.dispatchEvent(new Event('change', { bubbles: true }));
+    this.dispatchEvent(new Event('mouseUp', { bubbles: true }));
   }
 }
 

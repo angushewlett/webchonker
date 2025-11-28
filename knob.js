@@ -149,6 +149,7 @@ class SynthKnob extends HTMLElement {
     this.setPointerCapture(e.pointerId);
     window.addEventListener('pointermove', this._onPointerMove);
     window.addEventListener('pointerup', this._onPointerUp);
+    this.dispatchEvent(new Event('mouseDown', { bubbles: true }));
   }
 
   _onPointerMove(e) {
@@ -173,6 +174,7 @@ class SynthKnob extends HTMLElement {
     window.removeEventListener('pointermove', this._onPointerMove);
     window.removeEventListener('pointerup', this._onPointerUp);
     this.dispatchEvent(new Event('change', { bubbles: true }));
+    this.dispatchEvent(new Event('mouseUp', { bubbles: true }));
   }
 }
 

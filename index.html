@@ -216,6 +216,7 @@
 
 
         <script type="module">
+            var label_text = "---";
             async function loadPanelLayout()
             {
                 const response = await fetch('./Panel.json');
@@ -289,19 +290,27 @@
                     el.style.pointerEvents = 'auto';
                     
                     el.addEventListener('input', () => { onParameterChange(el.id, el._value); } );
-                    
+
                     // === LABEL ===
                     const label = document.createElement("div");
                     
                     const labelText = paramMap[cfg.id];
                     
-                    
+                    label.id = cfg.id + ".label";
                     label.textContent = labelText || "";
                     label.style.marginTop = "1px";
                     label.style.fontSize = "6px";
                     label.style.textAlign = "center";
                     label.style.color = "#ddd";
                     label.style.pointerEvents = "none";
+                    
+                    el.addEventListener('mouseDown', () => {
+                        label_text = label.textContent;
+                    } );
+                    el.addEventListener('mouseUp', () => {
+                        label.textContent = label_text;
+                    } );
+
                     
                     // Add control + label to wrapper
                     wrapper.appendChild(el);

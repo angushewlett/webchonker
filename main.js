@@ -1,6 +1,7 @@
 // Webchonker - main.js
 
 let node = null;
+let activeParamName = "";
 
 
 async function startAudio()
@@ -63,6 +64,21 @@ async function startAudio()
         let el = document.getElementById("preset.name");
         el.setAttribute('label', msg.result_str);
     }
+    else if (msg.type === "param_value")
+    {
+        let label_id = activeParamName + ".label";
+        let lab = document.getElementById(label_id);
+        if (lab)
+        {
+            let el = document.getElementById(activeParamName);
+            if (el)
+            {
+                if (el._dragging == true)
+                    lab.textContent = msg.text;
+            }
+        }
+    }
+
     };
 
   await initMidi();
@@ -235,6 +251,7 @@ async function onSelectPreset(preset)
       }  
 }
 
+
 function onParameterChange(paramName, paramValue)
 {
     // console.log("Param: ", paramName, " ; value: ", paramValue);
@@ -247,7 +264,9 @@ function onParameterChange(paramName, paramValue)
         const bytes = new Uint8Array(utf8.length + 1);
         bytes.set(utf8);
         bytes[utf8.length] = 0; // null-terminate
-        
+
+        activeParamName = paramName;
+
         if (typeof paramValue === 'string' )
         {
             let el = document.getElementById(paramName);

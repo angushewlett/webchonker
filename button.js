@@ -7,7 +7,7 @@ class SynthButton extends HTMLElement {
   constructor() {
     super();
 
-    this._label = '';
+   // this._label = '';
     this._disabled = false;
     this._pressed = false;
     this._pointerId = null;
@@ -261,4 +261,90 @@ class SynthButton extends HTMLElement {
 }
 
 customElements.define('synth-button', SynthButton);
+
+class SynthButtonPreset extends SynthButton
+{
+    constructor() {
+        super();
+        
+        this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          display: inline-block;
+          touch-action: none;
+          user-select: none;
+          font-family: system-ui, sans-serif;
+          font-size: 24px;
+          color: #eee;
+          outline: none;
+        }
+    
+        .root {
+          width: 100%;
+          height: 100%;
+        }
+    
+        svg {
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+    
+        :host([disabled]) svg {
+          cursor: default;
+          opacity: 0.4;
+        }
+    
+        /* Base styles */
+        .bg {
+          fill: #333;
+          stroke: #777;
+          stroke-width: 1;
+        }
+    
+        .face {
+          fill: #262626;
+        }
+    
+        .label {
+          fill: #eee;
+          font-family: inherit;
+          font-size: 20px;
+          pointer-events: none;
+        }
+    
+        /* Pressed visual */
+        :host([data-pressed="true"]) .bg {
+          stroke: #aaa;
+        }
+    
+        :host([data-pressed="true"]) .face {
+          fill: #1a1a1a;
+        }
+    
+        :host(:focus-visible) .bg {
+          stroke: #d0d0d0;
+        }
+      </style>
+    
+      <div class="root" tabindex="0">
+        <svg viewBox="0 0 382 42" preserveAspectRatio="none">
+          <!-- outer bevel -->
+          <rect class="bg" x="0.5" y="0.5" width="381" height="41" rx="4" ry="4" />
+          <!-- inner face -->
+          <rect class="face" x="3" y="3" width="375" height="35" rx="3" ry="3" />
+          <!-- center label -->
+          <text class="label"
+                x="50%" y="50%"
+                dominant-baseline="middle"
+                text-anchor="middle"></text>
+        </svg>
+      </div>
+    `;
+    this._labelNode = this.shadowRoot.querySelector('.label');
+
+    }
+}
+
+customElements.define('synth-button-preset', SynthButtonPreset);
 

@@ -6,7 +6,7 @@
         {"synth-slider":     {"id": "Trig.Rate",          "at": "61,100" }},
         {"synth-dropdown-s": {"id": "Trig.Mode",          "at": "61,180" }},
 
-        {"synth-dropdown":   {"id": "Osc.Mode",           "at": "222,40" }},
+        {"synth-dropdown":   {"id": "Osc.Mode",           "at": "224,41" }},
 
         {"synth-knob-large": {"id": "Osc.SawSqr",         "at": "181,93" }},
         {"synth-knob-large": {"id": "Osc.Pitch",          "at": "111,93" }},
@@ -27,7 +27,7 @@
         {"synth-slider":     {"id": "Noise.Level",        "at": "368,100"}},
         {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "368,180"}},
 
-        {"synth-dropdown":   {"id": "Filter.FilterMode",  "at": "478,40" }},
+        {"synth-dropdown":   {"id": "Filter.FilterMode",  "at": "483,41" }},
         {"synth-slider":     {"id": "Filter.Cutoff",      "at": "410,100"}},
         {"synth-slider":     {"id": "Filter.CutoffEnv",   "at": "466,100"}},
         {"synth-slider":     {"id": "Filter.FmDepth",     "at": "489,100"}},
@@ -35,7 +35,7 @@
         {"synth-dropdown-s": {"id": "Filter.ResponseMode","at": "412,170"}},
         {"synth-dropdown-s": {"id": "Filter.FmSource",    "at": "465,170"}},
 
-        {"synth-dropdown":   {"id": "Xform.Mode",         "at": "536,40" }},
+        {"synth-dropdown":   {"id": "Xform.Mode",         "at": "535,41" }},
         {"synth-slider":     {"id": "Xform.Shift",        "at": "536,100"}},
         {"synth-dropdown-s": {"id": "Xform.Routing.Mode", "at": "536,170"}},
         {"synth-dropdown-s": {"id": "Xform.Stereo",       "at": "536,195"}},

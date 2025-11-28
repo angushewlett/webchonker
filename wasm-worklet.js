@@ -46,6 +46,12 @@ class WasmToneProcessor extends AudioWorkletProcessor {
           this.wasm_set_parameter(ptr, msg.value);
           this.free(ptr);
       }
+      if (msg.type === "preset")
+      {
+            const result_ptr = this.wasm_load_preset(msg.index);
+            const result_str = asciiCStringFromWasm(result_ptr, this.memory);
+            this.port.postMessage({ type: "preset_name", result_str });
+      }
     };
 
 
@@ -104,6 +110,10 @@ async _initWasm(bytes) {
   this.get_audio_buffer  = exports.get_audio_buffer;
   this.__wasm_call_ctors = exports.__wasm_call_ctors;
   this.wasm_set_parameter = exports.wasm_set_parameter;
+  this.wasm_load_preset = exports.wasm_load_preset;
+  this.wasm_set_chunk =   exports.wasm_set_chunk;
+  this.wasm_get_chunk =   exports.wasm_get_chunk;
+
   this.malloc = exports.malloc;
   this.free = exports.free;
       

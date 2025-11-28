@@ -58,6 +58,11 @@ async function startAudio()
               }
           }
       }
+    else if (msg.type === "preset_name")
+    {
+        let el = document.getElementById("preset.name");
+        el.setAttribute('label', msg.result_str);
+    }
     };
 
   await initMidi();
@@ -208,8 +213,8 @@ async function onSelectBank(bank)
       {
         let programNumber = (currentBank * 8 + currentPreset);
       node.port.postMessage({
-        type: "midi", 
-        data: [0xC0, programNumber, 0], // [status, data1, data2]
+        type: "preset",
+        index: programNumber,
         timestamp: 0
       });
       }  
@@ -223,8 +228,8 @@ async function onSelectPreset(preset)
       {
         let programNumber = (currentBank * 8 + currentPreset);
       node.port.postMessage({
-        type: "midi", 
-        data: [0xC0, programNumber, 0], // [status, data1, data2]
+          type: "preset",
+          index: programNumber,
         timestamp: 0
       });
       }  

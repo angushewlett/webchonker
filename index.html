@@ -18,71 +18,77 @@
         </script>
         
         <style>
-            button {
-                padding: 0.5rem 0.5rem;
-                font-size: 1.0rem;
-                width: 120px;
-                height: 60px;
-                font-size: 9;
-                display: inline-block;
-            }
-          synth-button {
+        button {
+            padding: 0.5rem 0.5rem;
+            font-size: 1.0rem;
+            width: 120px;
+            height: 60px;
+            font-size: 9;
+            display: inline-block;
+        }
+        synth-button {
             width: 76px;
             height: 26px;
             display: inline-block;
             margin: 1px;
-          }
-            synth-knob-large {
-                width: 45px;
-                height: 45px;
-                display: inline-block;
-            }
-            synth-knob-small {
-                width: 25px;
-                height: 25px;
-                display: inline-block;
-            }
-            synth-slider {
-                width: 30px;
-                height: 60px;
-                display: inline-block;
-            }
-            synth-dropdown {
-              width: 60px;
-              height: 14px;
-              display: inline-block;
-              margin: 1px;
-            }
-            synth-dropdown-s {
-              width: 38px;
-              height: 14px;
-              display: inline-block;
-              margin: 0px;
-            }
-            piano-keyboard {
-                width: 1200px;
-                height: 110px;
-                display: inline-block;
-            }
-            body {
-                background: #222;
-                color: #eee;
-                font-family: system-ui, sans-serif;
-                margin: 2rem;
-            }
-            #panel {
-                position: relative;
-                width: 1600px;
-                height: 720px;
-                margin: 20px auto;
-                border: 2px solid #555;
-                background: #333;
-                box-shadow: 0 0 12px rgba(0,0,0,0.8);
-            }
-            /* generic “control” styling if you want */
-            #panel > * {
-                /* all dynamically created controls land here */
-            }
+        }
+        synth-button-preset {
+            width: 382px;
+            height: 42px;
+            display: inline-block;
+            margin: 1px;
+        }
+        synth-knob-large {
+            width: 45px;
+            height: 45px;
+            display: inline-block;
+        }
+        synth-knob-small {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+        }
+        synth-slider {
+            width: 30px;
+            height: 60px;
+            display: inline-block;
+        }
+        synth-dropdown {
+          width: 52px;
+          height: 14px;
+          display: inline-block;
+          margin: 0px;
+        }
+        synth-dropdown-s {
+          width: 38px;
+          height: 14px;
+          display: inline-block;
+          margin: 0px;
+        }
+        piano-keyboard {
+            width: 1200px;
+            height: 110px;
+            display: inline-block;
+        }
+        body {
+            background: #222;
+            color: #eee;
+            font-family: system-ui, sans-serif;
+            margin: 2rem;
+        }
+        #panel {
+            position: relative;
+            width: 1600px;
+            height: 720px;
+            margin: 20px auto;
+            border: 2px solid #555;
+            background: #333;
+            box-shadow: 0 0 12px rgba(0,0,0,0.8);
+        }
+        /* generic “control” styling if you want */
+        #panel > * {
+            /* all dynamically created controls land here */
+        }
         </style>
     </head>
     <body>
@@ -169,6 +175,8 @@
             </linearGradient>
             </defs>
             </svg>
+            <div  style="position: absolute; left:  576px; top: 6px"><synth-button-preset id="preset.name" label="None loaded"/></div>
+
             <div  style="position: absolute; left:  970px; top: 1px"><synth-button id="bank.1" label="Bass 1"/></div>
             <div  style="position: absolute; left: 1045px; top: 1px"><synth-button id="bank.2" label="Bass 2"/></div>
             <div  style="position: absolute; left: 1120px; top: 1px"><synth-button id="bank.3" label="Keys 1"/></div>
@@ -189,13 +197,13 @@
             
             <div  style="position: absolute; left:  2px; top: 66px"><synth-button id="lfo" label="LFO"/></div>
             <div  style="position: absolute; left:  84px; top: 66px"><synth-button id="lfo" label="Trig"/></div>
-            <div  style="position: absolute; left:  164px; top: 66px"><synth-button id="lfo" label="VCO"/></div>
+            <div  style="position: absolute; left:  166px; top: 66px"><synth-button id="lfo" label="VCO"/></div>
             <div  style="position: absolute; left:  506px; top: 66px"><synth-button id="lfo" label="Sub"/></div>
             <div  style="position: absolute; left:  696px; top: 66px"><synth-button id="lfo" label="Noise"/></div>
             <div  style="position: absolute; left:  780px; top: 66px"><synth-button id="lfo" label="Filter"/></div>
             <div  style="position: absolute; left:  924px; top: 66px"><synth-button id="lfo" label="PolyFX"/></div>
-            <div  style="position: absolute; left:  1124px; top: 66px"><synth-button id="lfo" label="VCA"/></div>
-            <div  style="position: absolute; left:  1214px; top: 66px"><synth-button id="lfo" label="Envelope"/></div>
+            <div  style="position: absolute; left:  1126px; top: 66px"><synth-button id="lfo" label="VCA"/></div>
+            <div  style="position: absolute; left:  1206px; top: 66px"><synth-button id="lfo" label="Envelope"/></div>
             <div  style="position: absolute; left:  1408px; top: 66px"><synth-button id="lfo" label="Effects"/></div>
 
         </div>

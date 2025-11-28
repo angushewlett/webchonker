@@ -44,18 +44,28 @@ class PianoKeyboard extends HTMLElement {
         <stop offset="0.899038" stop-color="#D9D9D9FF"/>
         <stop offset="1.0" stop-color="#D9D9D9FF"/>
         </linearGradient>
+    
+    <linearGradient id="paint0_linear_0_2" x1="1" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+    <stop stop-color="#424040"/>
+    <stop offset="0.0432692"/>
+    <stop offset="0.620192" stop-color="#0F0F0F"/>
+    <stop offset="0.677885" stop-color="#1F1E1E"/>
+    <stop offset="0.956731" stop-color="#2E2E2E"/>
+    <stop offset="1.0" stop-color="#505050"/>
+    </linearGradient>
+    
+    
         <!-- White key template: paste Figma white-key group contents here -->
         <g id="white-key-template" class="white-key">
           <!-- Example placeholder; replace with your Figma export -->
     <rect width="13" height="80" fill="#939393"/>
     <rect x="1" y="1" width="12" height="78" rx="2" fill="#00000000" stroke="black" stroke-opacity="0.44" stroke-width="3"/>
-    <rect width="13" height="80" rx="2" fill="url(#paint0_linear_0_1)"/>
-    
+    <rect width="13" height="80" rx="2" fill="url(#paint0_linear_0_1)"/>    
         </g>
         <!-- Black key template: paste Figma black-key group contents here -->
         <g id="black-key-template" class="black-key">
-          <!-- Example placeholder; replace with your Figma export -->
-          <rect x="4" y="0" width="8" height="48" fill="#000000" stroke="#000000" stroke-width="0.5" />
+    <rect width="8" height="48" rx="1" fill="#2C2C2C"/>
+    <rect width="8" height="48" rx="2" fill="url(#paint0_linear_0_2)"/>
         </g>
     
       </defs>
@@ -208,7 +218,7 @@ class PianoKeyboard extends HTMLElement {
           default: dxWhite = 0;   break;
         }
         const octaveWhiteStart = octaveIndex * 7;
-        const x = (octaveWhiteStart + dxWhite) * whiteKeyWidth;
+        const x = (octaveWhiteStart + dxWhite) * whiteKeyWidth + 3;
 
         if (x < 0 || x > totalWidth) continue;
 

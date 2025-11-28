@@ -1,11 +1,11 @@
 {"controls": [
     
         {"synth-slider":     {"id": "Lfo.Rate",           "at": "20,100" }},
-        {"synth-dropdown-s": {"id": "Lfo.Shape",          "at": "20,180" }},
+        {"synth-dropdown-s": {"id": "Lfo.Shape",          "at": "20,195" }},
         {"synth-led":        {"id": "Lfo.Out",            "at": "20,50" }},
 
         {"synth-slider":     {"id": "Trig.Rate",          "at": "61,100" }},
-        {"synth-dropdown-s": {"id": "Trig.Mode",          "at": "61,180" }},
+        {"synth-dropdown-s": {"id": "Trig.Mode",          "at": "61,195" }},
         {"synth-led":        {"id": "Trig.Out",            "at": "61,50" }},
 
         {"synth-dropdown":   {"id": "Osc.Mode",           "at": "224,41" }},
@@ -27,7 +27,7 @@
         {"synth-dropdown-s": {"id": "Sub.Mode",           "at": "326,195"}},
 
         {"synth-slider":     {"id": "Noise.Level",        "at": "368,100"}},
-        {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "368,180"}},
+        {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "368,195"}},
 
         {"synth-dropdown":   {"id": "Filter.FilterMode",  "at": "483,41" }},
         {"synth-slider":     {"id": "Filter.Cutoff",      "at": "410,100"}},

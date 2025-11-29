@@ -63,8 +63,6 @@
 
         {"synth-knob-small": {"id": "Layer.Macro1",       "at": "112,222"}},
         {"synth-knob-small": {"id": "Layer.Macro2",       "at": "147,222"}},
-        {"synth-dropdown-s": {"id": "Settings.Poly",      "at": "302,224"}},
-        {"synth-dropdown-s": {"id": "Settings.Unison",    "at": "502,224"}},
         {"synth-knob-small": {"id": "Global.Macro1",      "at": "647,222"}},
         {"synth-knob-small": {"id": "Global.Macro2",      "at": "682,222"}}
 ]}

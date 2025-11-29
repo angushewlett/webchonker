@@ -2,6 +2,241 @@
 
 let node = null;
 let activeParamName = "";
+var label_text = "---";
+let selected_tweak = 0;
+let selected_osc_tweak = 0;
+let selected_pfx_tweak = 0;
+
+async function loadPanelLayout()
+{
+    const response = await fetch('./Panel.json');
+    if (!response.ok) {
+        console.error('Failed to load Panel.json', response.status);
+        return;
+    }
+    
+    const data = await response.json();
+    const panel = document.getElementById('panel');
+    
+    const response2 = await fetch('./Parameters.json');
+    const data2 = await response2.json();
+
+    
+    
+    if (!data || !Array.isArray(data.controls))
+    {
+        console.error('Panel.json missing "controls" array');
+        return;
+    }
+    
+    const paramMap = data2.parameters;
+                    
+    for (const ctrl of data.controls)
+    {
+        // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
+        const key = Object.keys(ctrl)[0];
+        
+        
+        if (!key) {
+            console.warn('Control without tag, skipping:', ctrl);
+            continue;
+        }
+        const tag = Object.keys(ctrl)[0];
+        const cfg = ctrl[tag]; // control config object
+        
+        // Create wrapper container
+        const wrapper = document.createElement("div");
+        wrapper.style.position = "absolute";
+        
+        if (key === 'synth-dropdown') {
+          wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
+        }
+        else
+        {
+            wrapper.style.zIndex = '1'; // put dropdowns on top of other controls
+        }
+        
+        // Get centre positions from "at"
+        const [xStr, yStr] = cfg.at.split(',');
+        const x = parseFloat(xStr) * 2;
+        const y = parseFloat(yStr) * 2;
+        
+        wrapper.style.position = "absolute";
+        wrapper.style.left = x + "px";
+        wrapper.style.top  = y + "px";
+        wrapper.style.transform = "translate(-50%, -50%) scale(200%, 200%)";
+        
+        // Let wrapper size to fit its children
+        wrapper.style.display = "flex";
+        wrapper.style.flexDirection = "column";
+        wrapper.style.alignItems = "center";     // horizontally centre contents
+        wrapper.style.pointerEvents = "none";    // wrapper passes events through to controls
+                            
+        const el = document.createElement(key);
+        
+        //if (el instanceof HTMLUnknownElement) continue;
+        
+        el.id = cfg.id;
+        el.style.pointerEvents = 'auto';
+        
+        el.addEventListener('input', () => { onParameterChange(el.id, el._value); } );
+
+        // === LABEL ===
+        const label = document.createElement("div");
+        
+        const labelText = paramMap[cfg.id];
+        
+        label.id = cfg.id + ".label";
+        label.textContent = labelText || "";
+        label.style.marginTop = "1px";
+        label.style.fontSize = "6px";
+        label.style.textAlign = "center";
+        label.style.color = "#ddd";
+        label.style.pointerEvents = "none";
+        
+        el.addEventListener('mouseDown', () => {
+            label_text = label.textContent;
+        } );
+        el.addEventListener('mouseUp', () => {
+            label.textContent = label_text;
+        } );
+
+        
+        // Add control + label to wrapper
+        wrapper.appendChild(el);
+        wrapper.appendChild(label);
+    
+        // Copy some common attributes if present in JSON
+        const attrNames = ['min', 'max', 'value', 'step', 'param', 'law'];
+        //for (const name of attrNames) {
+        //  if (ctrl[name] !== undefined && ctrl[name] !== null) {
+        //    el.setAttribute(name, String(ctrl[name]));
+        //  }
+        // }
+        
+        panel.appendChild(wrapper);
+    }
+    
+    // Create wrapper container
+    const kb = document.createElement("piano-keyboard");
+    kb.style.position = "absolute";
+    
+    kb.style.left = "800px";
+    kb.style.top  = "790px";
+    kb.style.transform = "translate(-50%, -50%) scale(200%, 200%)";
+    panel.appendChild(kb);
+    
+    kb.addEventListener('noteon', (e) => { noteOn(e.detail.note+24); });
+    kb.addEventListener('noteoff', (e) => { noteOff(e.detail.note+24); });
+}
+
+
+async function loadTweaksLayout()
+{
+    const response = await fetch('./Tweaks.json');
+    if (!response.ok) {
+        console.error('Failed to load Tweaks.json', response.status);
+        return;
+    }
+    
+    const data = await response.json();
+    const panel = document.getElementById('panel');
+    const response2 = await fetch('./Parameters.json');
+    const data2 = await response2.json();
+
+    
+    if (!data)
+    {
+        console.error('Tweaks.json missing "tweaks" array');
+        return;
+    }
+    
+    const paramMap = data2.parameters;
+    
+    for (const [key, value] of Object.entries(data.tweaks)) {
+        
+        const parentDiv = document.createElement("div");
+        parentDiv.style.position = "absolute";
+        parentDiv.style.left = "10 px";
+        parentDiv.style.top  = "600 px";
+        parentDiv.style.display = "none";
+        parentDiv.id = key;
+
+        for (const ctrl of value)
+        {
+            // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
+            const key = Object.keys(ctrl)[0];
+            
+            
+            if (!key) {
+                console.warn('Control without tag, skipping:', ctrl);
+                continue;
+            }
+            const tag = Object.keys(ctrl)[0];
+            const cfg = ctrl[tag]; // control config object
+            
+            // Create wrapper container
+            const wrapper = document.createElement("div");
+            wrapper.style.position = "absolute";
+            
+            if (key === 'synth-dropdown') {
+                wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
+            }
+            else
+            {
+                wrapper.style.zIndex = '1'; // put dropdowns on top of other controls
+            }
+            
+            // Get centre positions from "at"
+            const [xStr, yStr] = cfg.at.split(',');
+            const x = parseFloat(xStr) * 2;
+            const y = parseFloat(yStr) * 2;
+            
+            // WRAPPER - Let wrapper size to fit its children
+            wrapper.style.position = "absolute";
+            wrapper.style.left = x + "px";
+            wrapper.style.top  = y + "px";
+            wrapper.style.transform = "translate(-50%, -50%) scale(200%, 200%)";
+            wrapper.style.display = "flex";
+            wrapper.style.flexDirection = "column";
+            wrapper.style.alignItems = "center";     // horizontally centre contents
+            wrapper.style.pointerEvents = "none";    // wrapper passes events through to controls
+            
+            // ELEMENT
+            const el = document.createElement(key);
+            //if (el instanceof HTMLUnknownElement) continue;
+            el.id = cfg.id;
+            el.style.pointerEvents = 'auto';
+            el.addEventListener('input', () => { onParameterChange(el.id, el._value); } );
+            
+            // === LABEL ===
+            const label = document.createElement("div");
+            const labelText = paramMap[cfg.id];
+            label.id = cfg.id + ".label";
+            label.textContent = labelText || "";
+            label.style.marginTop = "1px";
+            label.style.fontSize = "6px";
+            label.style.textAlign = "center";
+            label.style.color = "#ddd";
+            label.style.pointerEvents = "none";
+            
+            el.addEventListener('mouseDown', () => {
+                label_text = label.textContent;
+            } );
+            el.addEventListener('mouseUp', () => {
+                label.textContent = label_text;
+            } );
+                        
+            // Add control + label to wrapper
+            wrapper.appendChild(el);
+            wrapper.appendChild(label);
+            
+            parentDiv.appendChild(wrapper);
+        }
+        panel.appendChild(parentDiv);
+    }
+}
+
 
 
 async function startAudio()
@@ -29,7 +264,8 @@ async function startAudio()
       //console.log(event);
       const msg = event.data;
       if (msg.type === "event") {
-          //console.log(msg.name, msg.value);
+          
+          // simple message: event Param.Name value
           let el = document.getElementById(msg.name);
           if (el)
           {
@@ -38,6 +274,7 @@ async function startAudio()
           }
           else
           {
+              // dropdown menu with integer value
               try
               {
                   const val = msg.value;
@@ -51,6 +288,20 @@ async function startAudio()
                           el.setAttribute('options', Object.values(jd)[0]);
                           el.setAttribute('value', el.options[Math.round(val)]);
                       }
+                      
+                      if (key === "Osc.Mode")
+                      {
+                          selected_osc_tweak = Math.round(val);
+                          if (selected_tweak == 2)
+                              onSelectTweak(selected_tweak, selected_osc_tweak);
+                      }
+                      if (key === "Xform.Mode")
+                      {
+                          selected_pfx_tweak = Math.round(val);
+                          if (selected_tweak == 6)
+                              onSelectTweak(selected_tweak, selected_pfx_tweak);
+                      }
+
                   }
               }
               catch(error)
@@ -279,6 +530,18 @@ function onParameterChange(paramName, paramValue)
                     name: bytes,
                     value: paramValueInt
                 });
+                if (paramName === "Osc.Mode")
+                {
+                    selected_osc_tweak = paramValueInt;
+                    if (selected_tweak == 2)
+                        onSelectTweak(selected_tweak, selected_osc_tweak);
+                }
+                if (paramName === "Xform.Mode")
+                {
+                    selected_pfx_tweak = paramValueInt;
+                    if (selected_tweak == 6)
+                        onSelectTweak(selected_tweak, selected_pfx_tweak);
+                }
             }
             
         }
@@ -293,6 +556,60 @@ function onParameterChange(paramName, paramValue)
     }
 }
 
+
+function onSelectTweak(panel, subpanel)
+{
+    const tweak_divs =
+    [
+            ["lfo-controls"],
+            ["trig-controls"],
+            ["osc-classic-controls",
+             "osc-asymmetric-controls",
+             "osc-sawpw-controls",
+             "osc-hardsync-controls",
+             "osc-vintage-dual-controls",
+             "osc-emph-sweep-controls",
+             "osc-modern-stack-controls",
+             "osc-chords-controls"],
+            ["sub-controls"],
+            ["noise-controls"],
+            ["filter-controls"],
+            [
+                "pfx-off-controls",
+                "pfx-ring-controls",
+                "pfx-phase-controls",
+                "pfx-snh-controls",
+                "pfx-comb-controls",
+                "pfx-fold-controls",
+                "pfx-delay-controls",
+                "pfx-pan-controls",
+                "pfx-body-controls",
+                "pfx-warp-controls"
+            ],
+            ["amp-controls"],
+            ["env-controls"],
+            ["effects-controls"],
+            ["voices-controls"],
+            ["unison-controls"]
+    ];
+     
+    for (let[index0, tx] of tweak_divs.entries())
+    {
+        for (let[index1, ty] of tx.entries())
+        {
+            let el = document.getElementById(ty);
+            if ((index0 == panel) && (index1 == subpanel))
+                el.style.display = "flex";
+            else
+                el.style.display = "none";
+        }
+    }
+    selected_tweak = panel;
+    if (selected_tweak == 2)
+        selected_osc_tweak = subpanel;
+    if (selected_tweak == 6)
+        selected_pfx_tweak = subpanel;
+}
 
 document.getElementById('start-audio-btn').addEventListener('click', () => { startAudio().catch(console.error); });
 document.getElementById('bank.1').addEventListener('click', () => { onSelectBank(1); });
@@ -312,5 +629,15 @@ document.getElementById('preset.6').addEventListener('click', () => { onSelectPr
 document.getElementById('preset.7').addEventListener('click', () => { onSelectPreset(7); });
 document.getElementById('preset.8').addEventListener('click', () => { onSelectPreset(8); });
 
+document.getElementById('nav.lfo').addEventListener('click', () => { onSelectTweak(0,0); });
+document.getElementById('nav.trig').addEventListener('click', () => { onSelectTweak(1,0); });
+document.getElementById('nav.vco').addEventListener('click', () => { onSelectTweak(2,selected_osc_tweak); });
+document.getElementById('nav.sub').addEventListener('click', () => { onSelectTweak(3,0); });
+document.getElementById('nav.noise').addEventListener('click', () => { onSelectTweak(4,0); });
+document.getElementById('nav.filter').addEventListener('click', () => { onSelectTweak(5,0); });
+document.getElementById('nav.pfx').addEventListener('click', () => { onSelectTweak(6,selected_pfx_tweak); });
+document.getElementById('nav.vca').addEventListener('click', () => { onSelectTweak(7,0); });
+document.getElementById('nav.env').addEventListener('click', () => { onSelectTweak(8,0); });
+document.getElementById('nav.effects').addEventListener('click', () => { onSelectTweak(9,0); });
 
 

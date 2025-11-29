@@ -182,8 +182,10 @@ class SynthKnob extends HTMLElement {
 
 class SynthKnobLarge extends SynthKnob {}
 class SynthKnobSmall extends SynthKnob {}
+class SynthKnob1 extends SynthKnob {}
 
 
 customElements.define('synth-knob-large', SynthKnobLarge);
+customElements.define('synth-knob-1', SynthKnob1);
 customElements.define('synth-knob-small', SynthKnobSmall);
 

@@ -48,7 +48,7 @@ async function loadPanelLayout()
         const wrapper = document.createElement("div");
         wrapper.style.position = "absolute";
         
-        if (key === 'synth-dropdown') {
+        if (key === 'synth-dropdown' || key === 'synth-dropdown-s' ) {
           wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
         }
         else
@@ -179,7 +179,7 @@ async function loadTweaksLayout()
             const wrapper = document.createElement("div");
             wrapper.style.position = "absolute";
             
-            if (key === 'synth-dropdown') {
+            if (key === 'synth-dropdown' || key === 'synth-dropdown-s' ) {
                 wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
             }
             else

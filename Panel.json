@@ -15,8 +15,8 @@
         {"synth-knob-small": {"id": "Osc.Fine",           "at": "145,93" }},
         {"synth-knob-small": {"id": "Osc.PwmDepth",       "at": "229,168"}},
         {"synth-knob-small": {"id": "Osc.ModDepth",       "at": "111,168"}},
-        {"synth-slider":     {"id": "Osc.Pw",             "at": "217,100"}},
-        {"synth-slider":     {"id": "Osc.Level",          "at": "242,100"}},
+        {"synth-slider":     {"id": "Osc.Pw",             "at": "213,100"}},
+        {"synth-slider":     {"id": "Osc.Level",          "at": "238,100"}},
         {"synth-dropdown-s": {"id": "Osc.ModSource",      "at": "144,170"}},
         {"synth-dropdown-s": {"id": "Osc.PwSource",       "at": "196,170"}},
 

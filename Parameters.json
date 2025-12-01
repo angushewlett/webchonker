@@ -57,9 +57,34 @@
     "Sub.ShapeSource": "Mod Src",
     "Sub.Mode":        "Oct",
     
+    "Sub.PitchRel":          "PitchRel",
+    "Sub.Pw":                "PW",
+    "Sub.PwSource":          "PWM Src",
+    "Sub.PwmDepth":          "PWM Depth",
+    "Sub.PhaseReset":        "Phase Reset",
+    "Sub.Phase":             "Phase",
+    "Sub.Out1Mode":          "Mode: Main",
+    "Sub.Out1Phase":         "PhInv: Main",
+    "Sub.Out2Mode":          "Mode: VCO FM",
+    "Sub.Out2Phase":         "PhInv: VCO FM",
+    "Sub.Out3Mode":          "Mode: VCF FM",
+    "Sub.Out3Phase":         "PhInv: VCF FM",
+    "Sub.Out4Mode":          "Mode: Thru",
+    "Sub.Out4Phase":         "PhInv: Thru",
+    "Sub.FilterBypass":      "Gain: Thru",
+
+
+    
     "Noise.Title":      "==== NOISE ====" ,
     "Noise.Level":     "Level",
     "Noise.Mode":      "Noise Mode",
+
+    "Noise.Filter.Offset":   "FilterPitch",
+    "Noise.Filter.Resonance": "FilterResonance",
+    "Noise.SnH.Offset":      "SnHPitch",
+    "Noise.SnH":           "SnH",
+    "Noise.Keytrack":      "Keytrack",
+    "Noise.TrigAmount":     "TrigAmount",
     
     "Filter.Title":      "======== VCF ========" ,
     "Filter.FilterMode":   "",
@@ -69,6 +94,14 @@
     "Filter.Res":          "Resonance",
     "Filter.ResponseMode": "Filter Shape",
     "Filter.FmSource":     "FM Src",
+    
+    "Filter.Velocity":    "Velocity",
+    "Filter.KeyTrack":     "KeyTrack",
+    "Filter.FmDepth":     "FmDepth",
+    "Filter.VelEnv":        "Vel => Env",
+    "Filter.FmNoise":        "Noise",
+    "Filter.RndDepth":     "Random",
+
     
     "Xform.Title":      "=== POLY FX ===" ,
     "Xform.Mode":      "",
@@ -81,11 +114,30 @@
     "Amp.Mode":        "Amp Mode",
     "Amp.Velocity":    "Velocity",
     
+    "Amp.Pan":    "Pan",
+    "Amp.TrigDepth":   "Trig Depth",
+    "Unison.Pan":   "Uns Pan",
+    "Amp.Pan.Key":   "Key Pan",
+    "Amp.Pan.Rand":  "Rnd Pan",
+
+    
     "Env.Title":       "=== ENVELOPE ===" ,
     "Env.Atk":         "A",
     "Env.Dec":         "D",
     "Env.Sus":         "S",
     "Env.Rel":         "R",
+    
+    "Env.A.Power":           "A - Power",
+    "Env.A.Atk":             "A - Atk",
+    "Env.A.Dec":             "A - Dec",
+    "Env.A.Sus":             "A - Sus",
+    "Env.A.Rel":             "A - Rel",
+    "Env.B.Power":           "B - Power",
+    "Env.B.Atk":             "B - Atk",
+    "Env.B.Dec":             "B - Dec",
+    "Env.B.Sus":             "B - Sus",
+    "Env.B.Rel":             "B - Rel",
+
     
     "Fx.Title":       "=== EFFECTS ===" ,
     "Fx.1.Mix":        "FX1 Mix",

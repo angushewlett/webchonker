@@ -13,9 +13,9 @@
             {"synth-button-switch": {"id": "Lfo.Link.Y", "at": "270,27"}},
             {"synth-button-switch": {"id": "Lfo.Link.Z", "at": "340,27"}},
             
-            {"synth-dropdown-s": {"id": "LfoShapeX", "at": "213,11"}},
-            {"synth-dropdown-s": {"id": "LfoShapeY", "at": "283,11"}},
-            {"synth-dropdown-s": {"id": "LfoShapeZ", "at": "353,11"}},
+            {"synth-dropdown-s": {"id": "Lfo.Shape.X", "at": "213,11"}},
+            {"synth-dropdown-s": {"id": "Lfo.Shape.Y", "at": "283,11"}},
+            {"synth-dropdown-s": {"id": "Lfo.Shape.Z", "at": "353,11"}},
             
             {"synth-knob-1": {"id": "Lfo.Rate.X",  "at": "184,52"}},
             {"synth-knob-1": {"id": "Lfo.Rate.Y",  "at": "254,52"}},
@@ -35,28 +35,28 @@
         ],
         
         "osc-classic-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "45,30" }},
             { "synth-knob-1":        { "id": "Osc.SubFM",       "at": "93,63" }}
         ],
         
         "osc-asymmetric-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "45,30" }},
             { "synth-knob-1":        { "id": "Osc.Asymmetry",   "at": "113,23"}}
         ],
         
         "osc-sawpw-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-dropdown-s": { "id": "Osc.Brightness", "at": "45,30" }},
             { "synth-knob-1": { "id": "Osc.SawPW", "at": "113,23" }}
         ],
         
         "osc-hardsync-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-dropdown-s":      { "id": "Osc.Brightness",          "at": "45,30"  }},
             { "synth-knob-1":          { "id": "Osc.SyncOffset",          "at": "113,33" }},
@@ -67,7 +67,7 @@
         ],
         
         "osc-vintage-dual-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-knob-1": { "id": "Osc.DetuneVc",      "at": "23,33"  }},
             { "synth-knob-1": { "id": "Osc.DetuneRn",      "at": "93,33"  }},
@@ -80,7 +80,7 @@
         ],
         
         "osc-emph-sweep-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-knob-1":        { "id": "Osc.Emph.Sweep",        "at": "38,32"  }},
             { "synth-knob-1":        { "id": "Osc.Balance",           "at": "108,32" }},
@@ -91,7 +91,7 @@
         ],
         
         "osc-modern-stack-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-knob-1":      { "id": "Osc.DetuneHz",            "at": "43,23"  }},
             { "synth-knob-1":      { "id": "Osc.DetuneCt",            "at": "43,53"  }},
@@ -102,7 +102,7 @@
         ],
         
         "osc-chords-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode",        "at": "25,10" }},
+            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
             { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
             { "synth-knob-1":        { "id": "Osc.Chord.Root",        "at": "38,32"  }},
             { "synth-knob-1":        { "id": "Osc.Chord.Sweep",       "at": "88,32"  }},
@@ -138,7 +138,7 @@
         ],
         
         "filter-controls": [
-            { "synth-dropdown-s": { "id": "Filter.FilterMode", "at": "165,11" }},
+            { "synth-dropdown-s": { "id": "Filter.FilterMode.1", "at": "165,11" }},
             { "synth-knob-1": { "id": "Filter.KeyTrack", "at": "78,48" }},
             { "synth-knob-1": { "id": "Filter.Velocity", "at": "118,48" }},
             { "synth-knob-1": { "id": "Filter.VelEnv",   "at": "158,48" }},
@@ -310,14 +310,14 @@
         ],
         
         "effects-controls":[
-            { "synth-dropdown-s": { "id": "Fx.1.Mode", "at": "41,24" }},
+            { "synth-dropdown-s": { "id": "Fx.1.Mode.1", "at": "41,24" }},
             
             { "synth-knob-1": { "id": "Fx.Mod.Rate",      "at": "20,44" }},
             { "synth-knob-1": { "id": "Fx.Mod.Width",     "at": "55,44" }},
             { "synth-knob-1": { "id": "Fx.Mod.Feedback",  "at": "20,79" }},
             { "synth-knob-1": { "id": "Fx.Mod.Colour",    "at": "55,79" }},
             
-            { "synth-dropdown-s": { "id": "Fx.2.Mode", "at": "119,24" }},
+            { "synth-dropdown-s": { "id": "Fx.2.Mode.1", "at": "119,24" }},
             
             { "synth-button-group": { "id": "Fx.Tone.CompandMode",  "at": "84,81" }},
             { "synth-knob-1":       { "id": "Fx.Tone.CompRatio",    "at": "105,79" }},
@@ -334,13 +334,13 @@
             { "synth-knob-1": { "id": "Fx.Tone.HFGain",  "at": "204,79" }},
             
             { "synth-dropdown-s": { "id": "Fx.Delay.Media", "at": "244,24" }},
-            { "synth-dropdown-s": { "id": "Fx.3.Mode",      "at": "293,24" }},
+            { "synth-dropdown-s": { "id": "Fx.3.Mode.1",      "at": "293,24" }},
             
             { "synth-knob-1": { "id": "Fx.Delay.Time",      "at": "233,57" }},
             { "synth-knob-1": { "id": "Fx.Delay.Width",     "at": "268,57" }},
             { "synth-knob-1": { "id": "Fx.Delay.Feedback",  "at": "303,57" }},
             
-            { "synth-dropdown-s": { "id": "Fx.4.Mode",          "at": "351,24" }},
+            { "synth-dropdown-s": { "id": "Fx.4.Mode.1",          "at": "351,24" }},
             { "synth-knob-1":     { "id": "Fx.Reverb.Decay",    "at": "351,44" }},
             { "synth-knob-1":     { "id": "Fx.Reverb.Damping",  "at": "351,79" }}
         ],

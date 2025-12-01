@@ -18,7 +18,7 @@ class SynthDropdown extends HTMLElement {
         :host {
           display: inline-block;
           font-family: system-ui, sans-serif;
-          font-size: 7px;
+          font-size: 6px;
           color: #eee;
           box-sizing: border-box;
           background: rgba(34, 34, 34, 1.0);     /* <-- fully opaque */    
@@ -39,7 +39,7 @@ class SynthDropdown extends HTMLElement {
           border: 1px solid #00000020;
           background: #222;
           color: #eee;
-          padding: 1px 8px;
+          padding: 0px 8px;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -55,11 +55,15 @@ class SynthDropdown extends HTMLElement {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          padding: 0px 0px;
+          margin-left: 0px;
+          margin-right: 0px;
+    
         }
     
     .arrow {
       flex: 0 0 auto;           /* arrow stays fixed */
-      margin-left: 2px;
+      margin-left: 1px;
 
       width: 0;
       height: 0;
@@ -72,12 +76,12 @@ class SynthDropdown extends HTMLElement {
           position: absolute;
           left: 0;
           top: 100%;
-          margin-top: 2px;
+          margin-top: 1px;
           width: 100%;
           max-height: 160px;
           overflow-y: auto;
           box-sizing: border-box;
-          border-radius: 2px;
+          border-radius: 1px;
           border: 1px solid #555;
           background: rgba(34, 34, 34, 1.0);     /* <-- fully opaque */    
           box-shadow: 0 4px 12px rgba(0,0,0,0.8);
@@ -89,7 +93,7 @@ class SynthDropdown extends HTMLElement {
         }
 
         .item {
-          padding: 2px 8px;
+          padding: 1px 8px;
           cursor: pointer;
           white-space: nowrap;
         }

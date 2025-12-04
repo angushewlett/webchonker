@@ -6,24 +6,24 @@
             {"synth-button-switch": {"id": "Lfo.Sync",  "at": "45,60"}},
             
             {"synth-knob-1": {"id": "Lfo.Swing",         "at": "104,32"}},
-            {"synth-knob-1": {"id": "Lfo.UnisonSpread",  "at": "104,59"}},
-            {"synth-knob-1": {"id": "Lfo.DelayTime",     "at": "104,86"}},
+            {"synth-knob-1": {"id": "Lfo.UnisonSpread",  "at": "119,66"}},
+            {"synth-knob-1": {"id": "Lfo.DelayTime",     "at": "134,32"}},
             
-            {"synth-button-switch": {"id": "Lfo.Link.X", "at": "200,27"}},
-            {"synth-button-switch": {"id": "Lfo.Link.Y", "at": "270,27"}},
-            {"synth-button-switch": {"id": "Lfo.Link.Z", "at": "340,27"}},
+            {"synth-button-switch": {"id": "Lfo.Link.X", "at": "200,34"}},
+            {"synth-button-switch": {"id": "Lfo.Link.Y", "at": "270,34"}},
+            {"synth-button-switch": {"id": "Lfo.Link.Z", "at": "340,34"}},
             
-            {"synth-dropdown-s": {"id": "Lfo.Shape.X", "at": "213,11"}},
-            {"synth-dropdown-s": {"id": "Lfo.Shape.Y", "at": "283,11"}},
-            {"synth-dropdown-s": {"id": "Lfo.Shape.Z", "at": "353,11"}},
+            {"synth-dropdown-s": {"id": "Lfo.Shape.X", "at": "200,11"}},
+            {"synth-dropdown-s": {"id": "Lfo.Shape.Y", "at": "270,11"}},
+            {"synth-dropdown-s": {"id": "Lfo.Shape.Z", "at": "340,11"}},
             
-            {"synth-knob-1": {"id": "Lfo.Rate.X",  "at": "184,52"}},
-            {"synth-knob-1": {"id": "Lfo.Rate.Y",  "at": "254,52"}},
-            {"synth-knob-1": {"id": "Lfo.Rate.Z",  "at": "324,52"}},
+            {"synth-knob-1": {"id": "Lfo.Rate.X",  "at": "184,66"}},
+            {"synth-knob-1": {"id": "Lfo.Rate.Y",  "at": "254,66"}},
+            {"synth-knob-1": {"id": "Lfo.Rate.Z",  "at": "324,66"}},
             
-            {"synth-knob-1": {"id": "Lfo.Phase.X", "at": "216,52"}},
-            {"synth-knob-1": {"id": "Lfo.Phase.Y", "at": "286,52"}},
-            {"synth-knob-1": {"id": "Lfo.Phase.Z", "at": "356,52"}},
+            {"synth-knob-1": {"id": "Lfo.Phase.X", "at": "216,66"}},
+            {"synth-knob-1": {"id": "Lfo.Phase.Y", "at": "286,66"}},
+            {"synth-knob-1": {"id": "Lfo.Phase.Z", "at": "356,66"}},
             
             {"synth-button-group": {"id": "Lfo.TimeMain", "at": "42,88"}},
             {"synth-button-group": {"id": "Lfo.Time.X",    "at": "200,88"}},
@@ -298,15 +298,15 @@
         ],
         
         "env-controls":[
-            { "synth-knob-1": { "id": "Env.A.Atk", "at": "23,53" }},
-            { "synth-knob-1": { "id": "Env.A.Dec", "at": "63,53" }},
-            { "synth-knob-1": { "id": "Env.A.Sus", "at": "103,53" }},
-            { "synth-knob-1": { "id": "Env.A.Rel", "at": "143,53" }},
+            { "synth-slider": { "id": "Env.A.Atk", "at": "23,40" }},
+            { "synth-slider": { "id": "Env.A.Dec", "at": "63,40" }},
+            { "synth-slider": { "id": "Env.A.Sus", "at": "103,40" }},
+            { "synth-slider": { "id": "Env.A.Rel", "at": "143,40" }},
             
-            { "synth-knob-1": { "id": "Env.B.Atk", "at": "203,53" }},
-            { "synth-knob-1": { "id": "Env.B.Dec", "at": "243,53" }},
-            { "synth-knob-1": { "id": "Env.B.Sus", "at": "283,53" }},
-            { "synth-knob-1": { "id": "Env.B.Rel", "at": "323,53" }}
+            { "synth-slider": { "id": "Env.B.Atk", "at": "203,40" }},
+            { "synth-slider": { "id": "Env.B.Dec", "at": "243,40" }},
+            { "synth-slider": { "id": "Env.B.Sus", "at": "283,40" }},
+            { "synth-slider": { "id": "Env.B.Rel", "at": "323,40" }}
         ],
         
         "effects-controls":[

@@ -104,8 +104,16 @@ async function loadPanelLayout()
         
         // Add control + label to wrapper
         wrapper.appendChild(el);
-        wrapper.appendChild(label);
-    
+        // skip labels for buttons
+        if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi' )
+        {
+            el.label = labelText;
+        }
+        else
+        {
+            wrapper.appendChild(label);
+        }
+        
         // Copy some common attributes if present in JSON
         const attrNames = ['min', 'max', 'value', 'step', 'param', 'law'];
         //for (const name of attrNames) {
@@ -229,7 +237,16 @@ async function loadTweaksLayout()
                         
             // Add control + label to wrapper
             wrapper.appendChild(el);
-            wrapper.appendChild(label);
+            
+            // skip labels for buttons
+            if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi' )
+            {
+                el.label = labelText;
+            }
+            else
+            {
+                wrapper.appendChild(label);
+            }
             
             parentDiv.appendChild(wrapper);
         }

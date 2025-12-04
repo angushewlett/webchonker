@@ -44,10 +44,11 @@ class SynthDropdown extends HTMLElement {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          transition: border-color 120ms ease;
         }
     
         .display:hover {
-          border-color: #888;
+          border-color: #7cff7c7f;
           background: #292929;
         }
 

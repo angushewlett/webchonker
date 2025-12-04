@@ -6,6 +6,7 @@
     "Lfo.Swing":       "Swing",
     "Lfo.Mono":        "Mono",
     "Lfo.Retrig":      "Gate Trig",
+    "Lfo.Sync":        "Sync",
     "Lfo.UnisonSpread": "UnisonSpread",
     "Lfo.DelayTime":   "RampTime",
     "Lfo.TimeMain":    "TimeMain",
@@ -79,12 +80,12 @@
     "Noise.Level":     "Level",
     "Noise.Mode":      "Noise Mode",
 
-    "Noise.Filter.Offset":   "FilterPitch",
-    "Noise.Filter.Resonance": "FilterResonance",
-    "Noise.SnH.Offset":      "SnHPitch",
-    "Noise.SnH":           "SnH",
+    "Noise.Filter.Offset":   "Tone Pitch",
+    "Noise.Filter.Resonance": "Tone Resonance",
+    "Noise.SnH.Offset":      "Crunch Pitch",
+    "Noise.SnH":           "Crunch",
     "Noise.Keytrack":      "Keytrack",
-    "Noise.TrigAmount":     "TrigAmount",
+    "Noise.TrigAmount":     "Trig Amount",
     
     "Filter.Title":      "======== VCF ========" ,
     "Filter.FilterMode":   "",
@@ -98,7 +99,7 @@
     "Filter.Velocity":    "Velocity",
     "Filter.KeyTrack":     "KeyTrack",
     "Filter.FmDepth":     "FmDepth",
-    "Filter.VelEnv":        "Vel => Env",
+    "Filter.VelEnv":        "Vel→Env",
     "Filter.FmNoise":        "Noise",
     "Filter.RndDepth":     "Random",
 
@@ -114,11 +115,11 @@
     "Amp.Mode":        "Amp Mode",
     "Amp.Velocity":    "Velocity",
     
-    "Amp.Pan":    "Pan",
+    "Amp.Pan":    "Base Pan",
     "Amp.TrigDepth":   "Trig Depth",
-    "Unison.Pan":   "Uns Pan",
-    "Amp.Pan.Key":   "Key Pan",
-    "Amp.Pan.Rand":  "Rnd Pan",
+    "Unison.Pan":   "Unison Pan",
+    "Amp.Pan.Key":   "Keyboard Pan",
+    "Amp.Pan.Rand":  "Random Pan",
 
     
     "Env.Title":       "=== ENVELOPE ===" ,

@@ -13,6 +13,7 @@
         <script type="module" src="dropdown.js"></script>
         <script type="module" src="button.js"></script>
         <script type="module" src="led.js"></script>
+        <script type="module" src="switch.js"></script>
         <script>
             !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
             posthog.init('phc_Y1T0monD8fDaO1HO4zFdbISHQnWCjuaY2QovTUaCeSy',{api_host:'https://eu.i.posthog.com', defaults:'2025-05-24'})
@@ -33,9 +34,24 @@
             display: inline-block;
             margin: 1px;
         }
+            
+        .synth-title {
+            width: 382px;
+            height: 42px;
+            display: inline-block;
+            margin: 1px;
+            font-size: 36px;
+        }
+
         synth-button-preset {
             width: 382px;
             height: 42px;
+            display: inline-block;
+            margin: 1px;
+        }
+        synth-button-switch {
+            width: 38px;
+            height: 13px;
             display: inline-block;
             margin: 1px;
         }
@@ -76,6 +92,13 @@
           display: inline-block;
           margin: 0px;
         }
+        synth-switch-multi {
+          width: 20px;
+          height: 33px;
+          display: inline-block;
+          margin: 0px;
+        }
+
         piano-keyboard {
             width: 1200px;
             height: 110px;
@@ -186,6 +209,7 @@
             </linearGradient>
             </defs>
             </svg>
+            <div class="synth-title" style="position: absolute; left:  20px; top: 6px">webChonker</div>
             <div  style="position: absolute; left:  576px; top: 6px"><synth-button-preset id="preset.name" label="None loaded"/></div>
 
             <div  style="position: absolute; left:  970px; top: 1px"><synth-button id="bank.1" label="Bass 1"/></div>
@@ -226,7 +250,7 @@
             });
         </script>
     
-        <h3>What's all this then?</h3>
+        <h3>Work in progress...</h3>
         <p>You're looking at - and hopefully listening to - a WebAssembly port of my new virtual instrument synth, Chonker. I've been working on it for a couple of years now.
         It's inspired and influenced by analogue classics, and named in honour of my cat and rubberduck-debugging-assistant, Chonker.</p>
         <p>It's a fully-featured VA subtractive synth with a production-grade audio engine. It'll connect to your default MIDI input device via WebMIDI - try it and let me know how you get on.</p>

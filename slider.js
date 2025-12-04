@@ -33,6 +33,19 @@ class SynthSlider extends HTMLElement {
           width: 100%;
           height: 100%;
         }
+    
+          /* track = “body” of the slider */
+          #fill {
+            fill: #ffffff;                /* white by default */
+            stroke: #444;
+            stroke-width: 0.5;
+            transition: fill 120ms ease;  /* smooth rollover */
+          }
+
+          /* rollover: body turns to accent green */
+          :host(:hover) #fill {
+            fill: var(--accent-color, #7cff7c);
+          }    
       </style>
       <svg viewBox="0 0 23 132">
     <rect y="7" width="3" height="1" fill="#D9D9D9" fill-opacity="0.5"/>
@@ -53,10 +66,13 @@ class SynthSlider extends HTMLElement {
         <!-- Fill (value) -->
         <rect id="fill" x="10" y="140" width="4" height="0"
               rx="2" ry="2"
-              fill="currentColor" opacity="0.9" />
+              opacity="0.9" />
       </svg>
     `;
 
+      
+      
+      
     this._svg = this.shadowRoot.querySelector('svg');
     this._fill = this.shadowRoot.querySelector('#fill');
 
@@ -72,7 +88,7 @@ class SynthSlider extends HTMLElement {
 
     // Measure the control's pixel height for drag scaling
     const rect = this.getBoundingClientRect();
-    this._pixelHeight = rect.height || 1;
+    this._pixelHeight = rect.height || 100;
 
     this._svg.addEventListener('pointerdown', this._onPointerDown);
     this._updateVisual();
@@ -136,7 +152,7 @@ class SynthSlider extends HTMLElement {
   _onPointerDown(e) {
     e.preventDefault();
     this._dragging = true;
-    this._startY = e.clientY;
+    this._startY = -1;
     this._startValue = this._value;
 
     try {
@@ -151,6 +167,9 @@ class SynthSlider extends HTMLElement {
 
   _onPointerMove(e) {
     if (!this._dragging) return;
+      
+      if (this._startY == -1)
+          this._startY = e.clientY;
 
     const dy = this._startY - e.clientY; // drag up -> positive
     const range = this._max - this._min || 1;

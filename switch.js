@@ -127,7 +127,7 @@ class SynthSwitchMulti extends HTMLElement {
   disconnectedCallback() {
     this._svg.removeEventListener('pointerdown', this._onPointerDown);
   }
-
+/*
   // Handle pre-upgrade properties
   _upgradeProperty(prop) {
     if (Object.prototype.hasOwnProperty.call(this, prop)) {
@@ -135,8 +135,17 @@ class SynthSwitchMulti extends HTMLElement {
       delete this[prop];
       this[prop] = value;
     }
-  }
+  }*/
 
+    // Ensure properties set before definition are respected
+    _upgradeProperty(prop) {
+      if (this.hasOwnProperty(prop)) {
+        const value = this[prop];
+        delete this[prop];
+        this[prop] = value;
+      }
+    }
+    
   attributeChangedCallback(name, _old, value) {
     if (name === 'steps') {
       const n = Number(value);
@@ -144,7 +153,7 @@ class SynthSwitchMulti extends HTMLElement {
       // clamp current value to new range
       if (this._value >= this._steps) {
         this._value = this._steps - 1;
-        this.setAttribute('value', String(this._value));
+        this.setAttribute('value', this._value);
       }
       this._renderMarks();
       this._updateThumb();
@@ -170,7 +179,7 @@ class SynthSwitchMulti extends HTMLElement {
     return this._value;
   }
   set value(v) {
-    this.setAttribute('value', String(v));
+    this.setAttribute('value', v);
   }
 
   // Geometry helpers
@@ -239,4 +248,4 @@ class SynthSwitchMulti extends HTMLElement {
 customElements.define('synth-switch-multi', SynthSwitchMulti);
 
 
-customElements.define('synth-switch-multi-4', SynthSwitchMulti4);
+// customElements.define('synth-switch-multi-4', SynthSwitchMulti4);

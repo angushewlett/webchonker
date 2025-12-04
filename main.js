@@ -302,8 +302,15 @@ async function startAudio()
                       let el = document.getElementById(key);
                       if (el)
                       {
-                          el.setAttribute('options', Object.values(jd)[0]);
-                          el.setAttribute('value', el.options[Math.round(val)]);
+                          if (Object.hasOwn(el,"_options"))
+                          {
+                              el.setAttribute('value', el.options[Math.round(val)]);
+                              el.setAttribute('options', Object.values(jd)[0]);
+                          }
+                          else
+                          {
+                              el.setAttribute('value', val);
+                          }
                       }
                       
                       if (key === "Osc.Mode")

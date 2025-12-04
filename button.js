@@ -346,5 +346,84 @@ class SynthButtonPreset extends SynthButton
     }
 }
 
+// synth-toggle-button.js
+class SynthButtonSwitch extends SynthButton {
+  static get observedAttributes() {
+    // include base attributes (label, disabled) plus value
+    return [...super.observedAttributes, 'value'];
+  }
+
+  constructor() {
+    super();
+
+    this._value = 0; // 0 = off, 1 = on
+
+    // Add extra styles for latched "on" state
+    const style = document.createElement('style');
+    style.textContent = `
+      :host([value="1"]) .bg {
+        stroke: #9f9;          /* brighter border when ON */
+      }
+      :host([value="1"]) .face {
+        fill: #1b331b;         /* slightly lit face */
+      }
+      :host([value="1"]) .label {
+        fill: #cfc;            /* brighter text when ON */
+      }
+    `;
+    this.shadowRoot.appendChild(style);
+  }
+
+  // --- value API ---
+
+  get value() {
+    return this._value;
+  }
+
+  set value(v) {
+    const num = Number(v);
+    const on = Number.isFinite(num) ? (num !== 0) : !!v;
+    const newVal = on ? 1 : 0;
+    if (newVal === this._value) return;
+
+    this._value = newVal;
+    this.setAttribute('value', String(this._value));
+    // You could also sync ARIA if you like:
+    this.setAttribute('aria-pressed', this._value ? 'true' : 'false');
+  }
+
+  attributeChangedCallback(name, oldVal, newVal) {
+    if (name === 'value') {
+      const num = Number(newVal);
+      const on = Number.isFinite(num) ? (num !== 0) : !!newVal;
+      this._value = on ? 1 : 0;
+      this.setAttribute('aria-pressed', this._value ? 'true' : 'false');
+    } else {
+      super.attributeChangedCallback(name, oldVal, newVal);
+    }
+  }
+
+  // --- toggle behaviour ---
+
+  _fireCommand() {
+    // Toggle value first
+    this.value = this._value ? 0 : 1;
+
+    // Let listeners know the new state
+    this.dispatchEvent(new CustomEvent('input', {
+      bubbles: true,
+      detail: { value: this._value }
+    }));
+
+    // Also keep base behaviour (click + command events)
+    super._fireCommand();
+  }
+}
+
+//customElements.define('synth-toggle-button', SynthToggleButton);
+
+
+
 customElements.define('synth-button-preset', SynthButtonPreset);
 
+customElements.define('synth-button-switch', SynthButtonSwitch);

@@ -64,5 +64,8 @@
         {"synth-knob-small": {"id": "Layer.Macro1",       "at": "112,222"}},
         {"synth-knob-small": {"id": "Layer.Macro2",       "at": "147,222"}},
         {"synth-knob-small": {"id": "Global.Macro1",      "at": "647,222"}},
-        {"synth-knob-small": {"id": "Global.Macro2",      "at": "682,222"}}
+        {"synth-knob-small": {"id": "Global.Macro2",      "at": "682,222"}},
+        
+        {"synth-dropdown-s": {"id": "Layer.Voices",          "at": "420,225" }},
+        {"synth-dropdown-s": {"id": "Layer.Unison",          "at": "480,225" }}
 ]}

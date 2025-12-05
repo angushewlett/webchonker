@@ -4,8 +4,43 @@ let node = null;
 let activeParamName = "";
 var label_text = "---";
 let selected_tweak = 0;
+let selected_subpanel_tweak = 0;
 let selected_osc_tweak = 0;
 let selected_pfx_tweak = 0;
+
+const tweak_divs =
+[
+        ["lfo-controls"],
+        ["trig-controls"],
+        ["osc-classic-controls",
+         "osc-asymmetric-controls",
+         "osc-sawpw-controls",
+         "osc-hardsync-controls",
+         "osc-vintage-dual-controls",
+         "osc-emph-sweep-controls",
+         "osc-modern-stack-controls",
+         "osc-chords-controls"],
+        ["sub-controls"],
+        ["noise-controls"],
+        ["filter-controls"],
+        [
+            "pfx-off-controls",
+            "pfx-ring-controls",
+            "pfx-phase-controls",
+            "pfx-snh-controls",
+            "pfx-comb-controls",
+            "pfx-fold-controls",
+            "pfx-delay-controls",
+            "pfx-pan-controls",
+            "pfx-body-controls",
+            "pfx-warp-controls"
+        ],
+        ["amp-controls"],
+        ["env-controls"],
+        ["effects-controls"],
+        ["voices-controls"],
+        ["unison-controls"]
+];
 
 async function loadPanelLayout()
 {
@@ -21,8 +56,6 @@ async function loadPanelLayout()
     const response2 = await fetch('./Parameters.json');
     const data2 = await response2.json();
 
-    
-    
     if (!data || !Array.isArray(data.controls))
     {
         console.error('Panel.json missing "controls" array');
@@ -161,13 +194,29 @@ async function loadTweaksLayout()
     
     const paramMap = data2.parameters;
     
+    // Remove all the old BEFORE we add any new, so that document.getElementById() doesn't conflict
     for (const [key, value] of Object.entries(data.tweaks)) {
         
+        let el = document.getElementById(key);
+        if (el)
+        {
+            console.log("removing: ", key);
+            el.remove();
+        }
+    }
+        
+    for (const [key, value] of Object.entries(data.tweaks))
+    {
+        
+        if (key != tweak_divs[selected_tweak][selected_subpanel_tweak]) continue;
+        
+        console.log("adding: ", key);
+
         const parentDiv = document.createElement("div");
         parentDiv.style.position = "absolute";
         parentDiv.style.left = "10 px";
         parentDiv.style.top  = "600 px";
-        parentDiv.style.display = "none";
+        parentDiv.style.display = "flex";
         parentDiv.id = key;
 
         for (const ctrl of value)
@@ -583,56 +632,41 @@ function onParameterChange(paramName, paramValue)
 
 function onSelectTweak(panel, subpanel)
 {
-    const tweak_divs =
-    [
-            ["lfo-controls"],
-            ["trig-controls"],
-            ["osc-classic-controls",
-             "osc-asymmetric-controls",
-             "osc-sawpw-controls",
-             "osc-hardsync-controls",
-             "osc-vintage-dual-controls",
-             "osc-emph-sweep-controls",
-             "osc-modern-stack-controls",
-             "osc-chords-controls"],
-            ["sub-controls"],
-            ["noise-controls"],
-            ["filter-controls"],
-            [
-                "pfx-off-controls",
-                "pfx-ring-controls",
-                "pfx-phase-controls",
-                "pfx-snh-controls",
-                "pfx-comb-controls",
-                "pfx-fold-controls",
-                "pfx-delay-controls",
-                "pfx-pan-controls",
-                "pfx-body-controls",
-                "pfx-warp-controls"
-            ],
-            ["amp-controls"],
-            ["env-controls"],
-            ["effects-controls"],
-            ["voices-controls"],
-            ["unison-controls"]
-    ];
      
     for (let[index0, tx] of tweak_divs.entries())
     {
         for (let[index1, ty] of tx.entries())
         {
+            /*
             let el = document.getElementById(ty);
+            
             if ((index0 == panel) && (index1 == subpanel))
                 el.style.display = "flex";
             else
                 el.style.display = "none";
+             
+            if (el)
+            {
+                console.log("removing: ", ty);
+                el.remove();
+            }
+            */
         }
     }
     selected_tweak = panel;
     if (selected_tweak == 2)
+    {
         selected_osc_tweak = subpanel;
-    if (selected_tweak == 6)
+        selected_subpanel_tweak = subpanel;
+    }
+    else if (selected_tweak == 6)
+    {
         selected_pfx_tweak = subpanel;
+        selected_subpanel_tweak = subpanel;
+    }
+    else selected_subpanel_tweak = 0;
+    
+    loadTweaksLayout();
 }
 
 document.getElementById('start-audio-btn').addEventListener('click', () => { startAudio().catch(console.error); });

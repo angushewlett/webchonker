@@ -42,7 +42,12 @@
     "Osc.Level":       "Level",
     "Osc.ModSource":   "Mod Src",
     "Osc.PwSource":    "PWM Src",
-    
+
+    "Osc.PhaseReset": "ϕ Reset",
+    "Osc.Brightness": "Hi Boost",
+    "Osc.Asymmetry": "Asymmetry",
+    "Osc.SawPW": "Saw PW",
+
     "Osc.Emph.Sweep": "Sweep",
     "Osc.DetuneHz": "Hz",
     "Osc.DetuneCt": "Cents",
@@ -168,5 +173,7 @@
     "Settings.Poly":     "Poly",
     "Settings.Unison":   "Unison",
     "Global.Macro1":     "Macro X",
-    "Global.Macro2":     "Macro Y"
+    "Global.Macro2":     "Macro Y",
+    "Layer.Voices":      "Voices",
+    "Layer.Unison":      "Unison"
 }}

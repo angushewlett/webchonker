@@ -35,24 +35,26 @@
         ],
         
         "osc-classic-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
-            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "45,30" }},
-            { "synth-knob-1":        { "id": "Osc.SubFM",       "at": "93,63" }}
+            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "55,10" }},
+            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "155,37"}},
+            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "synth-knob-1":          { "id": "Osc.SubFM",     "at": "105,40" }}
         ],
         
         "osc-asymmetric-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
-            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "45,30" }},
-            { "synth-knob-1":        { "id": "Osc.Asymmetry",   "at": "113,23"}}
+            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "55,10" }},
+            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "155,37"}},
+            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "synth-knob-1":          { "id": "Osc.Asymmetry",     "at": "105,20" }},
+            { "synth-knob-1":          { "id": "Osc.SubFM",     "at": "105,60" }}
         ],
         
         "osc-sawpw-controls": [
-            { "synth-dropdown-s":    { "id": "Osc.Mode.1",        "at": "25,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "200,27"}},
-            { "synth-dropdown-s": { "id": "Osc.Brightness", "at": "45,30" }},
-            { "synth-knob-1": { "id": "Osc.SawPW", "at": "113,23" }}
+            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "55,10" }},
+            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "155,37"}},
+            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "synth-knob-1":          { "id": "Osc.SawPW",     "at": "105,20" }},
+            { "synth-knob-1":          { "id": "Osc.SubFM",     "at": "105,60" }}
         ],
         
         "osc-hardsync-controls": [

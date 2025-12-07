@@ -7,6 +7,8 @@ let selected_tweak = 0;
 let selected_subpanel_tweak = 0;
 let selected_osc_tweak = 0;
 let selected_pfx_tweak = 0;
+let pendingPatchResolve = null;
+let pendingPatchReject = null;
 
 const tweak_divs =
 [
@@ -41,6 +43,42 @@ const tweak_divs =
         ["voices-controls"],
         ["unison-controls"]
 ];
+
+function requestPatchFromBackend() {
+  // If you don’t want overlapping requests, you can guard here:
+  if (pendingPatchResolve) {
+    // Either reject the old one or just throw:
+    pendingPatchReject?.(new Error('Patch request already pending'));
+    pendingPatchResolve = null;
+    pendingPatchReject = null;
+  }
+
+  return new Promise((resolve, reject) => {
+    pendingPatchResolve = resolve;
+    pendingPatchReject = reject;
+
+    // Ask the worklet for patch data
+    node.port.postMessage({ type: 'get_chunk' });
+
+    // Optional timeout so we don’t wait forever
+    const timeoutId = setTimeout(() => {
+      if (pendingPatchResolve === resolve) {
+        pendingPatchResolve = null;
+        pendingPatchReject = null;
+        reject(new Error('Timed out waiting for patch data'));
+      }
+    }, 5000);
+
+    // We’ll clear timeout when we resolve below
+    // (we’ll reference timeoutId via closure)
+    const originalResolve = resolve;
+    resolve = (value) => {
+      clearTimeout(timeoutId);
+      originalResolve(value);
+    };
+  });
+}
+
 
 async function loadPanelLayout()
 {
@@ -169,6 +207,75 @@ async function loadPanelLayout()
     
     kb.addEventListener('noteon', (e) => { noteOn(e.detail.note+24); });
     kb.addEventListener('noteoff', (e) => { noteOff(e.detail.note+24); });
+    
+    
+    ///
+    // Set up the LOAD button
+    const fileInput = document.getElementById('patchFileInput');
+    const loadButton = document.getElementById('LoadPatchButton');
+
+    // When user clicks the button, open the file picker
+    loadButton.addEventListener('command', () => { fileInput.click(); });
+
+    // When user picks a file, read it as text and parse JSON
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const text = reader.result;
+        const encoder = new TextEncoder();
+
+        // UTF-8 encode with explicit null terminator
+        const utf8 = encoder.encode(text);
+        const utf8_text = new Uint8Array(utf8.length + 1);
+        utf8_text.set(utf8);
+        utf8_text[utf8.length] = 0; // null-terminate
+
+        // Send the chunk
+        node.port.postMessage({ type: "set_chunk", chunk: utf8_text});
+        // Clear the input so picking the same file again still fires 'change'
+        fileInput.value = '';
+      };
+
+      reader.onerror = () => {
+        console.error('Error reading file:', reader.error);
+        alert('Error reading file.');
+      };
+
+      reader.readAsText(file);
+    });
+    
+    const saveButton = document.getElementById('SavePatchButton');
+
+    saveButton.addEventListener('command', async () => {
+      try {
+        const patch = await requestPatchFromBackend();
+
+//        const json = JSON.stringify(patch, null, 2);
+
+        const blob = new Blob([patch], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+
+        // Use whatever extension you like: .json, .patch, .j4p, etc.
+        const date = new Date().toISOString().replace(/[:.]/g, '-');
+        a.download = `Download-${date}.chonker`;
+
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        console.error('Save failed:', err);
+        alert('Could not save patch (no data / timeout).');
+      }
+    });
+
 }
 
 
@@ -301,8 +408,27 @@ async function loadTweaksLayout()
         }
         panel.appendChild(parentDiv);
     }
+    node.port.postMessage({
+      type: "request_update",
+      timestamp: 0
+    });
 }
 
+
+async function onSelectPreset(preset)
+{
+  currentPreset = preset - 1;
+
+        if (node)
+      {
+        let programNumber = (currentBank * 8 + currentPreset);
+      node.port.postMessage({
+          type: "preset",
+          index: programNumber,
+        timestamp: 0
+      });
+      }
+}
 
 
 async function startAudio()
@@ -402,6 +528,14 @@ async function startAudio()
             }
         }
     }
+    else if (msg.type === "chunk_data")
+    {
+        if (pendingPatchResolve) {
+          pendingPatchResolve(msg.chunk_data);  // payload = your patch JSON/state
+          pendingPatchResolve = null;
+          pendingPatchReject = null;
+        }
+    }
 
     };
 
@@ -410,7 +544,8 @@ async function startAudio()
   if (audioContext.state === "suspended") {
     await audioContext.resume();
   }
-  onSelectPreset(2);
+  // Don't do this here - too early, audio engine loads async.
+  // onSelectPreset(2);
   console.log("Audio started, let's go!");
 }
 
@@ -560,20 +695,6 @@ async function onSelectBank(bank)
       }  
 }
 
-async function onSelectPreset(preset)
-{
-  currentPreset = preset - 1;
-
-        if (node)
-      {
-        let programNumber = (currentBank * 8 + currentPreset);
-      node.port.postMessage({
-          type: "preset",
-          index: programNumber,
-        timestamp: 0
-      });
-      }  
-}
 
 
 function onParameterChange(paramName, paramValue)
@@ -632,27 +753,8 @@ function onParameterChange(paramName, paramValue)
 
 function onSelectTweak(panel, subpanel)
 {
-     
-    for (let[index0, tx] of tweak_divs.entries())
-    {
-        for (let[index1, ty] of tx.entries())
-        {
-            /*
-            let el = document.getElementById(ty);
-            
-            if ((index0 == panel) && (index1 == subpanel))
-                el.style.display = "flex";
-            else
-                el.style.display = "none";
-             
-            if (el)
-            {
-                console.log("removing: ", ty);
-                el.remove();
-            }
-            */
-        }
-    }
+    if ((panel == selected_tweak) && (subpanel == selected_subpanel_tweak)) return;
+
     selected_tweak = panel;
     if (selected_tweak == 2)
     {
@@ -669,7 +771,10 @@ function onSelectTweak(panel, subpanel)
     loadTweaksLayout();
 }
 
-document.getElementById('start-audio-btn').addEventListener('click', () => { startAudio().catch(console.error); });
+document.getElementById('start-audio-btn').addEventListener('click', () => {
+    startAudio().catch(console.error);
+    document.getElementById('start-audio-btn').remove();
+});
 document.getElementById('bank.1').addEventListener('click', () => { onSelectBank(1); });
 document.getElementById('bank.2').addEventListener('click', () => { onSelectBank(2); });
 document.getElementById('bank.3').addEventListener('click', () => { onSelectBank(3); });

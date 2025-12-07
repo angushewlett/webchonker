@@ -57,6 +57,13 @@
             display: inline-block;
             margin: 1px;
         }
+        
+        synth-button-audio {
+            width: 180px;
+            height: 39px;
+            display: inline-block;
+            margin: 1px;
+        }
         synth-button-switch {
             width: 38px;
             height: 13px;
@@ -134,16 +141,9 @@
         </style>
     </head>
     <body>
-        <h1>webChonker - in-browser synthesizer, tech demonstrator.</h1>
-        <button id="start-audio-btn">Start Audio</button><em>← You need to press this for anything to happen. Sorry, thems the rules.</em>
-        
-        <div class="row">
-            <select id="midi-input-select">
-                <option value="">(No MIDI / Not initialized)</option>
-            </select>
-            <label for="midi-input-select"><em>← Then choose your MIDI controller (you did plug it in, right?) from this list.</em></label>
-        </div>
-        
+        <h1>webChonker - A production-grade synthesizer in your browser.</h1>
+        <p><em>Press START / choose a MIDI controller / pick a preset / play and tweak.</em></p>
+                
         <div id="panel" style="marginTop: 1px; padding:0">
             <svg width="1604" height="485" viewBox="0 0 1604 485" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="56" width="1600" height="52" fill="url(#paint0_linear_0_1)"/>
@@ -218,7 +218,24 @@
             </defs>
             </svg>
             <div class="synth-title" style="position: absolute; left:  20px; top: 6px">webChonker</div>
-            <div  style="position: absolute; left:  576px; top: 6px"><synth-button-preset id="preset.name" label="None loaded"/></div>
+            <div  style="position: absolute; left:  576px; top: 6px"><synth-button-preset id="preset.name" label=""/></div>
+            <div  style="position: absolute; left: 680px; top: 8px; zIndex: 5"><synth-button-audio id="start-audio-btn" label="Start"/></div>
+            <div  style="position: absolute; left: 225px; top: 18px; zIndex: 5">
+                <select id="midi-input-select"><option value="">(No MIDI / Not initialized)</option></select>
+            </div>
+            
+            <div  style="position: absolute; left: 410px; top: 16px; zIndex: 5">
+            <!-- Hidden file input -->
+            <input id="patchFileInput" type="file" accept="application/json,.chonker" style="display:none">
+            <!-- Some button that triggers it -->
+            <synth-button id="LoadPatchButton" label="Load"></synth-button>
+            </div>
+            <div  style="position: absolute; left: 490px; top: 16px; zIndex: 5">
+            <!-- Hidden file input -->
+            <input id="patchFileInput" type="file" accept="application/json,.chonker" style="display:none">                
+            <!-- Some button that triggers it -->
+            <synth-button id="SavePatchButton" label="Save"></synth-button>
+            </div>
 
             <div  style="position: absolute; left:  970px; top: 1px"><synth-button id="bank.1" label="Bass 1"/></div>
             <div  style="position: absolute; left: 1045px; top: 1px"><synth-button id="bank.2" label="Bass 2"/></div>
@@ -367,7 +384,7 @@
                 R
             </div>
 
-
+                    
         </div>
             
         <script src="main.js"></script>

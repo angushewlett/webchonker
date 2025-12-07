@@ -55,6 +55,23 @@ class WasmToneProcessor extends AudioWorkletProcessor {
             const result_str = asciiCStringFromWasm(result_ptr, this.memory);
             this.port.postMessage({ type: "preset_name", result_str });
       }
+      if (msg.type === "request_update")
+      {
+          this.wasm_request_update();
+      }
+        if (msg.type === "set_chunk")
+        {
+                const ptr = this.allocCStringInWasm(msg.chunk);
+              const result_ptr = this.wasm_set_chunk(ptr, msg.chunk.length);
+              const result_str = asciiCStringFromWasm(result_ptr, this.memory);
+              this.port.postMessage({ type: "preset_name", result_str });
+        }
+        if (msg.type === "get_chunk")
+        {
+              const result_ptr = this.wasm_get_chunk();
+              const result_str = asciiCStringFromWasm(result_ptr, this.memory);
+              this.port.postMessage({ type: "chunk_data", chunk_data: result_str });
+        }
     };
 
 
@@ -116,6 +133,7 @@ async _initWasm(bytes) {
   this.wasm_load_preset = exports.wasm_load_preset;
   this.wasm_set_chunk =   exports.wasm_set_chunk;
   this.wasm_get_chunk =   exports.wasm_get_chunk;
+  this.wasm_request_update =   exports.wasm_request_update;
 
   this.malloc = exports.malloc;
   this.free = exports.free;
@@ -141,6 +159,11 @@ async _initWasm(bytes) {
 	console.error("WASM assert / abort during init:", e);
   }
   console.log("Ready @3");
+    
+  const result_ptr = this.wasm_load_preset(1);
+  const result_str = asciiCStringFromWasm(result_ptr, this.memory);
+  this.port.postMessage({ type: "preset_name", result_str });
+
 }
 
 

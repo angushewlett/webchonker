@@ -97,6 +97,7 @@ class SynthDropdown extends HTMLElement {
           padding: 1px 8px;
           cursor: pointer;
           white-space: nowrap;
+          z-index: 999;
         }
 
         .item:hover {
@@ -231,6 +232,7 @@ class SynthDropdown extends HTMLElement {
       item.className = 'item';
       item.textContent = opt;
       item.dataset.value = opt;
+      item.style.zIndex = 999;
       item.addEventListener('pointerdown', (e) => {
         // prevent the outer doc handler from thinking this is a click-outside
         e.stopPropagation();
@@ -252,6 +254,7 @@ class SynthDropdown extends HTMLElement {
   _onDisplayClick(e) {
     e.preventDefault();
     e.stopPropagation();
+    this.style.zIndex = '200';
     if (this._open) {
       this._close();
     } else {
@@ -263,12 +266,16 @@ class SynthDropdown extends HTMLElement {
     if (this._open) return;
     this._open = true;
     this._listEl.classList.remove('hidden');
+    this._listEl.style.zIndex = '200';
+    this.parentElement.style.zIndex = '999';
   }
 
   _close() {
     if (!this._open) return;
     this._open = false;
     this._listEl.classList.add('hidden');
+    this.style.zIndex = '100';
+
   }
 
   _onDocPointerDown(e) {

@@ -422,8 +422,90 @@ class SynthButtonSwitch extends SynthButton {
 
 //customElements.define('synth-toggle-button', SynthToggleButton);
 
+class SynthButtonAudio extends SynthButton {
+    constructor() {
+        super();
+                
+        this.shadowRoot.innerHTML = `
+    <style>
+      :host {
+        display: inline-block;
+        touch-action: none;
+        user-select: none;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        color: #eee;
+        outline: none;  
+      }
+  
+      .root {
+        width: 100%;
+        height: 100%;
+      }
+  
+      svg {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+  
+      :host([disabled]) svg {
+        cursor: default;
+        opacity: 0.4;
+      }
+  
+      /* Base styles */
+      .bg {
+        fill: #333;
+        stroke: #777;
+        stroke-width: 1;
+      }
+  
+      .face {
+        fill: #F62626;
+      }
+  
+      .label {
+        fill: #eeeeee;
+        font-family: inherit;
+        font-size: 16px;
+        pointer-events: none;
+      }
+  
+      /* Pressed visual */
+      :host([data-pressed="true"]) .bg {
+        stroke: #aaa;
+      }
+  
+      :host([data-pressed="true"]) .face {
+        fill: #1a1a1a;
+      }
+  
+      :host(:focus-visible) .bg {
+        stroke: #d0d0d0;
+      }
+    </style>
+  
+    <div class="root" tabindex="0">
+      <svg viewBox="0 0 120 26" preserveAspectRatio="none">
+        <!-- outer bevel -->
+        <rect class="bg" x="0.5" y="0.5" width="119" height="25" rx="4" ry="4" />
+        <!-- inner face -->
+        <rect class="face" x="3" y="3" width="114" height="20" rx="3" ry="3" />
+        <!-- center label -->
+        <text class="label"
+              x="50%" y="50%"
+              dominant-baseline="central"
+              text-anchor="middle"></text>
+      </svg>
+    </div>
+  `;
+        this._labelNode = this.shadowRoot.querySelector('.label');
+
+    }
+}
 
 
 customElements.define('synth-button-preset', SynthButtonPreset);
-
 customElements.define('synth-button-switch', SynthButtonSwitch);
+customElements.define('synth-button-audio', SynthButtonAudio);

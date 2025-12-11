@@ -44,6 +44,20 @@ const tweak_divs =
         ["unison-controls"]
 ];
 
+const button_ids =
+[
+    "nav.lfo",
+    "nav.trig",
+    "nav.vco",
+    "nav.sub",
+    "nav.noise",
+    "nav.filter",
+    "nav.pfx",
+    "nav.vca",
+    "nav.env",
+    "nav.effects"
+];
+
 function requestPatchFromBackend() {
   // If you don’t want overlapping requests, you can guard here:
   if (pendingPatchResolve) {
@@ -176,7 +190,7 @@ async function loadPanelLayout()
         // Add control + label to wrapper
         wrapper.appendChild(el);
         // skip labels for buttons
-        if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi' )
+        if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi'|| key === 'synth-button-power' || key === 'synth-label' )
         {
             el.label = labelText;
         }
@@ -200,9 +214,9 @@ async function loadPanelLayout()
     const kb = document.createElement("piano-keyboard");
     kb.style.position = "absolute";
     
-    kb.style.left = "800px";
-    kb.style.top  = "790px";
-    kb.style.transform = "translate(-50%, -50%) scale(200%, 200%)";
+    kb.style.left = "840px";
+    kb.style.top  = "800px";
+    kb.style.transform = "translate(-50%, -50%) scale(180%, 180%)";
     panel.appendChild(kb);
     
     kb.addEventListener('noteon', (e) => { noteOn(e.detail.note+24); });
@@ -311,6 +325,15 @@ async function loadTweaksLayout()
             el.remove();
         }
     }
+    
+    for (let [index, btid] of button_ids.entries()) {
+        let el = document.getElementById(btid);
+        if (el)
+        {
+            el.setAttribute('value', (selected_tweak == index) ? 1 : 0);
+        }
+    }
+
         
     for (const [key, value] of Object.entries(data.tweaks))
     {
@@ -394,10 +417,16 @@ async function loadTweaksLayout()
             // Add control + label to wrapper
             wrapper.appendChild(el);
             
+            
+            
             // skip labels for buttons
-            if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi' )
+            if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-button-power'|| key === 'synth-switch-multi' || key === 'synth-button-power-l')
             {
                 el.label = labelText;
+            }
+            else if ( key === 'synth-label')
+            {
+                el.label = cfg.text;
             }
             else
             {
@@ -408,10 +437,15 @@ async function loadTweaksLayout()
         }
         panel.appendChild(parentDiv);
     }
-    node.port.postMessage({
-      type: "request_update",
-      timestamp: 0
-    });
+    if (node)
+    {
+        node.port.postMessage({
+            type: "request_update",
+            timestamp: 0
+        });
+    }
+    console.log("done loading tweaks");
+
 }
 
 
@@ -488,6 +522,24 @@ async function startAudio()
                           }
                       }
                       
+                      let el1 = document.getElementById(key + ".1");
+                      if (el1)
+                      {
+                          console.log("updating combo");
+                          if (Object.hasOwn(el1,"_options"))
+                          {
+                              el1.setAttribute('options', Object.values(jd)[0]);
+                              el1.setAttribute('value', el1.options[Math.round(val)]);
+                              console.log("update with option: ", Math.round(val));
+                          }
+                          else
+                          {
+                              el1.setAttribute('value', val);
+                              console.log("update with value: ", Math.round(val));
+                          }
+                      }
+                      
+                      
                       if (key === "Osc.Mode")
                       {
                           selected_osc_tweak = Math.round(val);
@@ -500,7 +552,6 @@ async function startAudio()
                           if (selected_tweak == 6)
                               onSelectTweak(selected_tweak, selected_pfx_tweak);
                       }
-
                   }
               }
               catch(error)
@@ -699,6 +750,10 @@ async function onSelectBank(bank)
 
 function onParameterChange(paramName, paramValue)
 {
+    if (paramName.endsWith(".1"))
+    {
+        paramName = paramName.substring(0, paramName.length - 2);
+    }
     // console.log("Param: ", paramName, " ; value: ", paramValue);
     if (node)
     {
@@ -736,6 +791,15 @@ function onParameterChange(paramName, paramValue)
                     if (selected_tweak == 6)
                         onSelectTweak(selected_tweak, selected_pfx_tweak);
                 }
+                if (paramName === "Filter.FilterMode")
+                {
+                    // force update to resync combo
+                    if (node) node.port.postMessage({
+                      type: "request_update",
+                      timestamp: 0
+                    });
+                }
+
             }
             
         }

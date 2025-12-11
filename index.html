@@ -13,21 +13,73 @@
         <script type="module" src="dropdown.js"></script>
         <script type="module" src="button.js"></script>
         <script type="module" src="led.js"></script>
+        <script type="module" src="label.js"></script>
         <script type="module" src="switch.js"></script>
+        <script type="module" src="divider.js"></script>
         <script>
             !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
             posthog.init('phc_Y1T0monD8fDaO1HO4zFdbISHQnWCjuaY2QovTUaCeSy',{api_host:'https://eu.i.posthog.com', defaults:'2025-05-24'})
         </script>
         
         <style>
+            select {
+              appearance: none;        /* remove native styling */
+              -webkit-appearance: none;
+              -moz-appearance: none;
+
+              background-color: #262626;
+              color: #eee;
+
+              border: 1px solid #555;
+              border-radius: 4px;
+
+              padding: 6px 28px 6px 8px; /* space for arrow on right */
+              font-family: system-ui, sans-serif;
+              font-size: 12px;
+
+              outline: none;
+              cursor: pointer;
+
+              /* custom arrow */
+              background-image:
+                linear-gradient(45deg, transparent 50%, #aaa 50%),
+                linear-gradient(135deg, #aaa 50%, transparent 50%),
+                linear-gradient(to right, #444, #444);
+              background-position:
+                calc(100% - 16px) center,
+                calc(100% - 10px) center,
+                calc(100% - 28px) center;
+              background-size:
+                6px 6px,
+                6px 6px,
+                1px 60%;
+              background-repeat: no-repeat;
+            }
+
+            select:hover {
+              border-color: var(--accent-color, #7cff7c);
+            }
+
+            select:focus {
+              border-color: var(--accent-color, #7cff7c);
+              box-shadow: 0 0 0 1px var(--accent-color, #7cff7c);
+            }
+
+            select:disabled {
+              opacity: 0.5;
+              cursor: default;
+            }
+
+            
         button {
             padding: 0.5rem 0.5rem;
             font-size: 1.0rem;
             width: 120px;
             height: 60px;
-            font-size: 9;
+            font-size: 9px;
             display: inline-block;
         }
+            
         synth-button {
             width: 76px;
             height: 26px;
@@ -50,6 +102,13 @@
             margin: 1px;
             font-size: 10px;
         }
+            
+        synth-label {
+            width: 160px;
+            height: 13px;
+            display: inline-block;
+            margin: 1px;
+        }
 
         synth-button-preset {
             width: 382px;
@@ -66,7 +125,26 @@
         }
         synth-button-switch {
             width: 38px;
-            height: 13px;
+            height: 14px;
+            display: inline-block;
+            margin: 1px;
+        }
+        synth-button-plain {
+            width: 90px;
+            height: 26px;
+            display: inline-block;
+            margin: 1px;
+        }
+            
+        synth-button-power {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin: 1px;
+        }
+        synth-button-power-l {
+            width: 16px;
+            height: 16px;
             display: inline-block;
             margin: 1px;
         }
@@ -96,7 +174,7 @@
             display: inline-block;
         }
         synth-dropdown {
-          width: 52px;
+          width: 56px;
           height: 14px;
           display: inline-block;
           margin: 0px;
@@ -113,9 +191,14 @@
           display: inline-block;
           margin: 0px;
         }
-
+        synth-divider {
+          width: 2.5px;
+          height: 180px;
+          display: inline-block;
+          margin: 0px;
+        }
         piano-keyboard {
-            width: 1200px;
+            width: 800px;
             height: 110px;
             display: inline-block;
         }
@@ -127,7 +210,7 @@
         }
         #panel {
             position: relative;
-            width: 1600px;
+            width: 1680px;
             height: 900px;
             margin: 20px auto;
             border: 2px solid #555;
@@ -144,42 +227,17 @@
         <h1>webChonker - A production-grade synthesizer in your browser.</h1>
         <p><em>Press START / choose a MIDI controller / pick a preset / play and tweak.</em></p>
                 
-        <div id="panel" style="marginTop: 1px; padding:0">
-            <svg width="1604" height="485" viewBox="0 0 1604 485" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect y="56" width="1600" height="52" fill="url(#paint0_linear_0_1)"/>
-            <rect width="1600" height="59" fill="url(#paint1_linear_0_1)"/>
-            <rect y="101" width="1600" height="384" fill="url(#paint2_linear_0_1)"/>
+        <div id="panel" style="margin-top: 1px; padding:0">
+            <!--
+            <svg width="1680" height="485" viewBox="0 0 1680 485" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="56" width="1680" height="52" fill="url(#paint0_linear_0_1)"/>
+            <rect width="1680" height="59" fill="url(#paint1_linear_0_1)"/>
+            <rect y="101" width="1680" height="384" fill="url(#paint2_linear_0_1)"/>
             <path d="M595 18C595 14.6863 597.686 12 601 12H953C956.314 12 959 14.6863 959 18V41C959 44.3137 956.314 47 953 47H601C597.686 47 595 44.3137 595 41V18Z" fill="url(#paint3_linear_0_1)"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M600.038 12H953.962C957.849 12 961 15.134 961 19V42C961 45.866 957.849 49 953.962 49H600.038C596.151 49 593 45.866 593 42V19C593 15.134 596.151 12 600.038 12ZM600.038 13C596.706 13 594.005 15.6863 594.005 19V42C594.005 45.3137 596.706 48 600.038 48H953.962C957.294 48 959.995 45.3137 959.995 42V19C959.995 15.6863 957.294 13 953.962 13H600.038Z" fill="white" fill-opacity="0.03"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M601 10H953C956.866 10 960 13.134 960 17V40C960 43.866 956.866 47 953 47H601C597.134 47 594 43.866 594 40V17C594 13.134 597.134 10 601 10ZM601 11C597.686 11 595 13.6863 595 17V40C595 43.3137 597.686 46 601 46H953C956.314 46 959 43.3137 959 40V17C959 13.6863 956.314 11 953 11H601Z" fill="black" fill-opacity="0.12"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M600 11H952C955.866 11 959 14.134 959 18V41C959 44.866 955.866 48 952 48H600C596.134 48 593 44.866 593 41V18C593 14.134 596.134 11 600 11ZM600 12C596.686 12 594 14.6863 594 18V41C594 44.3137 596.686 47 600 47H952C955.314 47 958 44.3137 958 41V18C958 14.6863 955.314 12 952 12H600Z" fill="black"/>
-            <rect x="79" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="81" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="83" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="161" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="163" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="165" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="499" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="501" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="503" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="693" y="103" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="695" y="103" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="697" y="103" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="775" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="777" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="779" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1015" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1017" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="1019" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1123" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1125" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="1127" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1203" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1205" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="1207" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1404" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
-            <rect x="1406" y="101" width="1" height="314" fill="black" fill-opacity="0.85"/>
-            <rect x="1408" y="101" width="1" height="314" fill="white" fill-opacity="0.06"/>
+
             <rect x="4" y="484" width="1" height="1600" transform="rotate(-90 4 484)" fill="white" fill-opacity="0.06"/>
             <rect x="4" y="482" width="1" height="1600" transform="rotate(-90 4 482)" fill="black" fill-opacity="0.85"/>
             <rect x="4" y="480" width="1" height="1600" transform="rotate(-90 4 480)" fill="white" fill-opacity="0.06"/>
@@ -217,20 +275,64 @@
             </linearGradient>
             </defs>
             </svg>
+            -->
+            <svg width="1680" height="485" viewBox="0 0 1680 485" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" width="1680" height="59" fill="url(#paint0_linear_10_130)"/>
+            <rect x="1" y="56" width="1680" height="46" fill="url(#paint1_linear_10_130)"/>
+            <rect x="0.5" y="55.5" width="1680" height="47" stroke="black" stroke-opacity="0.3"/>
+            <rect x="1" y="101" width="1680" height="384" fill="url(#paint2_linear_10_130)"/>
+            
+            <rect x="4" y="484" width="1" height="1680" transform="rotate(-90 4 484)" fill="white" fill-opacity="0.06"/>
+            <rect x="4" y="482" width="1" height="1680" transform="rotate(-90 4 482)" fill="black" fill-opacity="0.85"/>
+            <rect x="4" y="480" width="1" height="1680" transform="rotate(-90 4 480)" fill="white" fill-opacity="0.06"/>
+            <rect x="4" y="417" width="1" height="1680" transform="rotate(-90 4 417)" fill="white" fill-opacity="0.06"/>
+            <rect x="4" y="415" width="1" height="1680" transform="rotate(-90 4 415)" fill="black" fill-opacity="0.85"/>
+            <rect x="4" y="413" width="1" height="1680" transform="rotate(-90 4 413)" fill="white" fill-opacity="0.06"/>
+
+            <defs>
+            <linearGradient id="paint0_linear_10_130" x1="178.231" y1="9.07845e-07" x2="178.231" y2="59" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#323232"/>
+            <stop offset="0.975962" stop-color="#2A2A2A"/>
+            <stop offset="0.987981" stop-color="#404040"/>
+            <stop offset="0.99399" stop-color="#323232"/>
+            <stop offset="1" stop-color="#101010"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_10_130" x1="178.231" y1="56" x2="178.231" y2="102" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#262626"/>
+            <stop offset="0.2" stop-color="#202020"/>
+            <stop offset="0.6" stop-color="#242424"/>
+            <stop offset="0.88" stop-color="#222222"/>
+            <stop offset="0.9" stop-color="#202020"/>
+            <stop offset="0.99399" stop-color="#161616"/>
+            <stop offset="1" stop-color="#101010"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear_10_130" x1="178.231" y1="101" x2="178.231" y2="485" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#282828"/>
+            <stop offset="0.0033" stop-color="#282828"/>
+            <stop offset="0.0066" stop-color="#232323"/>
+            <stop offset="0.01" stop-color="#282828"/>
+            <stop offset="0.99" stop-color="#323232"/>
+            <stop offset="0.9933" stop-color="#404040"/>
+            <stop offset="0.9966" stop-color="#323232"/>
+            <stop offset="1" stop-color="#101010"/>
+            </linearGradient>
+            </defs>
+            </svg>
+
             <div class="synth-title" style="position: absolute; left:  20px; top: 6px">webChonker</div>
             <div  style="position: absolute; left:  576px; top: 6px"><synth-button-preset id="preset.name" label=""/></div>
-            <div  style="position: absolute; left: 680px; top: 8px; zIndex: 5"><synth-button-audio id="start-audio-btn" label="Start"/></div>
-            <div  style="position: absolute; left: 225px; top: 18px; zIndex: 5">
-                <select id="midi-input-select"><option value="">(No MIDI / Not initialized)</option></select>
+            <div  style="position: absolute; left: 680px; top: 8px; z-index: 5"><synth-button-audio id="start-audio-btn" label="Start"/></div>
+            <div  style="position: absolute; left: 250px; top: 16px; z-index: 5">
+                <select id="midi-input-select"><option value="">(No MIDI selected)</option></select>
             </div>
             
-            <div  style="position: absolute; left: 410px; top: 16px; zIndex: 5">
+            <div  style="position: absolute; left: 410px; top: 16px; z-index: 5">
             <!-- Hidden file input -->
             <input id="patchFileInput" type="file" accept="application/json,.chonker" style="display:none">
             <!-- Some button that triggers it -->
             <synth-button id="LoadPatchButton" label="Load"></synth-button>
             </div>
-            <div  style="position: absolute; left: 490px; top: 16px; zIndex: 5">
+            <div  style="position: absolute; left: 490px; top: 16px; z-index: 5">
             <!-- Hidden file input -->
             <input id="patchFileInput" type="file" accept="application/json,.chonker" style="display:none">                
             <!-- Some button that triggers it -->
@@ -253,107 +355,157 @@
             <div  style="position: absolute; left: 1345px; top: 25px"><synth-button id="preset.6" label="6"/></div>
             <div  style="position: absolute; left: 1420px; top: 25px"><synth-button id="preset.7" label="7"/></div>
             <div  style="position: absolute; left: 1495px; top: 25px"><synth-button id="preset.8" label="8"/></div>
-            <div  style="position: absolute; left:  2px; top: 66px"><synth-button id="nav.lfo" label="LFO"/></div>
-            <div  style="position: absolute; left:  84px; top: 66px"><synth-button id="nav.trig" label="Trig"/></div>
-            <div  style="position: absolute; left:  166px; top: 66px"><synth-button id="nav.vco" label="VCO"/></div>
-            <div  style="position: absolute; left:  506px; top: 66px"><synth-button id="nav.sub" label="Sub"/></div>
-            <div  style="position: absolute; left:  696px; top: 66px"><synth-button id="nav.noise" label="Noise"/></div>
-            <div  style="position: absolute; left:  780px; top: 66px"><synth-button id="nav.filter" label="Filter"/></div>
-            <div  style="position: absolute; left:  1032px; top: 66px"><synth-button id="nav.pfx" label="PolyFX"/></div>
-            <div  style="position: absolute; left:  1126px; top: 66px"><synth-button id="nav.vca" label="VCA"/></div>
-            <div  style="position: absolute; left:  1206px; top: 66px"><synth-button id="nav.env" label="Envelope"/></div>
-            <div  style="position: absolute; left:  1408px; top: 66px"><synth-button id="nav.effects" label="Effects"/></div>
             
-            <div class="tiny-label" style="position: absolute; left: 138px; top: 316px">
+            <div  style="position: absolute; left:  0px; top: 66px"><synth-button-plain id="nav.lfo" label="LFO"/></div>
+            <div  style="position: absolute; left:  90px; top: 66px"><synth-button-plain id="nav.trig" label="Trig"/></div>
+            <div  style="position: absolute; left:  285px; top: 66px"><synth-button-plain id="nav.vco" label="VCO"/></div>
+            <div  style="position: absolute; left:  575px; top: 66px"><synth-button-plain id="nav.sub" label="Sub"/></div>
+            <div  style="position: absolute; left:  720px; top: 66px"><synth-button-plain id="nav.noise" label="Noise"/></div>
+            <div  style="position: absolute; left:  880px; top: 66px"><synth-button-plain id="nav.filter" label="VCF"/></div>
+            <div  style="position: absolute; left:  1065px; top: 66px"><synth-button-plain id="nav.pfx" label="PolyFX"/></div>
+            <div  style="position: absolute; left:  1170px; top: 66px"><synth-button-plain id="nav.vca" label="VCA"/></div>
+            <div  style="position: absolute; left:  1320px; top: 66px"><synth-button-plain id="nav.env" label="Envelope"/></div>
+            <div  style="position: absolute; left:  1530px; top: 66px"><synth-button-plain id="nav.effects" label="Effects"/></div>
+            
+            <!-- Trig labels -->
+            <div class="tiny-label" style="position: absolute; left: 148px; top: 316px">
                 ON
             </div>
-            <div class="tiny-label" style="position: absolute; left: 138px; top: 338px">
+            <div class="tiny-label" style="position: absolute; left: 148px; top: 338px">
                 VEL
             </div>
-            <div class="tiny-label" style="position: absolute; left: 138px; top: 360px">
+            <div class="tiny-label" style="position: absolute; left: 148px; top: 360px">
                 LFO
             </div>
+            <!-- end Trig -->
             
-            <div  style="position: absolute; left: 295px; top: 306px">
+            <!-- pitch knob labels -->
+            <div class="tiny-label" style="position: absolute; left: 188px; top: 206px">
+                -36
+            </div>
+            <div class="tiny-label" style="position: absolute; left: 222px; top: 130px">
+                0
+            </div>
+            <div class="tiny-label" style="position: absolute; left: 248px; top: 206px">
+                +36
+            </div>
+            
+            <!-- osc waveforms -->
+            <div style="position: absolute; left: 321px; top: 202px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 100 20" fill="none">
+            <path d="M60 23.9V3.89998L30 23.9V3.89998L1.60002 22.8L0.400024 21.2L32 0.0999756V20.1L62 0.0999756V20.1L90.4 1.19998L91.6 2.79998L60 23.9Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            </div>
+            
+            <div style="position: absolute; left: 381px; top: 202px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 100 20" fill="none">
+            <path d="M20.7,21 C20.7,21.2761424 20.4761424,21.5 20.2,21.5 L1,21.5 C0.723857625,21.5 0.5,21.2761424 0.5,21 C0.5,20.7238576 0.723857625,20.5 1,20.5 L19.7,20.5 L19.7,1 C19.7,0.723857625 19.9238576,0.5 20.2,0.5 L39.4,0.5 C39.6761424,0.5 39.9,0.723857625 39.9,1 L39.9,20.5 L58.1,20.5 L58.1,1 C58.1,0.723857625 58.3238576,0.5 58.6,0.5 L77.8,0.5 C78.0761424,0.5 78.3,0.723857625 78.3,1 L78.3,20.5 L97,20.5 C97.2761424,20.5 97.5,20.7238576 97.5,21 C97.5,21.2761424 97.2761424,21.5 97,21.5 L77.8,21.5 C77.5238576,21.5 77.3,21.2761424 77.3,21 L77.3,1.5 L59.1,1.5 L59.1,21 C59.1,21.2761424 58.8761424,21.5 58.6,21.5 L39.4,21.5 C39.1238576,21.5 38.9,21.2761424 38.9,21 L38.9,1.5 L20.7,1.5 L20.7,21 Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            </div>
+            
+            <div  style="position: absolute; left: 298px; top: 306px">
             <svg width="25px" height="25px" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M57 193.48C61.6479 150.493 84.5896 129 125.825 129C187.678 129 195.16 272 269.08 272C330.771 272 343 201.978 343 193.48" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             </div>
-            <div  style="position: absolute; left: 295px; top: 328px">
+            <div  style="position: absolute; left: 298px; top: 328px">
                 <svg width="22px" height="22px" viewBox="0 0 221 139" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.00134 133.559L53.0013 13.0592L82.5013 81.5592H164.001L209.501 133.559" stroke="white" stroke-opacity="0.9" stroke-width="8" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div  style="position: absolute; left: 295px; top: 350px">
+            <div  style="position: absolute; left: 298px; top: 350px">
                 <svg width="20px" height="20px" viewBox="0 0 161 129" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 123.047V0.0467529C5 0.0467529 6 108.047 43 115.547C80 123.047 156 123.047 156 123.047" stroke-opacity="0.9" stroke="white" stroke-width="8" stroke-linecap="round"/>
                 </svg>
             </div>
             
-            <div  style="position: absolute; left: 365px; top: 306px">
+            <div  style="position: absolute; left: 374px; top: 306px">
             <svg width="25px" height="25px" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M57 193.48C61.6479 150.493 84.5896 129 125.825 129C187.678 129 195.16 272 269.08 272C330.771 272 343 201.978 343 193.48" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             </div>
-            <div  style="position: absolute; left: 365px; top: 328px">
+            <div  style="position: absolute; left: 374px; top: 328px">
                 <svg width="22px" height="22px" viewBox="0 0 221 139" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.00134 133.559L53.0013 13.0592L82.5013 81.5592H164.001L209.501 133.559" stroke="white" stroke-opacity="0.9" stroke-width="8" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div  style="position: absolute; left: 366px; top: 350px">
+            <div  style="position: absolute; left: 371px; top: 350px">
                 <svg width="20px" height="20px" viewBox="0 0 161 129" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 123.047V0.0467529C5 0.0467529 6 108.047 43 115.547C80 123.047 156 123.047 156 123.047" stroke-opacity="0.9" stroke="white" stroke-width="8" stroke-linecap="round"/>
                 </svg>
             </div>
+            <!-- end oscillator -->
             
-            <div  style="position: absolute; left: 595px; top: 306px">
+            <!-- sub waveforms -->
+            <div  style="position: absolute; left: 546px; top: 201px">
             <svg width="25px" height="25px" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M57 193.48C61.6479 150.493 84.5896 129 125.825 129C187.678 129 195.16 272 269.08 272C330.771 272 343 201.978 343 193.48" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             </div>
-            <div  style="position: absolute; left: 595px; top: 328px">
-                <svg width="22px" height="22px" viewBox="0 0 221 139" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.00134 133.559L53.0013 13.0592L82.5013 81.5592H164.001L209.501 133.559" stroke="white" stroke-opacity="0.9" stroke-width="8" stroke-linecap="round"/>
-                </svg>
-            </div>
-            <div  style="position: absolute; left: 595px; top: 350px">
-                <svg width="20px" height="20px" viewBox="0 0 161 129" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 123.047V0.0467529C5 0.0467529 6 108.047 43 115.547C80 123.047 156 123.047 156 123.047" stroke-opacity="0.9" stroke="white" stroke-width="8" stroke-linecap="round"/>
-                </svg>
+            <div  style="position: absolute; left: 576px; top: 130px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="10" viewBox="0 0 80 20" fill="none">
+            <path d="M46.5 23.7L31.5 3.69999L16.5 23.7L0.699951 2.59999L2.29995 1.39999L16.5 20.3L31.5 0.299988L46.5 20.3L61.5 0.299988L77.3 21.4L75.7 22.6L61.5 3.69999L46.5 23.7Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             </div>
 
+            <div style="position: absolute; left: 604px; top: 202px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 100 20" fill="none">
+            <path d="M20.7,21 C20.7,21.2761424 20.4761424,21.5 20.2,21.5 L1,21.5 C0.723857625,21.5 0.5,21.2761424 0.5,21 C0.5,20.7238576 0.723857625,20.5 1,20.5 L19.7,20.5 L19.7,1 C19.7,0.723857625 19.9238576,0.5 20.2,0.5 L39.4,0.5 C39.6761424,0.5 39.9,0.723857625 39.9,1 L39.9,20.5 L58.1,20.5 L58.1,1 C58.1,0.723857625 58.3238576,0.5 58.6,0.5 L77.8,0.5 C78.0761424,0.5 78.3,0.723857625 78.3,1 L78.3,20.5 L97,20.5 C97.2761424,20.5 97.5,20.7238576 97.5,21 C97.5,21.2761424 97.2761424,21.5 97,21.5 L77.8,21.5 C77.5238576,21.5 77.3,21.2761424 77.3,21 L77.3,1.5 L59.1,1.5 L59.1,21 C59.1,21.2761424 58.8761424,21.5 58.6,21.5 L39.4,21.5 C39.1238576,21.5 38.9,21.2761424 38.9,21 L38.9,1.5 L20.7,1.5 L20.7,21 Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            </div>
             
-            <div class="tiny-label" style="position: absolute; left: 667px; top: 316px">
+            <div  style="position: absolute; left: 617px; top: 306px">
+            <svg width="25px" height="25px" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M57 193.48C61.6479 150.493 84.5896 129 125.825 129C187.678 129 195.16 272 269.08 272C330.771 272 343 201.978 343 193.48" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </div>
+            <div  style="position: absolute; left: 617px; top: 328px">
+                <svg width="22px" height="22px" viewBox="0 0 221 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.00134 133.559L53.0013 13.0592L82.5013 81.5592H164.001L209.501 133.559" stroke="white" stroke-opacity="0.9" stroke-width="8" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div  style="position: absolute; left: 617px; top: 350px">
+                <svg width="20px" height="20px" viewBox="0 0 161 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 123.047V0.0467529C5 0.0467529 6 108.047 43 115.547C80 123.047 156 123.047 156 123.047" stroke-opacity="0.9" stroke="white" stroke-width="8" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            
+            <div class="tiny-label" style="position: absolute; left: 689px; top: 316px">
                 -0
             </div>
-            <div class="tiny-label" style="position: absolute; left: 667px; top: 338px">
+            <div class="tiny-label" style="position: absolute; left: 689px; top: 338px">
                 -1
             </div>
-            <div class="tiny-label" style="position: absolute; left: 667px; top: 360px">
+            <div class="tiny-label" style="position: absolute; left: 689px; top: 360px">
                 -2
             </div>
+            <!-- end sub -->
             
-            <div class="tiny-label" style="position: absolute; left: 840px; top: 316px">
+
+            <!-- Filter -->
+            
+            <div class="tiny-label" style="position: absolute; left: 824px; top: 316px">
                 LP
             </div>
-            <div class="tiny-label" style="position: absolute; left: 840px; top: 338px">
+            <div class="tiny-label" style="position: absolute; left: 824px; top: 338px">
                 BP
             </div>
-            <div class="tiny-label" style="position: absolute; left: 840px; top: 360px">
+            <div class="tiny-label" style="position: absolute; left: 824px; top: 360px">
                 HP
             </div>
             
-            <div  style="position: absolute; left: 938px; top: 306px">
+            <div  style="position: absolute; left: 964px; top: 306px">
             <svg width="25px" height="25px" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M57 193.48C61.6479 150.493 84.5896 129 125.825 129C187.678 129 195.16 272 269.08 272C330.771 272 343 201.978 343 193.48" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             </div>
-            <div  style="position: absolute; left: 940px; top: 328px">
+            <div  style="position: absolute; left: 966px; top: 328px">
                 <svg width="20px" height="20px" viewBox="0 0 161 129" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 123.047V0.0467529C5 0.0467529 6 108.047 43 115.547C80 123.047 156 123.047 156 123.047" stroke-opacity="0.9" stroke="white" stroke-width="8" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div  style="position: absolute; left: 940px; top: 350px">
+            <div  style="position: absolute; left: 966px; top: 350px">
                 <svg width="20px" height="20px" viewBox="0 0 195 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M37.4615 5.71423L64.6207 82.7142" stroke="white" stroke-width="10" stroke-linecap="round"/>
                 <path d="M37.4615 5.71423L4.26699 82.7142" stroke="white" stroke-width="10" stroke-linecap="round"/>
@@ -364,27 +516,27 @@
                 </svg>
             </div>
             
-            <div class="tiny-label" style="position: absolute; left: 1060px; top: 316px">
+            <!-- end Filter -->
+            
+            <div class="tiny-label" style="position: absolute; left: 1098px; top: 316px">
                 PRE VCF
             </div>
-            <div class="tiny-label" style="position: absolute; left: 1060px; top: 338px">
+            <div class="tiny-label" style="position: absolute; left: 1098px; top: 338px">
                 POST VCF
             </div>
-            <div class="tiny-label" style="position: absolute; left: 1060px; top: 360px">
+            <div class="tiny-label" style="position: absolute; left: 1098px; top: 360px">
                 POST ENV
             </div>
 
-            <div class="tiny-label" style="position: absolute; left: 1165px; top: 316px">
+            <div class="tiny-label" style="position: absolute; left: 1228px; top: 316px">
                 ADSR
             </div>
-            <div class="tiny-label" style="position: absolute; left: 1165px; top: 338px">
+            <div class="tiny-label" style="position: absolute; left: 1228px; top: 338px">
                 AR
             </div>
-            <div class="tiny-label" style="position: absolute; left: 1165px; top: 360px">
+            <div class="tiny-label" style="position: absolute; left: 1228px; top: 360px">
                 R
             </div>
-
-                    
         </div>
             
         <script src="main.js"></script>

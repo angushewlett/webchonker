@@ -1,65 +1,110 @@
 {"controls": [
     
-        {"synth-slider":     {"id": "Lfo.Rate",           "at": "20,100" }},
-        {"synth-dropdown-s": {"id": "Lfo.Shape",          "at": "20,148" }},
-        {"synth-led":        {"id": "Lfo.Out",            "at": "20,50" }},
+        {"synth-button-power": {"id": "Lfo.Power",           "at": "7,39" }},
 
-        {"synth-slider":     {"id": "Trig.Rate",          "at": "61,100" }},
-        {"synth-switch-multi": {"id": "Trig.Mode",          "at": "61,170" }},
-        {"synth-led":        {"id": "Trig.Out",            "at": "61,50" }},
+        {"synth-slider":     {"id": "Lfo.Rate",           "at": "22.5,100" }},
+        {"synth-dropdown-s": {"id": "Lfo.Shape",          "at": "22.5,148" }},
+        {"synth-led":        {"id": "Lfo.Out",            "at": "22.5,50" }},
+        
+        {"synth-divider":     {"id": "Lfo.DIV",           "at": "45,118" }},
+        
+        {"synth-button-power": {"id": "Trig.Power",           "at": "52,39" }},
 
-        {"synth-dropdown":   {"id": "Osc.Mode",           "at": "224,41" }},
 
-        {"synth-knob-large": {"id": "Osc.SawSqr",         "at": "181,93" }},
-        {"synth-knob-large": {"id": "Osc.Pitch",          "at": "111,93" }},
-        {"synth-knob-small": {"id": "Osc.Fine",           "at": "145,93" }},
-        {"synth-knob-small": {"id": "Osc.PwmDepth",       "at": "229,168"}},
-        {"synth-knob-small": {"id": "Osc.ModDepth",       "at": "111,168"}},
-        {"synth-slider":     {"id": "Osc.Pw",             "at": "213,100"}},
-        {"synth-slider":     {"id": "Osc.Level",          "at": "238,100"}},
-        {"synth-switch-multi": {"id": "Osc.ModSource",    "at": "134,170" }},
-        {"synth-switch-multi": {"id": "Osc.PwSource",     "at": "206,170" }},
+        {"synth-slider":     {"id": "Trig.Rate",          "at": "67.5,100" }},
+        {"synth-switch-multi": {"id": "Trig.Mode",          "at": "67.5,170" }},
+        {"synth-led":        {"id": "Trig.Out",            "at": "67.5,50" }},
+        
+        {"synth-divider":     {"id": "Trig.DIV",           "at": "90,118" }},
 
-        {"synth-knob-large": {"id": "Sub.Shape",          "at": "284,94" }},
-        {"synth-knob-small": {"id": "Sub.ShapeDepth",     "at": "264,168"}},
-        {"synth-slider":     {"id": "Sub.Level",          "at": "326,100"}},
-        {"synth-switch-multi": {"id": "Sub.ShapeSource",    "at": "287,170"}},
-        {"synth-switch-multi": {"id": "Sub.Mode",           "at": "326,170"}},
+        {"synth-button-power": {"id": "Osc.Power",           "at": "97,39" }},
 
-        {"synth-slider":     {"id": "Noise.Level",        "at": "368,100"}},
-        {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "368,148"}},
+        {"synth-dropdown":   {"id": "Osc.Mode",           "at": "228,40" }},
 
-        {"synth-dropdown":   {"id": "Filter.FilterMode",  "at": "483,41" }},
-        {"synth-slider":     {"id": "Filter.Cutoff",      "at": "410,100"}},
-        {"synth-slider":     {"id": "Filter.CutoffEnv",   "at": "466,100"}},
-        {"synth-slider":     {"id": "Filter.FmDepth",     "at": "489,100"}},
-        {"synth-knob-small": {"id": "Filter.Res",         "at": "438,93" }},
-        {"synth-switch-multi": {"id": "Filter.ResponseMode","at": "412,170"}},
-        {"synth-switch-multi": {"id": "Filter.FmSource",    "at": "489,170"}},
+        {"synth-knob-large": {"id": "Osc.SawSqr",         "at": "184,93" }},
+        {"synth-knob-large": {"id": "Osc.Pitch",          "at": "114,93" }},
+        {"synth-knob-small": {"id": "Osc.Fine",           "at": "148,93" }},
+        {"synth-knob-small": {"id": "Osc.PwmDepth",       "at": "232,168"}},
+        {"synth-knob-small": {"id": "Osc.ModDepth",       "at": "114,168"}},
+        {"synth-slider":     {"id": "Osc.Pw",             "at": "217,100"}},
+        {"synth-slider":     {"id": "Osc.Level",          "at": "242,100"}},
+        {"synth-switch-multi": {"id": "Osc.ModSource",    "at": "137,170" }},
+        {"synth-switch-multi": {"id": "Osc.PwSource",     "at": "209,170" }},
+        
+        {"synth-divider":     {"id": "Osc.DIV",           "at": "255,118" }},
 
-        {"synth-dropdown":   {"id": "Xform.Mode",         "at": "536,145" }},
-        {"synth-slider":     {"id": "Xform.Shift",        "at": "536,100"}},
-        {"synth-switch-multi": {"id": "Xform.Routing.Mode", "at": "520,170"}},
-        {"synth-button-switch": {"id": "Xform.Stereo",       "at": "536,198"}},
+        {"synth-button-power": {"id": "Sub.Power",           "at": "262,39" }},
 
-        {"synth-slider":     {"id": "Amp.Gain",           "at": "583,100"}},
-        {"synth-switch-multi": {"id": "Amp.Mode",           "at": "573,170"}},
-        {"synth-button-switch": {"id": "Amp.Velocity",       "at": "583,198"}},
 
-        {"synth-slider":     {"id": "Env.Atk",            "at": "620,100"}},
-        {"synth-slider":     {"id": "Env.Dec",            "at": "643,100"}},
-        {"synth-slider":     {"id": "Env.Sus",            "at": "666,100"}},
-        {"synth-slider":     {"id": "Env.Rel",            "at": "689,100"}},
-        {"synth-led":        {"id": "Env.Out",            "at": "620,50" }},
+        {"synth-knob-large": {"id": "Sub.Shape",          "at": "295,94" }},
+        {"synth-knob-small": {"id": "Sub.ShapeDepth",     "at": "275,168"}},
+        {"synth-slider":     {"id": "Sub.Level",          "at": "337,100"}},
+        {"synth-switch-multi": {"id": "Sub.ShapeSource",    "at": "298,170"}},
+        {"synth-switch-multi": {"id": "Sub.Mode",           "at": "337,170"}},
+        
+        {"synth-divider":     {"id": "Sub.DIV",           "at": "360,118" }},
 
-        {"synth-knob-small": {"id": "Fx.1.Mix",           "at": "722,71" }},
-        {"synth-knob-small": {"id": "Fx.2.Amount",        "at": "722,109"}},
-        {"synth-knob-small": {"id": "Fx.3.Send",          "at": "722,147"}},
-        {"synth-knob-small": {"id": "Fx.4.Send",          "at": "722,185"}},
-        {"synth-dropdown":   {"id": "Fx.1.Mode",          "at": "768,65" }},
-        {"synth-dropdown":   {"id": "Fx.2.Mode",          "at": "768,103"}},
-        {"synth-dropdown":   {"id": "Fx.3.Mode",          "at": "768,141"}},
-        {"synth-dropdown":   {"id": "Fx.4.Mode",          "at": "768,179"}},
+        {"synth-button-power": {"id": "Noise.Power",           "at": "367,39" }},
+
+        {"synth-slider":     {"id": "Noise.Level",        "at": "382.5,100"}},
+        {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "382.5,148"}},
+        
+        {"synth-divider":     {"id": "Noise.DIV",           "at": "405,118" }},
+
+        {"synth-button-power": {"id": "Filter.Power",           "at": "412,39" }},
+
+        {"synth-slider":     {"id": "Filter.Cutoff",      "at": "425,100"}},
+        {"synth-switch-multi": {"id": "Filter.ResponseMode","at": "427,170"}},
+        
+        {"synth-knob-small": {"id": "Filter.Res",         "at": "452,93" }},
+        
+        {"synth-slider":     {"id": "Filter.CutoffEnv",   "at": "480,100"}},
+        {"synth-slider":     {"id": "Filter.FmDepth",     "at": "505,100"}},
+        {"synth-switch-multi": {"id": "Filter.FmSource",    "at": "505,170"}},
+        
+        {"synth-dropdown":   {"id": "Filter.FilterMode",  "at": "498,40" }},
+
+        {"synth-divider":     {"id": "Filter.DIV",        "at": "525,118" }},
+
+        {"synth-button-power": {"id": "Xform.Power",           "at": "532,39" }},
+
+        {"synth-dropdown":   {"id": "Xform.Mode",         "at": "555,145" }},
+        {"synth-slider":     {"id": "Xform.Shift",        "at": "555,100"}},
+        {"synth-switch-multi": {"id": "Xform.Routing.Mode", "at": "539,170"}},
+        {"synth-button-switch": {"id": "Xform.Stereo",       "at": "555,198"}},
+        
+        {"synth-divider":     {"id": "Xform.DIV",         "at": "585,118" }},
+
+        {"synth-slider":     {"id": "Amp.Gain",           "at": "607.5,100"}},
+        {"synth-switch-multi": {"id": "Amp.Mode",           "at": "607.5,170"}},
+        {"synth-button-switch": {"id": "Amp.Velocity",       "at": "607.5,198"}},
+        
+        {"synth-divider":     {"id": "Amp.DIV",           "at": "630,118" }},
+
+        {"synth-button-power": {"id": "Env.Power",           "at": "637,39" }},
+
+        {"synth-slider":     {"id": "Env.Atk",            "at": "648,100"}},
+        {"synth-slider":     {"id": "Env.Dec",            "at": "671,100"}},
+        {"synth-slider":     {"id": "Env.Sus",            "at": "694,100"}},
+        {"synth-slider":     {"id": "Env.Rel",            "at": "717,100"}},
+        {"synth-led":        {"id": "Env.Out",            "at": "648,50" }},
+        
+        {"synth-divider":     {"id": "Env.DIV",           "at": "735,118" }},
+
+        {"synth-knob-small": {"id": "Fx.1.Mix",           "at": "755,71" }},
+        {"synth-knob-small": {"id": "Fx.2.Amount",        "at": "755,109"}},
+        {"synth-knob-small": {"id": "Fx.3.Send",          "at": "755,147"}},
+        {"synth-knob-small": {"id": "Fx.4.Send",          "at": "755,185"}},
+        
+        {"synth-button-power": {"id": "Fx.1.Power",           "at": "770,67" }},
+        {"synth-button-power": {"id": "Fx.2.Power",           "at": "770,105" }},
+        {"synth-button-power": {"id": "Fx.3.Power",           "at": "770,143" }},
+        {"synth-button-power": {"id": "Fx.4.Power",           "at": "770,181" }},
+
+        {"synth-dropdown":   {"id": "Fx.1.Mode",          "at": "804,69" }},
+        {"synth-dropdown":   {"id": "Fx.2.Mode",          "at": "804,107"}},
+        {"synth-dropdown":   {"id": "Fx.3.Mode",          "at": "804,145"}},
+        {"synth-dropdown":   {"id": "Fx.4.Mode",          "at": "804,183"}},
 
         {"synth-knob-small": {"id": "Layer.Macro1",       "at": "112,222"}},
         {"synth-knob-small": {"id": "Layer.Macro2",       "at": "147,222"}},

@@ -54,7 +54,7 @@ class SynthButton extends HTMLElement {
         }
 
         .label {
-          fill: #eee;
+          fill: #eeeeee;
           font-family: inherit;
           font-size: 11px;
           pointer-events: none;
@@ -361,6 +361,12 @@ class SynthButtonSwitch extends SynthButton {
     // Add extra styles for latched "on" state
     const style = document.createElement('style');
     style.textContent = `
+        .label {
+          fill: #7f7f7f;
+          font-family: inherit;
+          font-size: 11px;
+          pointer-events: none;
+        }    
           :host([value="1"]) .bg {
             stroke: #90ff902f;          /* brighter border when ON */
           }
@@ -563,7 +569,7 @@ class SynthButtonPower extends SynthButtonSwitch {
       }
   
       .label {
-        fill: #eeeeee;
+        fill: #aaaaaa;
         font-family: inherit;
         font-size: 8px;
         pointer-events: none;

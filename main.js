@@ -799,9 +799,7 @@ function onParameterChange(paramName, paramValue)
                       timestamp: 0
                     });
                 }
-
             }
-            
         }
         else
         {

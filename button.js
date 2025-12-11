@@ -361,11 +361,11 @@ class SynthButtonSwitch extends SynthButton {
     // Add extra styles for latched "on" state
     const style = document.createElement('style');
     style.textContent = `
-      :host([value="1"]) .bg {
-        stroke: #9f9;          /* brighter border when ON */
-      }
+          :host([value="1"]) .bg {
+            stroke: #90ff902f;          /* brighter border when ON */
+          }
       :host([value="1"]) .face {
-        fill: #1b331b;         /* slightly lit face */
+        fill: #101b10;         /* slightly lit face */
       }
       :host([value="1"]) .label {
         fill: #cfc;            /* brighter text when ON */
@@ -397,11 +397,23 @@ class SynthButtonSwitch extends SynthButton {
       const num = Number(newVal);
       const on = Number.isFinite(num) ? (num !== 0) : !!newVal;
       this._value = on ? 1 : 0;
+        
+        if (newVal !== String(this._value)) {
+          this.setAttribute('value', String(this._value));
+          return; // avoid loops if you like
+        }
+        
       this.setAttribute('aria-pressed', this._value ? 'true' : 'false');
     } else {
       super.attributeChangedCallback(name, oldVal, newVal);
     }
   }
+    
+    connectedCallback()
+    {
+        super.connectedCallback();
+        this._upgradeProperty('value');
+    }
 
   // --- toggle behaviour ---
 
@@ -589,10 +601,10 @@ class SynthButtonPower extends SynthButtonSwitch {
         const style = document.createElement('style');
         style.textContent = `
           :host([value="1"]) .bg {
-            stroke: #9f9;          /* brighter border when ON */
+            stroke: #90ff902f;          /* brighter border when ON */
           }
           :host([value="1"]) .face {
-            fill: #1b331b;         /* slightly lit face */
+        fill: #101b10;         /* slightly lit face */
           }
           :host([value="1"]) .label {
             fill: #cfc;            /* brighter text when ON */

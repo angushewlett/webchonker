@@ -20,7 +20,7 @@ static float g_buffer[MAX_FRAMES * MAX_CHANNELS];
                               "___wasm_call_ctors",
                               "_wasm_get_parameter",
                               "_wasm_set_parameter", "_wasm_load_preset", "_wasm_request_update",
-                              "_malloc",
+                              "_malloc","_wasm_get_chunk","_wasm_set_chunk","_wasm_get_mod",
                               "_free"]'\
      -I ../.. -I../../Framework -I. -std=c++26\
      -DRELEASE -DNDEBUG -DWASM -DARCH_WASM=1 -DGLOBAL_PREFIX_HEADER=\"XeSynth_buildvars.h\" -DEX_TARGET_TYPE_Static=1 -DXE_VMAJ=1  -DXE_VMIN=1  -DXE_VREV=1  -DXE_VBLD=1\
@@ -281,6 +281,27 @@ __attribute__((used)) __attribute__((visibility("default"))) const char* wasm_se
     strcpy(preset_name, wasmsynth->m_dictPreset[0].m_name.c_str());
     return preset_name;
 }
+
+// Modulation
+__attribute__((used)) __attribute__((visibility("default"))) const char* wasm_get_mod()
+{
+    static char chunk[16384];
+    std::string cnk = "";
+
+    wasmsynth->CopyModelToPreset(0, wasmsynth->m_preset[0]);
+    wasmsynth->SavePresetToDictPreset(wasmsynth->m_preset[0], wasmsynth->m_dictPreset[0]);
+    
+    Bs::json::JSON jso;
+
+    for (const auto& p : wasmsynth->m_dictPreset[0])             // MOD_SYSTEM
+        jso["entries"][std::get<0>(p)] = std::get<1>(p);
+
+    
+    
+    strncpy(chunk, cnk.c_str(), std::min((int32)cnk.size(), (int32)16383));
+    return chunk;
+}
+
 
 // host requests parameter sync
 __attribute__((used)) __attribute__((visibility("default"))) void wasm_request_update()

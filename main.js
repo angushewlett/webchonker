@@ -9,6 +9,8 @@ let selected_osc_tweak = 0;
 let selected_pfx_tweak = 0;
 let pendingPatchResolve = null;
 let pendingPatchReject = null;
+let pendingModResolve = null;
+let pendingModReject = null;
 
 const tweak_divs =
 [
@@ -93,6 +95,41 @@ function requestPatchFromBackend() {
   });
 }
 
+
+function requestModFromBackend() {
+  // If you don’t want overlapping requests, you can guard here:
+  if (pendingModResolve) {
+    // Either reject the old one or just throw:
+    pendingModReject?.(new Error('Mod request already pending'));
+    pendingModResolve = null;
+    pendingModReject = null;
+  }
+
+  return new Promise((resolve, reject) => {
+    pendingModResolve = resolve;
+    pendingModReject = reject;
+
+    // Ask the worklet for Mod data
+    node.port.postMessage({ type: 'get_mod' });
+
+    // Optional timeout so we don’t wait forever
+    const timeoutId = setTimeout(() => {
+      if (pendingModResolve === resolve) {
+        pendingModResolve = null;
+        pendingModReject = null;
+        reject(new Error('Timed out waiting for Mod data'));
+      }
+    }, 5000);
+
+    // We’ll clear timeout when we resolve below
+    // (we’ll reference timeoutId via closure)
+    const originalResolve = resolve;
+    resolve = (value) => {
+      clearTimeout(timeoutId);
+      originalResolve(value);
+    };
+  });
+}
 
 async function loadPanelLayout()
 {
@@ -344,8 +381,8 @@ async function loadTweaksLayout()
 
         const parentDiv = document.createElement("div");
         parentDiv.style.position = "absolute";
-        parentDiv.style.left = "10 px";
-        parentDiv.style.top  = "600 px";
+        parentDiv.style.left = "10px";
+        parentDiv.style.top  = "500px";
         parentDiv.style.display = "flex";
         parentDiv.id = key;
 
@@ -417,8 +454,6 @@ async function loadTweaksLayout()
             // Add control + label to wrapper
             wrapper.appendChild(el);
             
-            
-            
             // skip labels for buttons
             if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-button-power'|| key === 'synth-switch-multi' || key === 'synth-button-power-l')
             {
@@ -445,7 +480,7 @@ async function loadTweaksLayout()
         });
     }
     console.log("done loading tweaks");
-
+    loadModulation();
 }
 
 
@@ -462,6 +497,150 @@ async function onSelectPreset(preset)
         timestamp: 0
       });
       }
+}
+
+function onModChange(part, index, value)
+{
+    if (part == 2)
+    {
+        node.port.postMessage({
+            type: "modulation",
+            part: part,
+            index: index,
+            value: value,
+            timestamp: 0
+        });
+    }
+    else
+    {
+        const encoder = new TextEncoder();
+        const utf8 = encoder.encode(value);
+        const bytes = new Uint8Array(utf8.length + 1);
+        bytes.set(utf8);
+        bytes[utf8.length] = 0; // null-terminate
+        node.port.postMessage({
+            type: "modulation",
+            part: part,
+            index: index,
+            value: bytes,
+            timestamp: 0
+        });
+    }
+
+    // reload modulation to ensure we show one empty slot
+    if (part != 2) loadModulation();
+    
+}
+async function loadModulation()
+{
+    // 1. Fetch list of (source, via, dest, amount) , sources, destinations from WASM
+    const payload = await requestModFromBackend();
+    const modulation = JSON.parse(payload); // contains "entries", "sources", "destinations" sub-objects.
+    
+    // 2. Remove the old mod matrix
+    const old = document.getElementById('modMatrix');
+    if (old) old.remove();
+    
+    // 3. Add a new one
+    const modMatrix = document.createElement("div");
+    modMatrix.style.position = "absolute";
+    modMatrix.style.left = "850px";
+    modMatrix.style.top  = "480px";
+    modMatrix.style.width  = "800px";
+    modMatrix.style.height  = "200px";
+    modMatrix.style.display = "flex";
+    modMatrix.style.overflow = "auto";
+    modMatrix.id = "modMatrix";
+    
+    console.log("done prep mod");
+    
+    let didShow1Empty = false;
+
+    
+    // 4. Create individual entries (source, via, depth, destination)
+    for (let index = 0; index < modulation.entries.length; index++) // of modulation.entries)
+    {
+        let mod = modulation.entries[index];
+        console.log(index);
+        
+        const modRow = document.createElement("div");
+        modRow.style.position = "absolute";
+        modRow.style.display = "flex";
+        modRow.style.top = (index * 40) + "px";
+        modRow.style.left = "0px";
+        modRow.style.alignItems = "center";     // horizontally centre contents
+
+        modRow.id = "modRow" + index;
+        modRow.style.transform = "translate(-50%, -50%) scale(200%, 200%)";
+        
+        if (((mod.src === "Unassigned") && (mod.via === "Unassigned"))
+            ||   ((mod.src === "(none)") && (mod.via === "(none)")))
+        {
+            if (didShow1Empty == false)
+            {
+                didShow1Empty = true;
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+        const src_dd  = document.createElement("synth-dropdown-l");
+        src_dd.style.zIndex = '100'; // put dropdowns on top of other controls
+        src_dd.style.position = "absolute";
+        src_dd.style.left = "50px";
+        src_dd.style.top  = "10px";
+        src_dd.style.display = "flex";
+        src_dd.setAttribute('options', modulation.sources);
+        src_dd.setAttribute('value', mod.src);
+        src_dd.addEventListener('input', () => { onModChange(0, index, src_dd._value); } );
+        modRow.appendChild(src_dd);
+        
+        const via_dd  = document.createElement("synth-dropdown-l");
+        via_dd.style.zIndex = '100'; // put dropdowns on top of other controls
+        via_dd.style.position = "absolute";
+        via_dd.style.left = "150px";
+        via_dd.style.top  = "10px";
+        via_dd.style.display = "flex";
+        via_dd.setAttribute('options', modulation.sources);
+        via_dd.setAttribute('value', mod.via);
+        via_dd.addEventListener('input', () => { onModChange(1, index, via_dd._value); } );
+        modRow.appendChild(via_dd);
+        
+        const amt_kn  = document.createElement("synth-knob-small");
+        amt_kn.style.zIndex = '100'; // put dropdowns on top of other controls
+        amt_kn.style.position = "absolute";
+        amt_kn.style.left = "245px";
+        amt_kn.style.top  = "0px";
+        amt_kn.style.display = "flex";
+        amt_kn.setAttribute('value', mod.depth);
+        amt_kn.addEventListener('input', () => { onModChange(2, index, amt_kn._value); } );
+        amt_kn.setAttribute('min', -1);
+        amt_kn.setAttribute('max', 1);
+        modRow.appendChild(amt_kn);
+        
+        const dst_dd  = document.createElement("synth-dropdown-l");
+        dst_dd.style.zIndex = '100'; // put dropdowns on top of other controls
+        dst_dd.style.position = "absolute";
+        dst_dd.style.left = "270px";
+        dst_dd.style.top  = "10px";
+        dst_dd.style.display = "flex";
+        dst_dd.setAttribute('options', modulation.destinations);
+        dst_dd.setAttribute('value', mod.dst);
+        dst_dd.addEventListener('input', () => { onModChange(3, index, dst_dd._value); } );
+        modRow.appendChild(dst_dd);
+        
+        modMatrix.appendChild(modRow);
+    }
+    
+    // 5.  TODO: add an Empty modulation assignment
+    
+    // 6. Add the new panel to the main panel
+    const panel = document.getElementById('panel');
+    panel.appendChild(modMatrix);
+
+    console.log("done loading modulation");
 }
 
 
@@ -490,6 +669,9 @@ async function startAudio()
       //console.log(event);
       const msg = event.data;
       if (msg.type === "event") {
+          
+          if (msg.name === "Params.All")
+              loadModulation();
           
           // simple message: event Param.Name value
           let el = document.getElementById(msg.name);
@@ -587,6 +769,15 @@ async function startAudio()
           pendingPatchReject = null;
         }
     }
+    else if (msg.type === "mod_data")
+    {
+        if (pendingModResolve) {
+          pendingModResolve(msg.mod_data);  // payload = your patch JSON/state
+          pendingModResolve = null;
+          pendingModReject = null;
+        }
+    }
+        
 
     };
 

@@ -289,8 +289,10 @@ class SynthDropdown extends HTMLElement {
 }
 
 class SynthDropdownSmall extends SynthDropdown {}
+class SynthDropdownLarge extends SynthDropdown {}
 
 
 customElements.define('synth-dropdown', SynthDropdown);
 customElements.define('synth-dropdown-s', SynthDropdownSmall);
+customElements.define('synth-dropdown-l', SynthDropdownLarge);
 

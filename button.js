@@ -401,7 +401,7 @@ class SynthButtonSwitch extends SynthButton {
   attributeChangedCallback(name, oldVal, newVal) {
     if (name === 'value') {
       const num = Number(newVal);
-      const on = Number.isFinite(num) ? (num !== 0) : !!newVal;
+      const on = Number.isFinite(num) ? (num > 0.5) : !!newVal;
       this._value = on ? 1 : 0;
         
         if (newVal !== String(this._value)) {

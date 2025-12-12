@@ -9,6 +9,58 @@ function asciiCStringFromWasm(ptr, memory) {
   return s;
 }
 
+function utf8BytesFromWasm(ptr, memory) {
+  const bytes = new Uint8Array(memory.buffer);
+  let st_len = 0;
+  let i = ptr;
+  while (bytes[i] !== 0) { st_len++; i++; }
+
+  let copyBytes = new Uint8Array(st_len + 1);
+  i = ptr;
+  let j = 0;
+    
+  while (bytes[i] !== 0) {
+    copyBytes[j] = bytes[i];
+    i++; j++;
+  }
+  copyBytes[st_len] = 0;
+  return copyBytes;
+}
+
+
+function stringFromUTF8Array(data)
+{
+  const extraByteMap = [ 1, 1, 1, 1, 2, 2, 3, 0 ];
+  var count = data.length;
+  var str = "";
+  
+  for (var index = 0;index < count;)
+  {
+    var ch = data[index++];
+    if (ch & 0x80)
+    {
+      var extra = extraByteMap[(ch >> 3) & 0x07];
+      if (!(ch & 0x40) || !extra || ((index + extra) > count))
+        return null;
+      
+      ch = ch & (0x3F >> extra);
+      for (;extra > 0;extra -= 1)
+      {
+        var chx = data[index++];
+        if ((chx & 0xC0) != 0x80)
+          return null;
+        
+        ch = (ch << 6) | (chx & 0x3F);
+      }
+    }
+    if (ch == 0x0) continue;
+    
+    str += String.fromCharCode(ch);
+  }
+  
+  return str;
+}
+
 
 class WasmToneProcessor extends AudioWorkletProcessor {
     
@@ -61,7 +113,7 @@ class WasmToneProcessor extends AudioWorkletProcessor {
       }
         if (msg.type === "set_chunk")
         {
-                const ptr = this.allocCStringInWasm(msg.chunk);
+              const ptr = this.allocCStringInWasm(msg.chunk);
               const result_ptr = this.wasm_set_chunk(ptr, msg.chunk.length);
               const result_str = asciiCStringFromWasm(result_ptr, this.memory);
               this.port.postMessage({ type: "preset_name", result_str });
@@ -72,6 +124,25 @@ class WasmToneProcessor extends AudioWorkletProcessor {
               const result_str = asciiCStringFromWasm(result_ptr, this.memory);
               this.port.postMessage({ type: "chunk_data", chunk_data: result_str });
         }
+        if (msg.type === "get_mod")
+        {
+              const result_ptr = this.wasm_get_mod();
+              const result_str = stringFromUTF8Array(utf8BytesFromWasm(result_ptr, this.memory));
+              this.port.postMessage({ type: "mod_data", mod_data: result_str });
+        }
+        if (msg.type === "modulation")
+        {
+            if (msg.part == 2) // depth: value is float
+            {
+                this.wasm_set_modulation(2, msg.index, 0, msg.value);
+            }
+            else
+            {
+                const cvt = this.allocCStringInWasm(msg.value);
+                this.wasm_set_modulation(msg.part, msg.index, cvt, 0);
+            }
+        }
+
     };
 
 
@@ -133,7 +204,9 @@ async _initWasm(bytes) {
   this.wasm_load_preset = exports.wasm_load_preset;
   this.wasm_set_chunk =   exports.wasm_set_chunk;
   this.wasm_get_chunk =   exports.wasm_get_chunk;
+  this.wasm_get_mod =   exports.wasm_get_mod;
   this.wasm_request_update =   exports.wasm_request_update;
+  this.wasm_set_modulation = exports.wasm_set_modulation;
 
   this.malloc = exports.malloc;
   this.free = exports.free;

@@ -260,7 +260,6 @@ class SynthButton extends HTMLElement {
   }
 }
 
-customElements.define('synth-button', SynthButton);
 
 class SynthButtonPreset extends SynthButton
 {
@@ -750,7 +749,11 @@ class SynthButtonPowerLarge extends SynthButtonPower {
 
 }
 
+class SynthButtonLarge extends SynthButton {
+}
 
+customElements.define('synth-button', SynthButton);
+customElements.define('synth-button-l', SynthButtonLarge);
 customElements.define('synth-button-preset', SynthButtonPreset);
 customElements.define('synth-button-switch', SynthButtonSwitch);
 customElements.define('synth-button-audio', SynthButtonAudio);

@@ -4,9 +4,7 @@ let node = null;
 let activeParamName = "";
 var label_text = "---";
 let selected_tweak = 0;
-let selected_subpanel_tweak = 0;
-let selected_osc_tweak = 0;
-let selected_pfx_tweak = 0;
+let selected_subpanel_tweak = [0,0,0,0,0,0,0,0,0,0,0,0]; // 12 tweaks pages (only Osc and PFX have subpanels)
 let pendingPatchResolve = null;
 let pendingPatchReject = null;
 let pendingModResolve = null;
@@ -60,6 +58,7 @@ const button_ids =
     "nav.effects"
 ];
 
+
 function requestPatchFromBackend() {
   // If you don’t want overlapping requests, you can guard here:
   if (pendingPatchResolve) {
@@ -97,12 +96,15 @@ function requestPatchFromBackend() {
 
 
 function requestModFromBackend() {
-  // If you don’t want overlapping requests, you can guard here:
+  // If there's already a refresh queued, ignore.
   if (pendingModResolve) {
+    return;
+      /*
     // Either reject the old one or just throw:
     pendingModReject?.(new Error('Mod request already pending'));
     pendingModResolve = null;
     pendingModReject = null;
+       */
   }
 
   return new Promise((resolve, reject) => {
@@ -131,6 +133,7 @@ function requestModFromBackend() {
   });
 }
 
+
 async function loadPanelLayout()
 {
     const response = await fetch('./Panel.json');
@@ -144,7 +147,7 @@ async function loadPanelLayout()
     
     const response2 = await fetch('./Parameters.json');
     const data2 = await response2.json();
-
+    
     if (!data || !Array.isArray(data.controls))
     {
         console.error('Panel.json missing "controls" array');
@@ -152,7 +155,7 @@ async function loadPanelLayout()
     }
     
     const paramMap = data2.parameters;
-                    
+    
     for (const ctrl of data.controls)
     {
         // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
@@ -171,7 +174,7 @@ async function loadPanelLayout()
         wrapper.style.position = "absolute";
         
         if (key === 'synth-dropdown' || key === 'synth-dropdown-s' ) {
-          wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
+            wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
         }
         else
         {
@@ -193,47 +196,101 @@ async function loadPanelLayout()
         wrapper.style.flexDirection = "column";
         wrapper.style.alignItems = "center";     // horizontally centre contents
         wrapper.style.pointerEvents = "none";    // wrapper passes events through to controls
-                            
-        const el = document.createElement(key);
         
-        //if (el instanceof HTMLUnknownElement) continue;
         
-        el.id = cfg.id;
-        el.style.pointerEvents = 'auto';
-        
-        el.addEventListener('input', () => { onParameterChange(el.id, el._value); } );
-
-        // === LABEL ===
-        const label = document.createElement("div");
-        
-        const labelText = paramMap[cfg.id];
-        
-        label.id = cfg.id + ".label";
-        label.textContent = labelText || "";
-        label.style.marginTop = "1px";
-        label.style.fontSize = "6px";
-        label.style.textAlign = "center";
-        label.style.color = "#ddd";
-        label.style.pointerEvents = "none";
-        
-        el.addEventListener('mouseDown', () => {
-            label_text = label.textContent;
-        } );
-        el.addEventListener('mouseUp', () => {
-            label.textContent = label_text;
-        } );
-
-        
-        // Add control + label to wrapper
-        wrapper.appendChild(el);
-        // skip labels for buttons
-        if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi'|| key === 'synth-button-power' || key === 'synth-label' )
+        if (key === 'tiny-label')
         {
-            el.label = labelText;
+            const el = document.createElement(key);
+            
+            //if (el instanceof HTMLUnknownElement) continue;
+            
+            el.id = cfg.id;
+            el.style.pointerEvents = 'auto';
+
+            el.textContent = cfg.label;
+            wrapper.appendChild(el);
+        }
+        else if (key === 'svg-label')
+        {
+            const NS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(NS, "svg");
+            
+            const [xStr, yStr] = cfg.size.split(',');
+            const w = parseFloat(xStr);
+            const h = parseFloat(yStr);
+
+            svg.id = cfg.id;
+            // svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+            svg.setAttribute("width", w);
+            svg.setAttribute("height", h);
+            const use = document.createElementNS(NS, "use");
+            use.setAttribute("href", cfg.use);
+            svg.appendChild(use);
+            wrapper.appendChild(svg);
+        }
+        else if (cfg.bind === undefined)
+        {
+            const el = document.createElement(key);
+            
+            //if (el instanceof HTMLUnknownElement) continue;
+            
+            el.id = cfg.id;
+            el.style.pointerEvents = 'auto';
+
+            
+            el.addEventListener('input', () => { onParameterChange(el.id, el._value); } );
+            
+            // === LABEL ===
+            const label = document.createElement("div");
+            
+            const labelText = paramMap[cfg.id];
+            
+            label.id = cfg.id + ".label";
+            label.textContent = labelText || "";
+            label.style.marginTop = "1px";
+            label.style.fontSize = "6px";
+            label.style.textAlign = "center";
+            label.style.color = "#ddd";
+            label.style.pointerEvents = "none";
+            
+            el.addEventListener('mouseDown', () => {
+                label_text = label.textContent;
+            } );
+            el.addEventListener('mouseUp', () => {
+                label.textContent = label_text;
+            } );
+            
+            
+            // Add control + label to wrapper
+            wrapper.appendChild(el);
+            // skip labels for buttons
+            if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi'|| key === 'synth-button-power' || key === 'synth-label' )
+            {
+                el.label = labelText;
+            }
+            else
+            {
+                wrapper.appendChild(label);
+            }
         }
         else
         {
-            wrapper.appendChild(label);
+            const el = document.createElement(key);
+            
+            //if (el instanceof HTMLUnknownElement) continue;
+            
+            el.id = cfg.id;
+            el.style.pointerEvents = 'auto';
+
+            if (cfg.bind === "bank")
+                el.addEventListener('click', () => { onSelectBank(Number(cfg.index)); });
+            if (cfg.bind === "preset")
+                el.addEventListener('click', () => { onSelectPreset(Number(cfg.index)); });
+            if (cfg.bind === "tweak")
+                el.addEventListener('click', () => { onSelectTweak(cfg.index,selected_subpanel_tweak[cfg.index]); });
+            
+            el.label = cfg.label;
+            wrapper.appendChild(el);
         }
         
         // Copy some common attributes if present in JSON
@@ -264,69 +321,69 @@ async function loadPanelLayout()
     // Set up the LOAD button
     const fileInput = document.getElementById('patchFileInput');
     const loadButton = document.getElementById('LoadPatchButton');
-
+    
     // When user clicks the button, open the file picker
     loadButton.addEventListener('command', () => { fileInput.click(); });
-
+    
     // When user picks a file, read it as text and parse JSON
     fileInput.addEventListener('change', () => {
-      const file = fileInput.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        const text = reader.result;
-        const encoder = new TextEncoder();
-
-        // UTF-8 encode with explicit null terminator
-        const utf8 = encoder.encode(text);
-        const utf8_text = new Uint8Array(utf8.length + 1);
-        utf8_text.set(utf8);
-        utf8_text[utf8.length] = 0; // null-terminate
-
-        // Send the chunk
-        node.port.postMessage({ type: "set_chunk", chunk: utf8_text});
-        // Clear the input so picking the same file again still fires 'change'
-        fileInput.value = '';
-      };
-
-      reader.onerror = () => {
-        console.error('Error reading file:', reader.error);
-        alert('Error reading file.');
-      };
-
-      reader.readAsText(file);
+        const file = fileInput.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        
+        reader.onload = () => {
+            const text = reader.result;
+            const encoder = new TextEncoder();
+            
+            // UTF-8 encode with explicit null terminator
+            const utf8 = encoder.encode(text);
+            const utf8_text = new Uint8Array(utf8.length + 1);
+            utf8_text.set(utf8);
+            utf8_text[utf8.length] = 0; // null-terminate
+            
+            // Send the chunk
+            node.port.postMessage({ type: "set_chunk", chunk: utf8_text});
+            // Clear the input so picking the same file again still fires 'change'
+            fileInput.value = '';
+        };
+        
+        reader.onerror = () => {
+            console.error('Error reading file:', reader.error);
+            alert('Error reading file.');
+        };
+        
+        reader.readAsText(file);
     });
     
     const saveButton = document.getElementById('SavePatchButton');
-
+    
     saveButton.addEventListener('command', async () => {
-      try {
-        const patch = await requestPatchFromBackend();
-
-//        const json = JSON.stringify(patch, null, 2);
-
-        const blob = new Blob([patch], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        a.href = url;
-
-        // Use whatever extension you like: .json, .patch, .j4p, etc.
-        const date = new Date().toISOString().replace(/[:.]/g, '-');
-        a.download = `Download-${date}.chonker`;
-
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      } catch (err) {
-        console.error('Save failed:', err);
-        alert('Could not save patch (no data / timeout).');
-      }
+        try {
+            const patch = await requestPatchFromBackend();
+            
+            //        const json = JSON.stringify(patch, null, 2);
+            
+            const blob = new Blob([patch], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            
+            // Use whatever extension you like: .json, .patch, .j4p, etc.
+            const date = new Date().toISOString().replace(/[:.]/g, '-');
+            a.download = `Download-${date}.chonker`;
+            
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+        } catch (err) {
+            console.error('Save failed:', err);
+            alert('Could not save patch (no data / timeout).');
+        }
     });
-
+    
 }
 
 
@@ -375,7 +432,7 @@ async function loadTweaksLayout()
     for (const [key, value] of Object.entries(data.tweaks))
     {
         
-        if (key != tweak_divs[selected_tweak][selected_subpanel_tweak]) continue;
+        if (key != tweak_divs[selected_tweak][selected_subpanel_tweak[selected_tweak]]) continue;
         
         console.log("adding: ", key);
 
@@ -484,21 +541,6 @@ async function loadTweaksLayout()
 }
 
 
-async function onSelectPreset(preset)
-{
-  currentPreset = preset - 1;
-
-        if (node)
-      {
-        let programNumber = (currentBank * 8 + currentPreset);
-      node.port.postMessage({
-          type: "preset",
-          index: programNumber,
-        timestamp: 0
-      });
-      }
-}
-
 function onModChange(part, index, value)
 {
     if (part == 2)
@@ -531,8 +573,11 @@ function onModChange(part, index, value)
     if (part != 2) loadModulation();
     
 }
+
+
 async function loadModulation()
 {
+    if (pendingModResolve) return;
     // 1. Fetch list of (source, via, dest, amount) , sources, destinations from WASM
     const payload = await requestModFromBackend();
     const modulation = JSON.parse(payload); // contains "entries", "sources", "destinations" sub-objects.
@@ -720,19 +765,19 @@ async function startAudio()
                               console.log("update with value: ", Math.round(val));
                           }
                       }
-                      
-                      
                       if (key === "Osc.Mode")
                       {
-                          selected_osc_tweak = Math.round(val);
                           if (selected_tweak == 2)
-                              onSelectTweak(selected_tweak, selected_osc_tweak);
+                              onSelectTweak(selected_tweak, Math.round(val));
+                          else
+                              selected_subpanel_tweak[2] = Math.round(val);
                       }
                       if (key === "Xform.Mode")
                       {
-                          selected_pfx_tweak = Math.round(val);
                           if (selected_tweak == 6)
-                              onSelectTweak(selected_tweak, selected_pfx_tweak);
+                              onSelectTweak(selected_tweak, Math.round(val));
+                          else
+                              selected_subpanel_tweak[6] = Math.round(val);
                       }
                   }
               }
@@ -819,6 +864,7 @@ async function initMidi()
       
 }  
 
+
 function populateMidiInputs() {
   const select = document.getElementById("midi-input-select");
   select.innerHTML = "";
@@ -899,6 +945,7 @@ function selectMidiInput(inputId) {
   };
 }
 
+
 function noteOn(note)
 {
     if (node)
@@ -919,8 +966,26 @@ function noteOff(note)
         });
 }
 
+
 let currentPreset = 0;
 let currentBank = 0;
+
+
+async function onSelectPreset(preset)
+{
+  currentPreset = preset - 1;
+
+        if (node)
+      {
+        let programNumber = (currentBank * 8 + currentPreset);
+      node.port.postMessage({
+          type: "preset",
+          index: programNumber,
+        timestamp: 0
+      });
+      }
+}
+
 
 async function onSelectBank(bank)
 {
@@ -972,15 +1037,13 @@ function onParameterChange(paramName, paramValue)
                 });
                 if (paramName === "Osc.Mode")
                 {
-                    selected_osc_tweak = paramValueInt;
                     if (selected_tweak == 2)
-                        onSelectTweak(selected_tweak, selected_osc_tweak);
+                        onSelectTweak(selected_tweak, paramValueInt);
                 }
                 if (paramName === "Xform.Mode")
                 {
-                    selected_pfx_tweak = paramValueInt;
                     if (selected_tweak == 6)
-                        onSelectTweak(selected_tweak, selected_pfx_tweak);
+                        onSelectTweak(selected_tweak, paramValueInt);
                 }
                 if (paramName === "Filter.FilterMode")
                 {
@@ -1006,21 +1069,10 @@ function onParameterChange(paramName, paramValue)
 
 function onSelectTweak(panel, subpanel)
 {
-    if ((panel == selected_tweak) && (subpanel == selected_subpanel_tweak)) return;
+    if ((panel == selected_tweak) && (subpanel == selected_subpanel_tweak[selected_tweak])) return;
 
     selected_tweak = panel;
-    if (selected_tweak == 2)
-    {
-        selected_osc_tweak = subpanel;
-        selected_subpanel_tweak = subpanel;
-    }
-    else if (selected_tweak == 6)
-    {
-        selected_pfx_tweak = subpanel;
-        selected_subpanel_tweak = subpanel;
-    }
-    else selected_subpanel_tweak = 0;
-    
+    selected_subpanel_tweak[selected_tweak] = subpanel;
     loadTweaksLayout();
 }
 
@@ -1028,32 +1080,3 @@ document.getElementById('start-audio-btn').addEventListener('click', () => {
     startAudio().catch(console.error);
     document.getElementById('start-audio-btn').remove();
 });
-document.getElementById('bank.1').addEventListener('click', () => { onSelectBank(1); });
-document.getElementById('bank.2').addEventListener('click', () => { onSelectBank(2); });
-document.getElementById('bank.3').addEventListener('click', () => { onSelectBank(3); });
-document.getElementById('bank.4').addEventListener('click', () => { onSelectBank(4); });
-document.getElementById('bank.5').addEventListener('click', () => { onSelectBank(5); });
-document.getElementById('bank.6').addEventListener('click', () => { onSelectBank(6); });
-document.getElementById('bank.7').addEventListener('click', () => { onSelectBank(7); });
-document.getElementById('bank.8').addEventListener('click', () => { onSelectBank(8); });
-document.getElementById('preset.1').addEventListener('click', () => { onSelectPreset(1); });
-document.getElementById('preset.2').addEventListener('click', () => { onSelectPreset(2); });
-document.getElementById('preset.3').addEventListener('click', () => { onSelectPreset(3); });
-document.getElementById('preset.4').addEventListener('click', () => { onSelectPreset(4); });
-document.getElementById('preset.5').addEventListener('click', () => { onSelectPreset(5); });
-document.getElementById('preset.6').addEventListener('click', () => { onSelectPreset(6); });
-document.getElementById('preset.7').addEventListener('click', () => { onSelectPreset(7); });
-document.getElementById('preset.8').addEventListener('click', () => { onSelectPreset(8); });
-
-document.getElementById('nav.lfo').addEventListener('click', () => { onSelectTweak(0,0); });
-document.getElementById('nav.trig').addEventListener('click', () => { onSelectTweak(1,0); });
-document.getElementById('nav.vco').addEventListener('click', () => { onSelectTweak(2,selected_osc_tweak); });
-document.getElementById('nav.sub').addEventListener('click', () => { onSelectTweak(3,0); });
-document.getElementById('nav.noise').addEventListener('click', () => { onSelectTweak(4,0); });
-document.getElementById('nav.filter').addEventListener('click', () => { onSelectTweak(5,0); });
-document.getElementById('nav.pfx').addEventListener('click', () => { onSelectTweak(6,selected_pfx_tweak); });
-document.getElementById('nav.vca').addEventListener('click', () => { onSelectTweak(7,0); });
-document.getElementById('nav.env').addEventListener('click', () => { onSelectTweak(8,0); });
-document.getElementById('nav.effects').addEventListener('click', () => { onSelectTweak(9,0); });
-
-

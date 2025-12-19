@@ -16,6 +16,7 @@
         <script type="module" src="label.js"></script>
         <script type="module" src="switch.js"></script>
         <script type="module" src="divider.js"></script>
+        <script type="module" src="vectorpad.js"></script>
         <script>
             !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
             posthog.init('phc_Y1T0monD8fDaO1HO4zFdbISHQnWCjuaY2QovTUaCeSy',{api_host:'https://eu.i.posthog.com', defaults:'2025-05-24'})
@@ -80,14 +81,14 @@
             display: inline-block;
         }
             
-        synth-button {
+        btn-plain {
             width: 38px;
             height: 13px;
             display: inline-block;
             margin: 1px;
         }
             
-            synth-button-l {
+            btn-plain-l {
                 width: 76px;
                 height: 26px;
                 display: inline-block;
@@ -102,7 +103,7 @@
             font-size: 36px;
         }
             
-        tiny-label {
+        label-s {
             width: 30px;
             height: 10px;
             display: inline-block;
@@ -110,113 +111,113 @@
             font-size: 5px;
         }
             
-        synth-label {
+        label-m {
             width: 160px;
             height: 13px;
             display: inline-block;
             margin: 1px;
         }
 
-        synth-button-preset {
+        btn-preset {
             width: 382px;
             height: 42px;
             display: inline-block;
             margin: 1px;
         }
         
-        synth-button-audio {
+        btn-audio {
             width: 180px;
             height: 39px;
             display: inline-block;
             margin: 1px;
         }
             
-        synth-button-switch {
+        btn-switch {
             width: 38px;
             height: 13px;
             display: inline-block;
             margin: 1px;
         }
             
-        synth-button-plain {
+        btn-text {
             width: 45px;
             height: 12px;
             display: inline-block;
             margin: 1px;
         }
             
-        synth-button-power {
+        btn-power-s {
             width: 10px;
             height: 10px;
             display: inline-block;
             margin: 0px;
         }
             
-        synth-button-power-l {
+        btw-power-l {
             width: 16px;
             height: 16px;
             display: inline-block;
             margin: 1px;
         }
             
-        synth-knob-large {
+        knob-l {
             width: 45px;
             height: 45px;
             display: inline-block;
         }
             
-        synth-knob-small {
+        knob-s {
             width: 25px;
             height: 25px;
             display: inline-block;
         }
             
-        synth-knob-1 {
+        knob-tweak {
             width: 25px;
             height: 25px;
             display: inline-block;
         }
             
-        synth-slider {
+        slider-vert {
             width: 30px;
             height: 60px;
             display: inline-block;
         }
             
-        synth-led {
+        led-panel {
             width: 10px;
             height: 5px;
             display: inline-block;
         }
-        synth-dropdown {
+        dropdown-m {
           width: 56px;
           height: 14px;
           display: inline-block;
           margin: 0px;
         }
             
-        synth-dropdown-s {
+        dropdown-s {
           width: 38px;
           height: 14px;
           display: inline-block;
           margin: 0px;
         }
             
-        synth-dropdown-l {
+        dropdown-l {
               width: 92px;
               height: 14px;
               display: inline-block;
               margin: 0px;
         }
             
-        synth-switch-multi {
+        switch-panel {
           width: 20px;
           height: 33px;
           display: inline-block;
           margin: 0px;
         }
             
-        synth-divider {
+        svg-vert {
           width: 2.5px;
           height: 180px;
           display: inline-block;
@@ -377,10 +378,10 @@
             <div class="synth-title" style="position: absolute; left:  20px; top: 6px">webChonker</div>
             
             <!-- Current preset -->
-            <div  style="position: absolute; left:  576px; top: 6px"><synth-button-preset id="preset.name" label=""/></div>
+            <div  style="position: absolute; left:  576px; top: 6px"><btn-preset id="preset.name" label=""/></div>
             
             <!-- Start Audio button -->
-            <div  style="position: absolute; left: 680px; top: 8px; z-index: 5"><synth-button-audio id="start-audio-btn" label="Start"/></div>
+            <div  style="position: absolute; left: 680px; top: 8px; z-index: 5"><btn-audio id="start-audio-btn" label="Start"/></div>
             <div  style="position: absolute; left: 250px; top: 16px; z-index: 5">
                 <select id="midi-input-select"><option value="">(No MIDI selected)</option></select>
             </div>
@@ -388,14 +389,20 @@
             <!-- Load patch -->
             <div  style="position: absolute; left: 410px; top: 16px; z-index: 5">
             <input id="patchFileInput" type="file" accept="application/json,.chonker" style="display:none">
-            <synth-button-l id="LoadPatchButton" label="Load"></synth-button>
+            <btn-plain-l id="LoadPatchButton" label="Load"></btn-plain>
             </div>
             
             <!-- Save patch -->
             <div  style="position: absolute; left: 490px; top: 16px; z-index: 5">
             <input id="patchFileInput" type="file" accept="application/json,.chonker" style="display:none">
-            <synth-button-l id="SavePatchButton" label="Save"></synth-button>
+            <btn-plain-l id="SavePatchButton" label="Save"></btn-plain>
             </div>
+            
+            <!-- Vector pad for randomizer -->
+            <div  style="position: absolute; left: 760px; top: 520px; z-index: 5">
+            <pad-vector id="randomizerPad" style="width:160px;height:160px;"/>
+            </div>
+
         </div>
             
         <script src="main.js"></script>

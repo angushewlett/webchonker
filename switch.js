@@ -1,4 +1,4 @@
-// synth-switch-multi.js
+// switch-panel.js
 class SynthSwitchMulti extends HTMLElement {
   static get observedAttributes() {
     return ['steps', 'value'];
@@ -245,7 +245,7 @@ class SynthSwitchMulti extends HTMLElement {
   }
 }
 
-customElements.define('synth-switch-multi', SynthSwitchMulti);
+customElements.define('switch-panel', SynthSwitchMulti);
 
 
-// customElements.define('synth-switch-multi-4', SynthSwitchMulti4);
+// customElements.define('switch-panel-4', SynthSwitchMulti4);

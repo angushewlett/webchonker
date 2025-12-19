@@ -1,422 +1,420 @@
 {"tweaks":
     {
         "lfo-controls": [
-            { "synth-label":      { "id": "Lfo.Tweaks",      "at": "10,10", "text": "LFO Tweaks" }},
+            {"label-m":      { "id": "Lfo.Tweaks",      "at": "10,10", "text": "LFO Tweaks" }},
 
-            {"synth-button-switch": {"id": "Lfo.Mono",  "at": "25,34"}},
-            {"synth-button-switch": {"id": "Lfo.Retrig","at": "65,34"}},
-            {"synth-button-switch": {"id": "Lfo.Sync",  "at": "45,60"}},
+            {"btn-switch": {"id": "Lfo.Mono",    "at": "25,34"}},
+            {"btn-switch": {"id": "Lfo.Retrig",  "at": "65,34"}},
+            {"btn-switch": {"id": "Lfo.Sync",    "at": "45,60"}},
             
-            {"synth-knob-1": {"id": "Lfo.Swing",         "at": "104,32"}},
-            {"synth-knob-1": {"id": "Lfo.UnisonSpread",  "at": "119,66"}},
-            {"synth-knob-1": {"id": "Lfo.DelayTime",     "at": "134,32"}},
+            {"knob-tweak":  {"id": "Lfo.Swing",         "at": "104,32"}},
+            {"knob-tweak":  {"id": "Lfo.UnisonSpread",  "at": "119,66"}},
+            {"knob-tweak":  {"id": "Lfo.DelayTime",     "at": "134,32"}},
             
-            {"synth-button-switch": {"id": "Lfo.Link.X", "at": "200,34"}},
-            {"synth-button-switch": {"id": "Lfo.Link.Y", "at": "270,34"}},
-            {"synth-button-switch": {"id": "Lfo.Link.Z", "at": "340,34"}},
+            {"btn-switch": {"id": "Lfo.Link.X",  "at": "200,34"}},
+            {"btn-switch": {"id": "Lfo.Link.Y",  "at": "270,34"}},
+            {"btn-switch": {"id": "Lfo.Link.Z",  "at": "340,34"}},
             
-            {"synth-dropdown-s": {"id": "Lfo.Shape.X", "at": "200,11"}},
-            {"synth-dropdown-s": {"id": "Lfo.Shape.Y", "at": "270,11"}},
-            {"synth-dropdown-s": {"id": "Lfo.Shape.Z", "at": "340,11"}},
+            {"dropdown-s":  {"id": "Lfo.Shape.X", "at": "200,11"}},
+            {"dropdown-s":  {"id": "Lfo.Shape.Y", "at": "270,11"}},
+            {"dropdown-s":  {"id": "Lfo.Shape.Z", "at": "340,11"}},
             
-            {"synth-knob-1": {"id": "Lfo.Rate.X",  "at": "184,66"}},
-            {"synth-knob-1": {"id": "Lfo.Rate.Y",  "at": "254,66"}},
-            {"synth-knob-1": {"id": "Lfo.Rate.Z",  "at": "324,66"}},
+            {"knob-tweak":  {"id": "Lfo.Rate.X",  "at": "184,66"}},
+            {"knob-tweak":  {"id": "Lfo.Rate.Y",  "at": "254,66"}},
+            {"knob-tweak":  {"id": "Lfo.Rate.Z",  "at": "324,66"}},
             
-            {"synth-knob-1": {"id": "Lfo.Phase.X", "at": "216,66"}},
-            {"synth-knob-1": {"id": "Lfo.Phase.Y", "at": "286,66"}},
-            {"synth-knob-1": {"id": "Lfo.Phase.Z", "at": "356,66"}},
+            {"knob-tweak":  {"id": "Lfo.Phase.X", "at": "216,66"}},
+            {"knob-tweak":  {"id": "Lfo.Phase.Y", "at": "286,66"}},
+            {"knob-tweak":  {"id": "Lfo.Phase.Z", "at": "356,66"}},
             
-            {"synth-button-group": {"id": "Lfo.TimeMain", "at": "42,88"}},
-            {"synth-button-group": {"id": "Lfo.Time.X",    "at": "200,88"}},
-            {"synth-button-group": {"id": "Lfo.Time.Y",    "at": "270,88"}},
-            {"synth-button-group": {"id": "Lfo.Time.Z",    "at": "340,88"}}
+            {"switch-tweak":  {"id": "Lfo.TimeMain","at": "42,88"}},
+            {"switch-tweak":  {"id": "Lfo.Time.X",  "at": "200,88"}},
+            {"switch-tweak":  {"id": "Lfo.Time.Y",  "at": "270,88"}},
+            {"switch-tweak":  {"id": "Lfo.Time.Z",  "at": "340,88"}}
         ],
         
         "trig-controls": [
-            { "synth-label":      { "id": "Trig.Tweaks",      "at": "10,10", "text": "Trig Tweaks" }},
-            { "synth-label":      { "id": "Trig.Tweaks1",      "at": "10,50", "text": "(Under construction)" }}
+            { "label-m":      { "id": "Trig.Tweaks",     "at": "10,10", "text": "Trig Tweaks" }},
+            { "label-m":      { "id": "Trig.Tweaks1",    "at": "10,50", "text": "(Under construction)" }}
         ],
         
         "osc-classic-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
-            { "synth-knob-1":          { "id": "Osc.SubFM",     "at": "105,40" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch":   { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "knob-tweak":    { "id": "Osc.SubFM",       "at": "105,40" }}
         ],
         
         "osc-asymmetric-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
-            { "synth-knob-1":          { "id": "Osc.Asymmetry",     "at": "105,40" }},
-            { "synth-knob-1":          { "id": "Osc.SubFM",     "at": "155,40" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch":   { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "knob-tweak":    { "id": "Osc.Asymmetry",   "at": "105,40" }},
+            { "knob-tweak":    { "id": "Osc.SubFM",       "at": "155,40" }}
         ],
         
         "osc-sawpw-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
-            { "synth-knob-1":          { "id": "Osc.SawPW",     "at": "105,40" }},
-            { "synth-knob-1":          { "id": "Osc.SubFM",     "at": "155,40" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch":   { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "knob-tweak":    { "id": "Osc.SawPW",       "at": "105,40" }},
+            { "knob-tweak":    { "id": "Osc.SubFM",       "at": "155,40" }}
         ],
         
         "osc-hardsync-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
-            { "synth-knob-1":          { "id": "Osc.SyncOffset",          "at": "105,40" }},
-            { "synth-knob-1":          { "id": "Osc.Balance",             "at": "155,40" }},
-            { "synth-switch-multi":   { "id": "Osc.Sweep.ModSource",     "at": "206,40" }},
-            { "synth-knob-1":          { "id": "Osc.Sweep.ModDepth",      "at": "233,40" }},
-            { "synth-knob-1":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch":   { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "dropdown-s":    { "id": "Osc.Brightness",  "at": "55,40" }},
+            { "knob-tweak":    { "id": "Osc.SyncOffset",          "at": "105,40" }},
+            { "knob-tweak":    { "id": "Osc.Balance",             "at": "155,40" }},
+            { "switch-panel":    { "id": "Osc.Sweep.ModSource",     "at": "206,40" }},
+            { "knob-tweak":    { "id": "Osc.Sweep.ModDepth",      "at": "233,40" }},
+            { "knob-tweak":    { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
         ],
         
         "osc-vintage-dual-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-knob-1": { "id": "Osc.DetuneVc",      "at": "23,33"  }},
-            { "synth-knob-1": { "id": "Osc.DetuneRn",      "at": "93,33"  }},
-            { "synth-knob-1": { "id": "Osc.Balance",       "at": "23,66"  }},
-            { "synth-knob-1": { "id": "Osc.SubFM",         "at": "93,66"  }},
-            { "synth-knob-1": { "id": "Osc.DetuneHz",      "at": "183,33" }},
-            { "synth-knob-1": { "id": "Osc.DetuneCt",      "at": "253,33" }},
-            { "synth-knob-1": { "id": "Osc.Dual.Pitch",    "at": "183,66" }},
-            { "synth-knob-1": { "id": "Osc.Dual.Wave",     "at": "253,66" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10"  }},
+            { "btn-switch":   { "id": "Osc.PhaseReset",  "at": "160,9"  }},
+            { "knob-tweak":    { "id": "Osc.DetuneVc",    "at": "23,33"  }},
+            { "knob-tweak":    { "id": "Osc.DetuneRn",    "at": "93,33"  }},
+            { "knob-tweak":    { "id": "Osc.Balance",     "at": "23,66"  }},
+            { "knob-tweak":    { "id": "Osc.SubFM",       "at": "93,66"  }},
+            { "knob-tweak":    { "id": "Osc.DetuneHz",    "at": "183,33" }},
+            { "knob-tweak":    { "id": "Osc.DetuneCt",    "at": "253,33" }},
+            { "knob-tweak":    { "id": "Osc.Dual.Pitch",  "at": "183,66" }},
+            { "knob-tweak":    { "id": "Osc.Dual.Wave",   "at": "253,66" }}
         ],
         
         "osc-emph-sweep-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-knob-1":        { "id": "Osc.Emph.Sweep",        "at": "38,40"  }},
-            { "synth-knob-1":        { "id": "Osc.Balance",           "at": "108,40" }},
-            { "synth-button-switch": { "id": "Osc.Sweep.Tri",         "at": "158,40" }},
-            { "synth-switch-multi":   { "id": "Osc.Sweep.ModSource",     "at": "206,40" }},
-            { "synth-knob-1":          { "id": "Osc.Sweep.ModDepth",      "at": "233,40" }},
-            { "synth-knob-1":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "knob-tweak":        { "id": "Osc.Emph.Sweep",        "at": "38,40"  }},
+            { "knob-tweak":        { "id": "Osc.Balance",           "at": "108,40" }},
+            { "btn-switch": { "id": "Osc.Sweep.Tri",         "at": "158,40" }},
+            { "switch-panel":   { "id": "Osc.Sweep.ModSource",     "at": "206,40" }},
+            { "knob-tweak":          { "id": "Osc.Sweep.ModDepth",      "at": "233,40" }},
+            { "knob-tweak":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
         ],
         
         "osc-modern-stack-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-knob-1":      { "id": "Osc.DetuneHz",            "at": "45,40"  }},
-            { "synth-knob-1":      { "id": "Osc.DetuneCt",            "at": "45,70"  }},
-            { "synth-knob-1":      { "id": "Osc.Balance",             "at": "90,40" }},
-            { "synth-dropdown-s":  { "id": "Osc.Stack.FilterMode",    "at": "135,40" }},
-            { "synth-knob-1":      { "id": "Osc.Stack.FilterOffset",  "at": "135,70" }},
-            { "synth-knob-1":      { "id": "Osc.Balance.ModDepth",    "at": "180,40" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "knob-tweak":      { "id": "Osc.DetuneHz",            "at": "45,40"  }},
+            { "knob-tweak":      { "id": "Osc.DetuneCt",            "at": "45,70"  }},
+            { "knob-tweak":      { "id": "Osc.Balance",             "at": "90,40" }},
+            { "dropdown-s":  { "id": "Osc.Stack.FilterMode",    "at": "135,40" }},
+            { "knob-tweak":      { "id": "Osc.Stack.FilterOffset",  "at": "135,70" }},
+            { "knob-tweak":      { "id": "Osc.Balance.ModDepth",    "at": "180,40" }}
         ],
         
         "osc-chords-controls": [
-            { "synth-label":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
-            { "synth-dropdown":      { "id": "Osc.Mode.1",      "at": "90,10" }},
-            { "synth-button-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
-            { "synth-knob-1":        { "id": "Osc.Chord.Root",        "at": "60,40"  }},
-            { "synth-knob-1":        { "id": "Osc.Chord.Sweep",       "at": "115,40"  }},
-            { "synth-switch-multi":   { "id": "Osc.Sweep.ModSource",     "at": "206,40" }},
-            { "synth-knob-1":          { "id": "Osc.Sweep.ModDepth",      "at": "233,40" }},
-            { "synth-knob-1":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "knob-tweak":        { "id": "Osc.Chord.Root",        "at": "60,40"  }},
+            { "knob-tweak":        { "id": "Osc.Chord.Sweep",       "at": "115,40"  }},
+            { "switch-panel":   { "id": "Osc.Sweep.ModSource",     "at": "206,40" }},
+            { "knob-tweak":          { "id": "Osc.Sweep.ModDepth",      "at": "233,40" }},
+            { "knob-tweak":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
         ],
         
         "sub-controls": [
-            { "synth-label":      { "id": "Sub.Tweaks",      "at": "10,10", "text": "Sub Tweaks" }},
-            { "synth-button-switch": { "id": "Sub.PhaseReset",  "at": "160,9"}},
-            { "synth-knob-1": { "id": "Sub.PitchRel", "at": "30,40" }},
-            { "synth-knob-1": { "id": "Sub.Pw", "at": "85,40" }},
-            { "synth-switch-multi": { "id": "Sub.PwSource", "at": "126,40" }},
-            { "synth-knob-1": { "id": "Sub.PwmDepth", "at": "165,40" }},
-            { "synth-knob-1": { "id": "Sub.FilterBypass", "at": "260,20" }},
-            { "synth-label":      { "id": "Sub.L1",      "at": "190,24", "text": "Main" }},
-            { "synth-label":      { "id": "Sub.L2",      "at": "210,24", "text": "VCO-FM" }},
-            { "synth-label":      { "id": "Sub.L3",      "at": "230,24", "text": "VCF-FM" }},
+            { "label-m":      { "id": "Sub.Tweaks",      "at": "10,10", "text": "Sub Tweaks" }},
+            { "btn-switch": { "id": "Sub.PhaseReset",  "at": "160,9"}},
+            { "knob-tweak": { "id": "Sub.PitchRel", "at": "30,40" }},
+            { "knob-tweak": { "id": "Sub.Pw", "at": "85,40" }},
+            { "switch-panel": { "id": "Sub.PwSource", "at": "126,40" }},
+            { "knob-tweak": { "id": "Sub.PwmDepth", "at": "165,40" }},
+            { "knob-tweak": { "id": "Sub.FilterBypass", "at": "260,20" }},
+            { "label-m":      { "id": "Sub.L1",      "at": "190,24", "text": "Main" }},
+            { "label-m":      { "id": "Sub.L2",      "at": "210,24", "text": "VCO-FM" }},
+            { "label-m":      { "id": "Sub.L3",      "at": "230,24", "text": "VCF-FM" }},
 
-            { "synth-button-power-l": { "id": "Sub.Out1Mode",  "at": "200,46" }},
-            { "synth-button-power-l": { "id": "Sub.Out1Phase", "at": "200,64" }},
-            { "synth-button-power-l": { "id": "Sub.Out2Mode",  "at": "220,46" }},
-            { "synth-button-power-l": { "id": "Sub.Out2Phase", "at": "220,64" }},
-            { "synth-button-power-l": { "id": "Sub.Out3Mode",  "at": "240,46" }},
-            { "synth-button-power-l": { "id": "Sub.Out3Phase", "at": "240,64" }},
-            { "synth-button-power-l": { "id": "Sub.Out4Mode",  "at": "260,46" }},
-            { "synth-button-power-l": { "id": "Sub.Out4Phase", "at": "260,64" }}
+            { "btw-power-l": { "id": "Sub.Out1Mode",  "at": "200,46" }},
+            { "btw-power-l": { "id": "Sub.Out1Phase", "at": "200,64" }},
+            { "btw-power-l": { "id": "Sub.Out2Mode",  "at": "220,46" }},
+            { "btw-power-l": { "id": "Sub.Out2Phase", "at": "220,64" }},
+            { "btw-power-l": { "id": "Sub.Out3Mode",  "at": "240,46" }},
+            { "btw-power-l": { "id": "Sub.Out3Phase", "at": "240,64" }},
+            { "btw-power-l": { "id": "Sub.Out4Mode",  "at": "260,46" }},
+            { "btw-power-l": { "id": "Sub.Out4Phase", "at": "260,64" }}
         ],
         
         "noise-controls": [
-            { "synth-label":      { "id": "Noise.Tweaks",      "at": "10,10", "text": "Noise Tweaks" }},
+            { "label-m":      { "id": "Noise.Tweaks",      "at": "10,10", "text": "Noise Tweaks" }},
 
-            { "synth-knob-1": { "id": "Noise.Filter.Offset",      "at": "28,48" }},
-            { "synth-knob-1": { "id": "Noise.Filter.Resonance",   "at": "78,48" }},
-            { "synth-knob-1": { "id": "Noise.SnH.Offset",         "at": "128,48" }},
-            { "synth-button-switch": { "id": "Noise.SnH",         "at": "168,33" }},
-            { "synth-button-switch": { "id": "Noise.Keytrack",    "at": "168,53" }},
-            { "synth-knob-1": { "id": "Noise.TrigAmount",         "at": "218,48" }}
+            { "knob-tweak": { "id": "Noise.Filter.Offset",      "at": "28,48" }},
+            { "knob-tweak": { "id": "Noise.Filter.Resonance",   "at": "78,48" }},
+            { "knob-tweak": { "id": "Noise.SnH.Offset",         "at": "128,48" }},
+            { "btn-switch": { "id": "Noise.SnH",         "at": "168,33" }},
+            { "btn-switch": { "id": "Noise.Keytrack",    "at": "168,53" }},
+            { "knob-tweak": { "id": "Noise.TrigAmount",         "at": "218,48" }}
         ],
         
         "filter-controls": [
-            { "synth-label":      { "id": "Filter.Tweaks",      "at": "10,10", "text": "VCF Tweaks" }},
-            { "synth-dropdown": { "id": "Filter.FilterMode.1", "at": "90,10" }},
-            { "synth-knob-1": { "id": "Filter.KeyTrack", "at": "78,48" }},
-            { "synth-knob-1": { "id": "Filter.Velocity", "at": "118,48" }},
-            { "synth-knob-1": { "id": "Filter.VelEnv",   "at": "158,48" }},
-            { "synth-knob-1": { "id": "Filter.FmNoise",  "at": "198,48" }},
-            { "synth-knob-1": { "id": "Filter.RndDepth", "at": "238,48" }}
+            { "label-m":      { "id": "Filter.Tweaks",      "at": "10,10", "text": "VCF Tweaks" }},
+            { "dropdown-m": { "id": "Filter.FilterMode.1", "at": "90,10" }},
+            { "knob-tweak": { "id": "Filter.KeyTrack", "at": "78,48" }},
+            { "knob-tweak": { "id": "Filter.Velocity", "at": "118,48" }},
+            { "knob-tweak": { "id": "Filter.VelEnv",   "at": "158,48" }},
+            { "knob-tweak": { "id": "Filter.FmNoise",  "at": "198,48" }},
+            { "knob-tweak": { "id": "Filter.RndDepth", "at": "238,48" }}
         ],
         
         "pfx-off-controls": [
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-label":      { "id": "Xform.Tweaks1",      "at": "10,50", "text": "PFX (Poly FX) is off." }}
+            { "label-m":      { "id": "Xform.Tweaks1",      "at": "10,50", "text": "PFX (Poly FX) is off." }}
         ],
         
         
         "pfx-ring-controls": [
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "138,46" }},
-            { "synth-dropdown":    { "id": "Xform.SweepTable",          "at": "150,10" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "273,79" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
-            { "synth-button-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
-            { "synth-button-group":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "138,46" }},
+            { "dropdown-m":    { "id": "Xform.SweepTable",          "at": "150,10" }},
+            { "knob-tweak":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
+            { "knob-tweak":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "273,79" }},
+            { "knob-tweak":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
+            { "knob-tweak":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
+            { "btn-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
+            { "switch-tweak":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
         ],
         
         "pfx-phase-controls": [
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "128,46" }},
-            { "synth-knob-1":        { "id": "Xform.PhaseModDepth",       "at": "168,46" }},
-            { "synth-dropdown":    { "id": "Xform.SweepTable",          "at": "150,10" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "273,79" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
-            { "synth-button-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
-            { "synth-button-group":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "128,46" }},
+            { "knob-tweak":        { "id": "Xform.PhaseModDepth",       "at": "168,46" }},
+            { "dropdown-m":    { "id": "Xform.SweepTable",          "at": "150,10" }},
+            { "knob-tweak":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
+            { "knob-tweak":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "273,79" }},
+            { "knob-tweak":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
+            { "knob-tweak":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
+            { "btn-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
+            { "switch-tweak":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
         ],
         
         "pfx-snh-controls": [
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "138,46" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "273,79" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
-            { "synth-button-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
-            { "synth-button-group":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "138,46" }},
+            { "knob-tweak":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
+            { "knob-tweak":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "273,79" }},
+            { "knob-tweak":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
+            { "knob-tweak":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
+            { "btn-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
+            { "switch-tweak":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
         ],
         
         "pfx-comb-controls":[
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "128,46" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.PitchAdjust",   "at": "163,46" }},
-            { "synth-button-group":  { "id": "Xform.Blend.Mode",          "at": "186,46" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneHz",            "at": "219,13" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneCt",            "at": "219,46" }},
-            { "synth-button-switch": { "id": "Xform.Comb.Keytrack",       "at": "243,79" }},
-            { "synth-button-switch": { "id": "Xform.Comb.Inverse",        "at": "354,13" }},
-            { "synth-knob-1":        { "id": "Xform.Comb.Resonance",      "at": "354,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "287,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "287,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "287,79" }}
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "128,46" }},
+            { "knob-tweak":        { "id": "Xform.Blend.PitchAdjust",   "at": "163,46" }},
+            { "switch-tweak":  { "id": "Xform.Blend.Mode",          "at": "186,46" }},
+            { "knob-tweak":        { "id": "Xform.DetuneHz",            "at": "219,13" }},
+            { "knob-tweak":        { "id": "Xform.DetuneCt",            "at": "219,46" }},
+            { "btn-switch": { "id": "Xform.Comb.Keytrack",       "at": "243,79" }},
+            { "btn-switch": { "id": "Xform.Comb.Inverse",        "at": "354,13" }},
+            { "knob-tweak":        { "id": "Xform.Comb.Resonance",      "at": "354,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "287,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "287,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "287,79" }}
         ],
         
         "pfx-fold-controls":[
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "28,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "28,79" }},
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "28,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "28,79" }},
             
-            { "synth-knob-1":        { "id": "Xform.Blend.PitchAdjust",   "at": "133,13" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.Resonance",     "at": "133,46" }},
-            { "synth-button-group":  { "id": "Xform.Blend.Mode",          "at": "150,46" }},
-            { "synth-button-switch": { "id": "Xform.Blend.Keytrack",      "at": "128,79" }},
+            { "knob-tweak":        { "id": "Xform.Blend.PitchAdjust",   "at": "133,13" }},
+            { "knob-tweak":        { "id": "Xform.Blend.Resonance",     "at": "133,46" }},
+            { "switch-tweak":  { "id": "Xform.Blend.Mode",          "at": "150,46" }},
+            { "btn-switch": { "id": "Xform.Blend.Keytrack",      "at": "128,79" }},
             
-            { "synth-button-group":  { "id": "Xform.WavefoldMode",        "at": "195,13" }},
-            { "synth-button-group":  { "id": "Xform.WavefoldShape",       "at": "180,46" }},
-            { "synth-button-group":  { "id": "Xform.WavefoldType",        "at": "180,79" }},
+            { "switch-tweak":  { "id": "Xform.WavefoldMode",        "at": "195,13" }},
+            { "switch-tweak":  { "id": "Xform.WavefoldShape",       "at": "180,46" }},
+            { "switch-tweak":  { "id": "Xform.WavefoldType",        "at": "180,79" }},
             
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "220,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "220,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "220,79" }}
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "220,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "220,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "220,79" }}
         ],
         
         "pfx-delay-controls":[
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "138,46" }},
-            { "synth-knob-1":        { "id": "Xform.Comb.Resonance",      "at": "188,46" }},
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "138,46" }},
+            { "knob-tweak":        { "id": "Xform.Comb.Resonance",      "at": "188,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "273,79" }},
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "273,79" }},
             
-            { "synth-button-switch": { "id": "Xform.Comb.Inverse",        "at": "233,46" }},
+            { "btn-switch": { "id": "Xform.Comb.Inverse",        "at": "233,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
-            { "synth-knob-1":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
-            { "synth-button-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
-            { "synth-button-group":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
+            { "knob-tweak":        { "id": "Xform.Blend.PitchAdjust",   "at": "327,13" }},
+            { "knob-tweak":        { "id": "Xform.Blend.Resonance",     "at": "327,46" }},
+            { "btn-switch": { "id": "Xform.Blend.Keytrack",      "at": "327,79" }},
+            { "switch-tweak":  { "id": "Xform.Blend.Mode",          "at": "346,46" }}
         ],
         
         "pfx-pan-controls":[
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "58,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "123,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "123,79" }}
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "58,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "123,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "123,79" }}
         ],
         
         "pfx-body-controls":[
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "138,46" }},
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "138,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
+            { "knob-tweak":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
+            { "knob-tweak":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "273,79" }},
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "273,79" }},
             
-            { "synth-button-switch": { "id": "Xform.Body.Keytrack",       "at": "238,79" }},
-            { "synth-button-switch": { "id": "Xform.Body.Inverse",        "at": "428,46" }},
+            { "btn-switch": { "id": "Xform.Body.Keytrack",       "at": "238,79" }},
+            { "btn-switch": { "id": "Xform.Body.Inverse",        "at": "428,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.Body.Emphasis",       "at": "348,46" }},
-            { "synth-knob-1":        { "id": "Xform.Body.Stretch",        "at": "348,13" }}
+            { "knob-tweak":        { "id": "Xform.Body.Emphasis",       "at": "348,46" }},
+            { "knob-tweak":        { "id": "Xform.Body.Stretch",        "at": "348,13" }}
         ],
         
         "pfx-warp-controls":[
-            { "synth-label":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
-            { "synth-dropdown": { "id": "Xform.Mode.1", "at": "90,10" }},
+            { "label-m":      { "id": "Xform.Tweaks",      "at": "10,10", "text": "PFX Tweaks" }},
+            { "dropdown-m": { "id": "Xform.Mode.1", "at": "90,10" }},
 
-            { "synth-button-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
-            { "synth-knob-1":        { "id": "Xform.Mix",                 "at": "88,46" }},
-            { "synth-knob-1":        { "id": "Xform.Spread",              "at": "138,46" }},
+            { "btn-switch": { "id": "Xform.Stereo",              "at": "38,46" }},
+            { "knob-tweak":        { "id": "Xform.Mix",                 "at": "88,46" }},
+            { "knob-tweak":        { "id": "Xform.Spread",              "at": "138,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
-            { "synth-knob-1":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
+            { "knob-tweak":        { "id": "Xform.DetuneHz",            "at": "205,13" }},
+            { "knob-tweak":        { "id": "Xform.DetuneCt",            "at": "205,46" }},
             
-            { "synth-knob-1":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
-            { "synth-knob-1":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
-            { "synth-knob-1":        { "id": "Xform.SweepVel",            "at": "273,79" }}
+            { "knob-tweak":        { "id": "Xform.SweepLfo",            "at": "273,13" }},
+            { "knob-tweak":        { "id": "Xform.SweepEnv",            "at": "273,46" }},
+            { "knob-tweak":        { "id": "Xform.SweepVel",            "at": "273,79" }}
         ],
         
         "amp-controls":[
-            { "synth-label":      { "id": "Amp.Tweaks",      "at": "10,10", "text": "VCA Tweaks" }},
-            { "synth-knob-1": { "id": "Amp.TrigDepth",  "at": "30,37" }},
-            { "synth-knob-1": { "id": "Amp.Pan",        "at": "70,37" }},
-            { "synth-knob-1": { "id": "Unison.Pan",     "at": "100,37" }},
-            { "synth-knob-1": { "id": "Amp.Pan.Key",    "at": "130,37" }},
-            { "synth-knob-1": { "id": "Amp.Pan.Rand",   "at": "160,37" }}
+            { "label-m":      { "id": "Amp.Tweaks",      "at": "10,10", "text": "VCA Tweaks" }},
+            { "knob-tweak": { "id": "Amp.TrigDepth",  "at": "30,37" }},
+            { "knob-tweak": { "id": "Amp.Pan",        "at": "70,37" }},
+            { "knob-tweak": { "id": "Unison.Pan",     "at": "100,37" }},
+            { "knob-tweak": { "id": "Amp.Pan.Key",    "at": "130,37" }},
+            { "knob-tweak": { "id": "Amp.Pan.Rand",   "at": "160,37" }}
         ],
         
         "env-controls":[
-            { "synth-label":      { "id": "Env.Tweaks",      "at": "10,10", "text": "Envelope Tweaks" }},
+            { "label-m":      { "id": "Env.Tweaks",      "at": "10,10", "text": "Envelope Tweaks" }},
 
-            { "synth-slider": { "id": "Env.A.Atk", "at": "23,60" }},
-            { "synth-slider": { "id": "Env.A.Dec", "at": "63,60" }},
-            { "synth-slider": { "id": "Env.A.Sus", "at": "103,60" }},
-            { "synth-slider": { "id": "Env.A.Rel", "at": "143,60" }},
+            { "slider-vert": { "id": "Env.A.Atk", "at": "23,60" }},
+            { "slider-vert": { "id": "Env.A.Dec", "at": "63,60" }},
+            { "slider-vert": { "id": "Env.A.Sus", "at": "103,60" }},
+            { "slider-vert": { "id": "Env.A.Rel", "at": "143,60" }},
             
-            { "synth-slider": { "id": "Env.B.Atk", "at": "203,60" }},
-            { "synth-slider": { "id": "Env.B.Dec", "at": "243,60" }},
-            { "synth-slider": { "id": "Env.B.Sus", "at": "283,60" }},
-            { "synth-slider": { "id": "Env.B.Rel", "at": "323,60" }}
+            { "slider-vert": { "id": "Env.B.Atk", "at": "203,60" }},
+            { "slider-vert": { "id": "Env.B.Dec", "at": "243,60" }},
+            { "slider-vert": { "id": "Env.B.Sus", "at": "283,60" }},
+            { "slider-vert": { "id": "Env.B.Rel", "at": "323,60" }}
         ],
         
         "effects-controls":[
-            { "synth-label":      { "id": "Fx.Tweaks",      "at": "10,10", "text": "Effects Tweaks" }},
+            { "label-m":      { "id": "Fx.Tweaks",      "at": "10,10", "text": "Effects Tweaks" }},
 
-            { "synth-dropdown": { "id": "Fx.1.Mode.1", "at": "90,10" }},
+            { "dropdown-m": { "id": "Fx.1.Mode.1", "at": "90,10" }},
             
-            { "synth-knob-1": { "id": "Fx.Mod.Rate",      "at": "20,44" }},
-            { "synth-knob-1": { "id": "Fx.Mod.Width",     "at": "55,44" }},
-            { "synth-knob-1": { "id": "Fx.Mod.Feedback",  "at": "20,79" }},
-            { "synth-knob-1": { "id": "Fx.Mod.Colour",    "at": "55,79" }},
+            { "knob-tweak": { "id": "Fx.Mod.Rate",      "at": "20,44" }},
+            { "knob-tweak": { "id": "Fx.Mod.Width",     "at": "55,44" }},
+            { "knob-tweak": { "id": "Fx.Mod.Feedback",  "at": "20,79" }},
+            { "knob-tweak": { "id": "Fx.Mod.Colour",    "at": "55,79" }},
             
-            { "synth-dropdown": { "id": "Fx.2.Mode.1", "at": "150,10" }},
+            { "dropdown-m": { "id": "Fx.2.Mode.1", "at": "150,10" }},
             
-            { "synth-button-group": { "id": "Fx.Tone.CompandMode",  "at": "84,81" }},
-            { "synth-knob-1":       { "id": "Fx.Tone.CompRatio",    "at": "105,79" }},
+            { "switch-tweak": { "id": "Fx.Tone.CompandMode",  "at": "84,81" }},
+            { "knob-tweak":       { "id": "Fx.Tone.CompRatio",    "at": "105,79" }},
             
-            { "synth-knob-1":       { "id": "Fx.Tone.ToneFreq",     "at": "135,44" }},
-            { "synth-knob-1":       { "id": "Fx.Tone.Blend",        "at": "135,79" }},
+            { "knob-tweak":       { "id": "Fx.Tone.ToneFreq",     "at": "135,44" }},
+            { "knob-tweak":       { "id": "Fx.Tone.Blend",        "at": "135,79" }},
             
-            { "synth-button-group": { "id": "Fx.Tone.ToneMode",     "at": "155,45" }},
-            { "synth-button-group": { "id": "Fx.Tone.PostfiltMode", "at": "155,81" }},
+            { "switch-tweak": { "id": "Fx.Tone.ToneMode",     "at": "155,45" }},
+            { "switch-tweak": { "id": "Fx.Tone.PostfiltMode", "at": "155,81" }},
             
-            { "synth-knob-1": { "id": "Fx.Tone.LFFreq",  "at": "178,44" }},
-            { "synth-knob-1": { "id": "Fx.Tone.HFFreq",  "at": "204,44" }},
-            { "synth-knob-1": { "id": "Fx.Tone.LFGain",  "at": "178,79" }},
-            { "synth-knob-1": { "id": "Fx.Tone.HFGain",  "at": "204,79" }},
+            { "knob-tweak": { "id": "Fx.Tone.LFFreq",  "at": "178,44" }},
+            { "knob-tweak": { "id": "Fx.Tone.HFFreq",  "at": "204,44" }},
+            { "knob-tweak": { "id": "Fx.Tone.LFGain",  "at": "178,79" }},
+            { "knob-tweak": { "id": "Fx.Tone.HFGain",  "at": "204,79" }},
             
-            { "synth-dropdown": { "id": "Fx.Delay.Media", "at": "220,10" }},
-            { "synth-dropdown": { "id": "Fx.3.Mode.1",      "at": "285,10" }},
+            { "dropdown-m": { "id": "Fx.Delay.Media",  "at": "220,10" }},
+            { "dropdown-m": { "id": "Fx.3.Mode.1",     "at": "285,10" }},
             
-            { "synth-knob-1": { "id": "Fx.Delay.Time",      "at": "233,57" }},
-            { "synth-knob-1": { "id": "Fx.Delay.Width",     "at": "268,57" }},
-            { "synth-knob-1": { "id": "Fx.Delay.Feedback",  "at": "303,57" }},
+            { "knob-tweak": { "id": "Fx.Delay.Time",      "at": "233,57" }},
+            { "knob-tweak": { "id": "Fx.Delay.Width",     "at": "268,57" }},
+            { "knob-tweak": { "id": "Fx.Delay.Feedback",  "at": "303,57" }},
             
-            { "synth-dropdown": { "id": "Fx.4.Mode.1",          "at": "350,10" }},
-            { "synth-knob-1":     { "id": "Fx.Reverb.Decay",    "at": "351,44" }},
-            { "synth-knob-1":     { "id": "Fx.Reverb.Damping",  "at": "351,79" }}
+            { "dropdown-m":       { "id": "Fx.4.Mode.1",        "at": "350,10" }},
+            { "knob-tweak":     { "id": "Fx.Reverb.Decay",    "at": "351,44" }},
+            { "knob-tweak":     { "id": "Fx.Reverb.Damping",  "at": "351,79" }}
         ],
         "voices-controls":[
-            { "synth-label":      { "id": "Env.Tweaks",      "at": "10,10", "text": "Voices Tweaks" }},
-
-            { "synth-button-switch": { "id": "Control.RecycleNotes", "at": "45,50" }},
-            { "synth-button-switch": { "id": "Control.Retrig",       "at": "45,80" }},
-            { "synth-button-switch": { "id": "Control.Legato",       "at": "113,40" }},
-            { "synth-knob-1":        { "id": "Control.GlideTime",    "at": "153,38" }}
+            { "label-m":      { "id": "Voices.Tweaks",        "at": "10,10", "text": "Voices Tweaks" }},
+            { "btn-switch":   { "id": "Control.RecycleNotes", "at": "45,50"  }},
+            { "btn-switch":   { "id": "Control.Retrig",       "at": "45,80"  }},
+            { "btn-switch":   { "id": "Control.Legato",       "at": "113,40" }},
+            { "knob-tweak":    { "id": "Control.GlideTime",    "at": "153,38" }}
         ],
         "unison-controls":[
-            { "synth-label":      { "id": "Env.Tweaks",      "at": "10,10", "text": "Unison Tweaks" }},
-
-            { "synth-knob-1": { "id": "Unison.Detune.Ct",      "at": "103,37" }},
-            { "synth-knob-1": { "id": "Unison.Detune.Hz",      "at": "133,37" }},
-            { "synth-knob-1": { "id": "Unison.Pan",            "at": "208,37" }},
-            { "synth-knob-1": { "id": "Control.UnisonSpread",  "at": "38,37" }}
+            { "label-m":      { "id": "Unison.Tweaks",        "at": "10,10", "text": "Unison Tweaks" }},
+            { "knob-tweak":    { "id": "Unison.Detune.Ct",     "at": "103,37" }},
+            { "knob-tweak":    { "id": "Unison.Detune.Hz",     "at": "133,37" }},
+            { "knob-tweak":    { "id": "Unison.Pan",           "at": "208,37" }},
+            { "knob-tweak":    { "id": "Control.UnisonSpread", "at": "38,37"  }}
         ]
     }
 }

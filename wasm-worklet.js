@@ -130,6 +130,19 @@ class WasmToneProcessor extends AudioWorkletProcessor {
               const result_str = stringFromUTF8Array(utf8BytesFromWasm(result_ptr, this.memory));
               this.port.postMessage({ type: "mod_data", mod_data: result_str });
         }
+        if (msg.type === "get_float_preset")
+        {
+              const result_ptr = this.wasm_get_preset_normalized(msg.index);
+              const result_str = stringFromUTF8Array(utf8BytesFromWasm(result_ptr, this.memory));
+              this.port.postMessage({ type: "float_preset_data", float_preset_data: result_str });
+        }
+        
+        if (msg.type === "set_float_preset")
+        {
+            const ptr = this.allocCStringInWasm(msg.float_preset);
+              this.wasm_set_preset_normalized(ptr);
+        }
+
         if (msg.type === "modulation")
         {
             if (msg.part == 2) // depth: value is float
@@ -207,6 +220,8 @@ async _initWasm(bytes) {
   this.wasm_get_mod =   exports.wasm_get_mod;
   this.wasm_request_update =   exports.wasm_request_update;
   this.wasm_set_modulation = exports.wasm_set_modulation;
+  this.wasm_get_preset_normalized = exports.wasm_get_preset_normalized;
+  this.wasm_set_preset_normalized = exports.wasm_set_preset_normalized;
 
   this.malloc = exports.malloc;
   this.free = exports.free;

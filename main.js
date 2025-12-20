@@ -9,6 +9,15 @@ let pendingPatchResolve = null;
 let pendingPatchReject = null;
 let pendingModResolve = null;
 let pendingModReject = null;
+let pendingFloatPresetResolve = null;
+let pendingFloatPresetReject = null;
+let presets = [];
+let active_preset = "";
+let target_preset_x = "";
+let target_preset_y = "";
+let tp_x = {};
+let tp_y = {};
+let ap = {};
 
 const tweak_divs =
 [
@@ -133,6 +142,55 @@ function requestModFromBackend() {
   });
 }
 
+function requestFloatPresetFromBackend(index) {
+  // If there's already a refresh queued, ignore.
+  while (pendingFloatPresetResolve) {
+  }
+
+  return new Promise((resolve, reject) => {
+    pendingFloatPresetResolve = resolve;
+    pendingFloatPresetReject = reject;
+
+    // Ask the worklet for Mod data
+    node.port.postMessage({ type: 'get_float_preset', index: index});
+
+    // Optional timeout so we don’t wait forever
+    const timeoutId = setTimeout(() => {
+      if (pendingFloatPresetResolve === resolve) {
+        pendingFloatPresetResolve = null;
+        pendingFloatPresetReject = null;
+        reject(new Error('Timed out waiting for prset data'));
+      }
+    }, 5000);
+
+    // We’ll clear timeout when we resolve below
+    // (we’ll reference timeoutId via closure)
+    const originalResolve = resolve;
+    resolve = (value) => {
+      clearTimeout(timeoutId);
+      originalResolve(value);
+    };
+  });
+}
+
+async function startRandomizer()
+{
+    active_preset = await requestFloatPresetFromBackend(-1); // {x:0, y:0}
+    target_preset_x = presets[Math.round(Math.random() * 63)];
+    target_preset_y = presets[Math.round(Math.random() * 63)];
+    ap = JSON.parse(active_preset);
+    tp_x = JSON.parse(target_preset_x);
+    tp_y = JSON.parse(target_preset_y);
+    
+    // We can set 90% of the tp_x and tp_y values to "ap" to make randomization more tightly scoped.
+    for (var i = 0; i < ap.Params.length; i++) {
+        if (Math.random() < 0.9)
+            tp_x.Params[i] = ap.Params[i];
+        if (Math.random() < 0.9)
+            tp_y.Params[i] = ap.Params[i];
+    }
+    // console.log('ready');
+}
 
 async function loadPanelLayout()
 {
@@ -158,7 +216,7 @@ async function loadPanelLayout()
     
     for (const ctrl of data.controls)
     {
-        // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
+        // Expect ctrl.tag like "knob-l", "slider-vert", etc.
         const key = Object.keys(ctrl)[0];
         
         
@@ -173,7 +231,7 @@ async function loadPanelLayout()
         const wrapper = document.createElement("div");
         wrapper.style.position = "absolute";
         
-        if (key === 'synth-dropdown' || key === 'synth-dropdown-s' ) {
+        if (key === 'dropdown-m' || key === 'dropdown-s' ) {
             wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
         }
         else
@@ -198,7 +256,7 @@ async function loadPanelLayout()
         wrapper.style.pointerEvents = "none";    // wrapper passes events through to controls
         
         
-        if (key === 'tiny-label')
+        if (key === 'label-s')
         {
             const el = document.createElement(key);
             
@@ -264,7 +322,7 @@ async function loadPanelLayout()
             // Add control + label to wrapper
             wrapper.appendChild(el);
             // skip labels for buttons
-            if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-switch-multi'|| key === 'synth-button-power' || key === 'synth-label' )
+            if (key === 'btn-switch' || key === 'switch-tweak' || key === 'switch-panel'|| key === 'btn-power-s' || key === 'label-m' )
             {
                 el.label = labelText;
             }
@@ -384,6 +442,46 @@ async function loadPanelLayout()
         }
     });
     
+      const pad = document.getElementById('randomizerPad');
+
+      pad.addEventListener('vectorstart', e => {
+          startRandomizer();
+      });
+
+      pad.addEventListener('vectormove', e => {
+        const { x, y } = e.detail;
+        // x,y in [-1,1], relative to mouse-down
+        const euc = Math.sqrt((x*x) + (y*y));
+        let x_scaled = 0;
+        let y_scaled = 0;
+        if (euc > 0.25)
+        {
+            const scaling = 1.0 * ((euc - 0.25) / 0.75);
+            x_scaled = scaling * x/(Math.abs(x)+Math.abs(y));
+            y_scaled = scaling * y/(Math.abs(x)+Math.abs(y));
+        
+            const pst_new = [];
+            for (var i = 0; i < ap.Params.length; i++) {
+                pst_new[i] = ap.Params[i] + (x_scaled * (tp_x.Params[i] - ap.Params[i])) + (y_scaled * (tp_y.Params[i] - ap.Params[i]));
+                pst_new[i] = Math.min(1.0, Math.max(0.0, pst_new[i]));
+            }
+            var new_params = {};
+            new_params.Params = pst_new;
+            const json = JSON.stringify(new_params);
+            const encoder = new TextEncoder();
+            // UTF-8 encode with explicit null terminator
+            const utf8 = encoder.encode(json);
+            const utf8_text = new Uint8Array(utf8.length + 1);
+            utf8_text.set(utf8);
+            utf8_text[utf8.length] = 0; // null-terminate
+            // Send the chunk
+            node.port.postMessage({ type: "set_float_preset", float_preset: utf8_text});
+        }
+      });
+
+      pad.addEventListener('vectorend', e => {
+        console.log('end', e.detail); // {x:0, y:0}
+      });
 }
 
 
@@ -445,7 +543,7 @@ async function loadTweaksLayout()
 
         for (const ctrl of value)
         {
-            // Expect ctrl.tag like "synth-knob-large", "synth-slider", etc.
+            // Expect ctrl.tag like "knob-l", "slider-vert", etc.
             const key = Object.keys(ctrl)[0];
             
             
@@ -460,7 +558,7 @@ async function loadTweaksLayout()
             const wrapper = document.createElement("div");
             wrapper.style.position = "absolute";
             
-            if (key === 'synth-dropdown' || key === 'synth-dropdown-s' ) {
+            if (key === 'dropdown-m' || key === 'dropdown-s' ) {
                 wrapper.style.zIndex = '100'; // put dropdowns on top of other controls
             }
             else
@@ -512,11 +610,11 @@ async function loadTweaksLayout()
             wrapper.appendChild(el);
             
             // skip labels for buttons
-            if (key === 'synth-button-switch' || key === 'synth-button-group' || key === 'synth-button-power'|| key === 'synth-switch-multi' || key === 'synth-button-power-l')
+            if (key === 'btn-switch' || key === 'switch-tweak' || key === 'btn-power-s'|| key === 'switch-panel' || key === 'btw-power-l')
             {
                 el.label = labelText;
             }
-            else if ( key === 'synth-label')
+            else if ( key === 'label-m')
             {
                 el.label = cfg.text;
             }
@@ -597,7 +695,7 @@ async function loadModulation()
     modMatrix.style.overflow = "auto";
     modMatrix.id = "modMatrix";
     
-    console.log("done prep mod");
+    // console.log("done prep mod");
     
     let didShow1Empty = false;
 
@@ -606,7 +704,7 @@ async function loadModulation()
     for (let index = 0; index < modulation.entries.length; index++) // of modulation.entries)
     {
         let mod = modulation.entries[index];
-        console.log(index);
+        // console.log(index);
         
         const modRow = document.createElement("div");
         modRow.style.position = "absolute";
@@ -631,7 +729,7 @@ async function loadModulation()
             }
         }
 
-        const src_dd  = document.createElement("synth-dropdown-l");
+        const src_dd  = document.createElement("dropdown-l");
         src_dd.style.zIndex = '100'; // put dropdowns on top of other controls
         src_dd.style.position = "absolute";
         src_dd.style.left = "50px";
@@ -642,7 +740,7 @@ async function loadModulation()
         src_dd.addEventListener('input', () => { onModChange(0, index, src_dd._value); } );
         modRow.appendChild(src_dd);
         
-        const via_dd  = document.createElement("synth-dropdown-l");
+        const via_dd  = document.createElement("dropdown-l");
         via_dd.style.zIndex = '100'; // put dropdowns on top of other controls
         via_dd.style.position = "absolute";
         via_dd.style.left = "150px";
@@ -653,7 +751,7 @@ async function loadModulation()
         via_dd.addEventListener('input', () => { onModChange(1, index, via_dd._value); } );
         modRow.appendChild(via_dd);
         
-        const amt_kn  = document.createElement("synth-knob-small");
+        const amt_kn  = document.createElement("knob-s");
         amt_kn.style.zIndex = '100'; // put dropdowns on top of other controls
         amt_kn.style.position = "absolute";
         amt_kn.style.left = "245px";
@@ -665,7 +763,7 @@ async function loadModulation()
         amt_kn.setAttribute('max', 1);
         modRow.appendChild(amt_kn);
         
-        const dst_dd  = document.createElement("synth-dropdown-l");
+        const dst_dd  = document.createElement("dropdown-l");
         dst_dd.style.zIndex = '100'; // put dropdowns on top of other controls
         dst_dd.style.position = "absolute";
         dst_dd.style.left = "270px";
@@ -685,8 +783,13 @@ async function loadModulation()
     const panel = document.getElementById('panel');
     panel.appendChild(modMatrix);
 
-    console.log("done loading modulation");
+    // console.log("done loading modulation");
 }
+
+
+function waitOneSecond() {
+    return new Promise(resolve => setTimeout(resolve, 200));
+ }
 
 
 async function startAudio()
@@ -822,6 +925,15 @@ async function startAudio()
           pendingModReject = null;
         }
     }
+    else if (msg.type === "float_preset_data")
+    {
+        if (pendingFloatPresetResolve) {
+          pendingFloatPresetResolve(msg.float_preset_data);  // payload = your patch JSON/state
+          pendingFloatPresetResolve = null;
+          pendingFloatPresetReject = null;
+        }
+    }
+        
         
 
     };
@@ -834,6 +946,12 @@ async function startAudio()
   // Don't do this here - too early, audio engine loads async.
   // onSelectPreset(2);
   console.log("Audio started, let's go!");
+    
+await waitOneSecond();
+    
+ for (i = 0; i < 64; i++)
+   presets[i] = await requestFloatPresetFromBackend(i);
+
 }
 
 let midiAccess = null; 
@@ -1067,7 +1185,7 @@ function onParameterChange(paramName, paramValue)
 }
 
 
-function onSelectTweak(panel, subpanel)
+async function onSelectTweak(panel, subpanel)
 {
     if ((panel == selected_tweak) && (subpanel == selected_subpanel_tweak[selected_tweak])) return;
 

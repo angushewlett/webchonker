@@ -1,4 +1,4 @@
-// synth-dropdown.js
+// dropdown-m.js
 class SynthDropdown extends HTMLElement {
   static get observedAttributes() {
     return ['options', 'value'];
@@ -292,7 +292,7 @@ class SynthDropdownSmall extends SynthDropdown {}
 class SynthDropdownLarge extends SynthDropdown {}
 
 
-customElements.define('synth-dropdown', SynthDropdown);
-customElements.define('synth-dropdown-s', SynthDropdownSmall);
-customElements.define('synth-dropdown-l', SynthDropdownLarge);
+customElements.define('dropdown-m', SynthDropdown);
+customElements.define('dropdown-s', SynthDropdownSmall);
+customElements.define('dropdown-l', SynthDropdownLarge);
 

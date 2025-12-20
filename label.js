@@ -1,4 +1,4 @@
-// synth-label.js
+// label-m.js
 class SynthLabel extends HTMLElement {
   static get observedAttributes() {
     return ['label', 'disabled'];
@@ -164,4 +164,4 @@ class SynthLabel extends HTMLElement {
   }
 }
 
-customElements.define('synth-label', SynthLabel);
+customElements.define('label-m', SynthLabel);

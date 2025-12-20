@@ -1,4 +1,4 @@
-// synth-button.js
+// btn-plain.js
 class SynthButton extends HTMLElement {
   static get observedAttributes() {
     return ['label', 'disabled'];
@@ -260,7 +260,6 @@ class SynthButton extends HTMLElement {
   }
 }
 
-customElements.define('synth-button', SynthButton);
 
 class SynthButtonPreset extends SynthButton
 {
@@ -750,10 +749,14 @@ class SynthButtonPowerLarge extends SynthButtonPower {
 
 }
 
+class SynthButtonLarge extends SynthButton {
+}
 
-customElements.define('synth-button-preset', SynthButtonPreset);
-customElements.define('synth-button-switch', SynthButtonSwitch);
-customElements.define('synth-button-audio', SynthButtonAudio);
-customElements.define('synth-button-power', SynthButtonPower);
-customElements.define('synth-button-plain', SynthButtonPlain);
-customElements.define('synth-button-power-l', SynthButtonPowerLarge);
+customElements.define('btn-plain', SynthButton);
+customElements.define('btn-plain-l', SynthButtonLarge);
+customElements.define('btn-preset', SynthButtonPreset);
+customElements.define('btn-switch', SynthButtonSwitch);
+customElements.define('btn-audio', SynthButtonAudio);
+customElements.define('btn-power-s', SynthButtonPower);
+customElements.define('btn-text', SynthButtonPlain);
+customElements.define('btw-power-l', SynthButtonPowerLarge);

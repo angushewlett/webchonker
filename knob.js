@@ -200,7 +200,7 @@ class SynthKnobSmall extends SynthKnob {}
 class SynthKnob1 extends SynthKnob {}
 
 
-customElements.define('synth-knob-large', SynthKnobLarge);
-customElements.define('synth-knob-1', SynthKnob1);
-customElements.define('synth-knob-small', SynthKnobSmall);
+customElements.define('knob-l', SynthKnobLarge);
+customElements.define('knob-tweak', SynthKnob1);
+customElements.define('knob-s', SynthKnobSmall);
 

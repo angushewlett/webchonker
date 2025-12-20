@@ -1,116 +1,188 @@
 {"controls": [
+    {"btn-text": {"id":"nav.lfo", "at":"22,38", "label":"LFO", "bind":"tweak", "index":"0"}},
+    {"btn-text": {"id":"nav.trig", "at":"67,38", "label":"Trig", "bind":"tweak", "index":"1"}},
+    {"btn-text": {"id":"nav.vco", "at":"164.5,38", "label":"VCO", "bind":"tweak", "index":"2"}},
+    {"btn-text": {"id":"nav.sub", "at":"309.5,38", "label":"Sub", "bind":"tweak", "index":"3"}},
+    {"btn-text": {"id":"nav.noise", "at":"382,38", "label":"Noise", "bind":"tweak", "index":"4"}},
+    {"btn-text": {"id":"nav.filter", "at":"462,38", "label":"VCF", "bind":"tweak", "index":"5"}},
+    {"btn-text": {"id":"nav.pfx", "at":"554.5,38", "label":"PolyFX", "bind":"tweak", "index":"6"}},
+    {"btn-text": {"id":"nav.vca", "at":"607,38", "label":"VCA", "bind":"tweak", "index":"7"}},
+    {"btn-text": {"id":"nav.env", "at":"682,38", "label":"Envelope", "bind":"tweak", "index":"8"}},
+    {"btn-text": {"id":"nav.effects", "at":"787,38", "label":"Effects", "bind":"tweak", "index":"9"}},
+        
+    {"btn-plain": {"id":"bank.1", "at":"505,6", "label":"Bass 1", "bind":"bank", "index":"1"}},
+    {"btn-plain": {"id":"bank.2", "at":"545,6", "label":"Bass 2", "bind":"bank", "index":"2"}},
+    {"btn-plain": {"id":"bank.3", "at":"585,6", "label":"Keys 1", "bind":"bank", "index":"3"}},
+    {"btn-plain": {"id":"bank.4", "at":"625,6", "label":"Keys 2", "bind":"bank", "index":"4"}},
+    {"btn-plain": {"id":"bank.5", "at":"665,6", "label":"Leads",  "bind":"bank", "index":"5"}},
+    {"btn-plain": {"id":"bank.6", "at":"705,6", "label":"Pads",   "bind":"bank", "index":"6"}},
+    {"btn-plain": {"id":"bank.7", "at":"745,6", "label":"Plucks", "bind":"bank", "index":"7"}},
+    {"btn-plain": {"id":"bank.8", "at":"785,6", "label":"Synths", "bind":"bank", "index":"8"}},
     
-        {"synth-button-power": {"id": "Lfo.Power",           "at": "7,39" }},
+    {"btn-plain": {"id":"preset.1", "at":"505,20", "label":"1", "bind":"preset", "index":"1"}},
+    {"btn-plain": {"id":"preset.2", "at":"545,20", "label":"2", "bind":"preset", "index":"2"}},
+    {"btn-plain": {"id":"preset.3", "at":"585,20", "label":"3", "bind":"preset", "index":"3"}},
+    {"btn-plain": {"id":"preset.4", "at":"625,20", "label":"4", "bind":"preset", "index":"4"}},
+    {"btn-plain": {"id":"preset.5", "at":"665,20", "label":"5", "bind":"preset", "index":"5"}},
+    {"btn-plain": {"id":"preset.6", "at":"705,20", "label":"6", "bind":"preset", "index":"6"}},
+    {"btn-plain": {"id":"preset.7", "at":"745,20", "label":"7", "bind":"preset", "index":"7"}},
+    {"btn-plain": {"id":"preset.8", "at":"785,20", "label":"8", "bind":"preset", "index":"8"}},
 
-        {"synth-slider":     {"id": "Lfo.Rate",           "at": "22.5,100" }},
-        {"synth-dropdown-s": {"id": "Lfo.Shape",          "at": "22.5,148" }},
-        {"synth-led":        {"id": "Lfo.Out",            "at": "22.5,50" }},
-        
-        {"synth-divider":     {"id": "Lfo.DIV",           "at": "45,118" }},
-        
-        {"synth-button-power": {"id": "Trig.Power",           "at": "52,39" }},
+    {"btn-power-s": {"id": "Lfo.Power",           "at": "7,39" }},
+    {"slider-vert":     {"id": "Lfo.Rate",           "at": "22.5,100" }},
+    {"dropdown-s": {"id": "Lfo.Shape",          "at": "22.5,148" }},
+    {"led-panel":        {"id": "Lfo.Out",            "at": "22.5,50" }},
+    
+    {"svg-vert":     {"id": "Lfo.DIV",           "at": "45,118" }},
+    
+    {"btn-power-s": {"id": "Trig.Power",           "at": "52,39" }},
+    {"slider-vert":     {"id": "Trig.Rate",          "at": "67.5,100" }},
+    {"switch-panel": {"id": "Trig.Mode",          "at": "67.5,170" }},
+    {"led-panel":        {"id": "Trig.Out",            "at": "67.5,50" }},
+    
+    {"label-s":       {"id": "Trig.On", "label":"ON", "at": "90,162" }},
+    {"label-s":       {"id": "Trig.Vel", "label":"VEL", "at": "90,173" }},
+    {"label-s":       {"id": "Trig.Lfo", "label":"LFO", "at": "90,184" }},
+    
+    
+    {"svg-vert":     {"id": "Trig.DIV",           "at": "90,118" }},
+
+    {"btn-power-s": {"id": "Osc.Power",           "at": "97,39" }},
+    {"dropdown-m":   {"id": "Osc.Mode",           "at": "228,39" }},
+    {"knob-l": {"id": "Osc.SawSqr",         "at": "184,93" }},
+    {"knob-l": {"id": "Osc.Pitch",          "at": "114,93" }},
+    {"knob-s": {"id": "Osc.Fine",           "at": "148,93" }},
+    {"knob-s": {"id": "Osc.PwmDepth",       "at": "232,168"}},
+    {"knob-s": {"id": "Osc.ModDepth",       "at": "114,168"}},
+    {"slider-vert":     {"id": "Osc.Pw",             "at": "217,100"}},
+    {"slider-vert":     {"id": "Osc.Level",          "at": "242,100"}},
+    {"switch-panel": {"id": "Osc.ModSource",    "at": "137,170" }},
+    {"switch-panel": {"id": "Osc.PwSource",     "at": "209,170" }},
+    
+    {"label-s":       {"id": "Osc.Neg", "label":"-36", "at": "108,103" }},
+    {"label-s":       {"id": "Osc.Zer", "label":"0", "at": "127,67.5" }},
+    {"label-s":       {"id": "Osc.Pos", "label":"+36", "at": "141,103" }},
+    
+    {"svg-label": {"id":"osc-saw-s", "at":"168,108", "size":"12,15", "use":"#osc-saw" }},
+    {"svg-label": {"id":"osc-sqr-s", "at":"195,108", "size":"15,15", "use":"#osc-sqr" }},
+
+    {"svg-label": {"id":"osc-mod-1", "at":"152,160", "size":"12,12", "use":"#mod-lfo" }},
+    {"svg-label": {"id":"osc-mod-2", "at":"152,171", "size":"11,11", "use":"#mod-env" }},
+    {"svg-label": {"id":"osc-mod-3", "at":"152,182", "size":"10,10", "use":"#mod-trig"}},
+    
+    {"svg-label": {"id":"osc-mod-4", "at":"194,160", "size":"12,12", "use":"#mod-lfo" }},
+    {"svg-label": {"id":"osc-mod-5", "at":"194,171", "size":"11,11", "use":"#mod-env" }},
+    {"svg-label": {"id":"osc-mod-6", "at":"194,182", "size":"10,10", "use":"#mod-trig"}},
+
+    
+    {"svg-vert":     {"id": "Osc.DIV",           "at": "255,118" }},
+
+    {"btn-power-s": {"id": "Sub.Power",           "at": "262,39" }},
 
 
-        {"synth-slider":     {"id": "Trig.Rate",          "at": "67.5,100" }},
-        {"synth-switch-multi": {"id": "Trig.Mode",          "at": "67.5,170" }},
-        {"synth-led":        {"id": "Trig.Out",            "at": "67.5,50" }},
-        
-        {"synth-divider":     {"id": "Trig.DIV",           "at": "90,118" }},
+    {"knob-l": {"id": "Sub.Shape",          "at": "295,94" }},
+    {"knob-s": {"id": "Sub.ShapeDepth",     "at": "275,168"}},
+    {"slider-vert":     {"id": "Sub.Level",          "at": "337,100"}},
+    {"switch-panel": {"id": "Sub.ShapeSource",    "at": "298,170"}},
+    {"switch-panel": {"id": "Sub.Mode",           "at": "337,170"}},
+    
+    {"label-s":       {"id": "Sub.0", "label":"-0", "at": "360,162" }},
+    {"label-s":       {"id": "Sub.1", "label":"-1", "at": "360,173" }},
+    {"label-s":       {"id": "Sub.2", "label":"-2", "at": "360,184" }},
+    
+    {"svg-label": {"id":"sub-wav-1", "at":"280,108", "size":"12,12", "use":"#sub-sin" }},
+    {"svg-label": {"id":"sub-wav-2", "at":"294,70",  "size":"12,5",  "use":"#sub-tri" }},
+    {"svg-label": {"id":"sub-wav-3", "at":"308,108", "size":"15,15", "use":"#sub-sqr" }},
 
-        {"synth-button-power": {"id": "Osc.Power",           "at": "97,39" }},
+    {"svg-label": {"id":"sub-mod-1", "at":"312,160", "size":"12,12", "use":"#mod-lfo" }},
+    {"svg-label": {"id":"sub-mod-2", "at":"312,171", "size":"11,11", "use":"#mod-env" }},
+    {"svg-label": {"id":"sub-mod-3", "at":"312,182", "size":"10,10", "use":"#mod-trig"}},
+    
+    {"svg-vert":     {"id": "Sub.DIV",           "at": "360,118" }},
 
-        {"synth-dropdown":   {"id": "Osc.Mode",           "at": "228,40" }},
+    {"btn-power-s": {"id": "Noise.Power",           "at": "367,39" }},
 
-        {"synth-knob-large": {"id": "Osc.SawSqr",         "at": "184,93" }},
-        {"synth-knob-large": {"id": "Osc.Pitch",          "at": "114,93" }},
-        {"synth-knob-small": {"id": "Osc.Fine",           "at": "148,93" }},
-        {"synth-knob-small": {"id": "Osc.PwmDepth",       "at": "232,168"}},
-        {"synth-knob-small": {"id": "Osc.ModDepth",       "at": "114,168"}},
-        {"synth-slider":     {"id": "Osc.Pw",             "at": "217,100"}},
-        {"synth-slider":     {"id": "Osc.Level",          "at": "242,100"}},
-        {"synth-switch-multi": {"id": "Osc.ModSource",    "at": "137,170" }},
-        {"synth-switch-multi": {"id": "Osc.PwSource",     "at": "209,170" }},
-        
-        {"synth-divider":     {"id": "Osc.DIV",           "at": "255,118" }},
+    {"slider-vert":     {"id": "Noise.Level",        "at": "382.5,100"}},
+    {"dropdown-s": {"id": "Noise.Mode",         "at": "382.5,148"}},
+    
+    {"svg-vert":     {"id": "Noise.DIV",           "at": "405,118" }},
 
-        {"synth-button-power": {"id": "Sub.Power",           "at": "262,39" }},
+    {"btn-power-s": {"id": "Filter.Power",           "at": "412,39" }},
 
+    {"slider-vert":     {"id": "Filter.Cutoff",      "at": "425,100"}},
+    {"switch-panel": {"id": "Filter.ResponseMode","at": "427,170"}},
+    
+    {"label-s":       {"id": "Vcf.0", "label":"LP", "at": "450,162" }},
+    {"label-s":       {"id": "Vcf.1", "label":"BP", "at": "450,173" }},
+    {"label-s":       {"id": "Vcf.2", "label":"HP", "at": "450,184" }},
 
-        {"synth-knob-large": {"id": "Sub.Shape",          "at": "295,94" }},
-        {"synth-knob-small": {"id": "Sub.ShapeDepth",     "at": "275,168"}},
-        {"synth-slider":     {"id": "Sub.Level",          "at": "337,100"}},
-        {"synth-switch-multi": {"id": "Sub.ShapeSource",    "at": "298,170"}},
-        {"synth-switch-multi": {"id": "Sub.Mode",           "at": "337,170"}},
-        
-        {"synth-divider":     {"id": "Sub.DIV",           "at": "360,118" }},
+    {"knob-s": {"id": "Filter.Res",         "at": "452,93" }},
+    
+    {"slider-vert":     {"id": "Filter.CutoffEnv",   "at": "480,100"}},
+    {"slider-vert":     {"id": "Filter.FmDepth",     "at": "505,100"}},
+    {"switch-panel": {"id": "Filter.FmSource",    "at": "505,170"}},
+    
+    {"dropdown-m":   {"id": "Filter.FilterMode",  "at": "498,39" }},
+    
+    {"svg-label": {"id":"vcf-mod-1", "at":"489,160", "size":"12,12", "use":"#mod-lfo" }},
+    {"svg-label": {"id":"vcf-mod-2", "at":"489,171", "size":"11,11", "use":"#mod-env" }},
+    {"svg-label": {"id":"vcf-mod-3", "at":"489,182", "size":"10,10", "use":"#mod-sub" }},
 
-        {"synth-button-power": {"id": "Noise.Power",           "at": "367,39" }},
+    {"svg-vert":     {"id": "Filter.DIV",        "at": "525,118" }},
 
-        {"synth-slider":     {"id": "Noise.Level",        "at": "382.5,100"}},
-        {"synth-dropdown-s": {"id": "Noise.Mode",         "at": "382.5,148"}},
-        
-        {"synth-divider":     {"id": "Noise.DIV",           "at": "405,118" }},
+    {"btn-power-s": {"id": "Xform.Power",           "at": "532,39" }},
 
-        {"synth-button-power": {"id": "Filter.Power",           "at": "412,39" }},
+    {"dropdown-m":   {"id": "Xform.Mode",         "at": "555,145" }},
+    {"slider-vert":     {"id": "Xform.Shift",        "at": "555,100"}},
+    {"switch-panel": {"id": "Xform.Routing.Mode", "at": "539,170"}},
+    {"btn-switch": {"id": "Xform.Stereo",       "at": "555,198"}},
+    
+    {"label-s":       {"id": "Xf.0", "label":"PRE VCF", "at": "563,162" }},
+    {"label-s":       {"id": "Xf.1", "label":"POST VCF", "at": "563,173" }},
+    {"label-s":       {"id": "Xf.2", "label":"POST ENV", "at": "563,184" }},
+    
+    {"svg-vert":     {"id": "Xform.DIV",         "at": "585,118" }},
 
-        {"synth-slider":     {"id": "Filter.Cutoff",      "at": "425,100"}},
-        {"synth-switch-multi": {"id": "Filter.ResponseMode","at": "427,170"}},
-        
-        {"synth-knob-small": {"id": "Filter.Res",         "at": "452,93" }},
-        
-        {"synth-slider":     {"id": "Filter.CutoffEnv",   "at": "480,100"}},
-        {"synth-slider":     {"id": "Filter.FmDepth",     "at": "505,100"}},
-        {"synth-switch-multi": {"id": "Filter.FmSource",    "at": "505,170"}},
-        
-        {"synth-dropdown":   {"id": "Filter.FilterMode",  "at": "498,40" }},
+    {"slider-vert":     {"id": "Amp.Gain",           "at": "607.5,100"}},
+    {"switch-panel": {"id": "Amp.Mode",           "at": "607.5,170"}},
+    {"btn-switch": {"id": "Amp.Velocity",       "at": "607.5,198"}},
 
-        {"synth-divider":     {"id": "Filter.DIV",        "at": "525,118" }},
+    {"label-s":       {"id": "Vca.0", "label":"ADSR", "at": "630,162" }},
+    {"label-s":       {"id": "Vca.1", "label":"AR", "at": "630,173" }},
+    {"label-s":       {"id": "Vca.2", "label":"R", "at": "630,184" }},
+    
+    {"svg-vert":     {"id": "Amp.DIV",           "at": "630,118" }},
 
-        {"synth-button-power": {"id": "Xform.Power",           "at": "532,39" }},
+    {"btn-power-s": {"id": "Env.Power",           "at": "637,39" }},
 
-        {"synth-dropdown":   {"id": "Xform.Mode",         "at": "555,145" }},
-        {"synth-slider":     {"id": "Xform.Shift",        "at": "555,100"}},
-        {"synth-switch-multi": {"id": "Xform.Routing.Mode", "at": "539,170"}},
-        {"synth-button-switch": {"id": "Xform.Stereo",       "at": "555,198"}},
-        
-        {"synth-divider":     {"id": "Xform.DIV",         "at": "585,118" }},
+    {"slider-vert":     {"id": "Env.Atk",            "at": "648,100"}},
+    {"slider-vert":     {"id": "Env.Dec",            "at": "671,100"}},
+    {"slider-vert":     {"id": "Env.Sus",            "at": "694,100"}},
+    {"slider-vert":     {"id": "Env.Rel",            "at": "717,100"}},
+    {"led-panel":        {"id": "Env.Out",            "at": "648,50" }},
+    
+    {"svg-vert":     {"id": "Env.DIV",           "at": "735,118" }},
 
-        {"synth-slider":     {"id": "Amp.Gain",           "at": "607.5,100"}},
-        {"synth-switch-multi": {"id": "Amp.Mode",           "at": "607.5,170"}},
-        {"synth-button-switch": {"id": "Amp.Velocity",       "at": "607.5,198"}},
-        
-        {"synth-divider":     {"id": "Amp.DIV",           "at": "630,118" }},
+    {"knob-s": {"id": "Fx.1.Mix",           "at": "755,71" }},
+    {"knob-s": {"id": "Fx.2.Amount",        "at": "755,109"}},
+    {"knob-s": {"id": "Fx.3.Send",          "at": "755,147"}},
+    {"knob-s": {"id": "Fx.4.Send",          "at": "755,185"}},
+    
+    {"btn-power-s": {"id": "Fx.1.Power",           "at": "770,67" }},
+    {"btn-power-s": {"id": "Fx.2.Power",           "at": "770,105" }},
+    {"btn-power-s": {"id": "Fx.3.Power",           "at": "770,143" }},
+    {"btn-power-s": {"id": "Fx.4.Power",           "at": "770,181" }},
 
-        {"synth-button-power": {"id": "Env.Power",           "at": "637,39" }},
+    {"dropdown-m":   {"id": "Fx.1.Mode",          "at": "804,69" }},
+    {"dropdown-m":   {"id": "Fx.2.Mode",          "at": "804,107"}},
+    {"dropdown-m":   {"id": "Fx.3.Mode",          "at": "804,145"}},
+    {"dropdown-m":   {"id": "Fx.4.Mode",          "at": "804,183"}},
 
-        {"synth-slider":     {"id": "Env.Atk",            "at": "648,100"}},
-        {"synth-slider":     {"id": "Env.Dec",            "at": "671,100"}},
-        {"synth-slider":     {"id": "Env.Sus",            "at": "694,100"}},
-        {"synth-slider":     {"id": "Env.Rel",            "at": "717,100"}},
-        {"synth-led":        {"id": "Env.Out",            "at": "648,50" }},
-        
-        {"synth-divider":     {"id": "Env.DIV",           "at": "735,118" }},
-
-        {"synth-knob-small": {"id": "Fx.1.Mix",           "at": "755,71" }},
-        {"synth-knob-small": {"id": "Fx.2.Amount",        "at": "755,109"}},
-        {"synth-knob-small": {"id": "Fx.3.Send",          "at": "755,147"}},
-        {"synth-knob-small": {"id": "Fx.4.Send",          "at": "755,185"}},
-        
-        {"synth-button-power": {"id": "Fx.1.Power",           "at": "770,67" }},
-        {"synth-button-power": {"id": "Fx.2.Power",           "at": "770,105" }},
-        {"synth-button-power": {"id": "Fx.3.Power",           "at": "770,143" }},
-        {"synth-button-power": {"id": "Fx.4.Power",           "at": "770,181" }},
-
-        {"synth-dropdown":   {"id": "Fx.1.Mode",          "at": "804,69" }},
-        {"synth-dropdown":   {"id": "Fx.2.Mode",          "at": "804,107"}},
-        {"synth-dropdown":   {"id": "Fx.3.Mode",          "at": "804,145"}},
-        {"synth-dropdown":   {"id": "Fx.4.Mode",          "at": "804,183"}},
-
-        {"synth-knob-small": {"id": "Layer.Macro1",       "at": "112,222"}},
-        {"synth-knob-small": {"id": "Layer.Macro2",       "at": "147,222"}},
-        {"synth-knob-small": {"id": "Global.Macro1",      "at": "647,222"}},
-        {"synth-knob-small": {"id": "Global.Macro2",      "at": "682,222"}},
-        
-        {"synth-dropdown-s": {"id": "Layer.Voices",          "at": "420,225" }},
-        {"synth-dropdown-s": {"id": "Layer.Unison",          "at": "480,225" }}
+    {"knob-s": {"id": "Layer.Macro1",       "at": "112,222"}},
+    {"knob-s": {"id": "Layer.Macro2",       "at": "147,222"}},
+    {"knob-s": {"id": "Global.Macro1",      "at": "647,222"}},
+    {"knob-s": {"id": "Global.Macro2",      "at": "682,222"}},
+    
+    {"dropdown-s": {"id": "Layer.Voices",          "at": "420,225" }},
+    {"dropdown-s": {"id": "Layer.Unison",          "at": "480,225" }}
 ]}

@@ -1,4 +1,4 @@
-// synth-divider.js
+// svg-vert.js
 class SynthDivider extends HTMLElement {
   constructor() {
     super();
@@ -45,4 +45,4 @@ class SynthDivider extends HTMLElement {
   }
 }
 
-customElements.define('synth-divider', SynthDivider);
+customElements.define('svg-vert', SynthDivider);

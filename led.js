@@ -1,4 +1,4 @@
-// synth-led.js
+// led-panel.js
 class SynthLED extends HTMLElement {
   static get observedAttributes() {
     return ['value', 'color'];
@@ -133,5 +133,5 @@ class SynthLED extends HTMLElement {
   }
 }
 
-customElements.define('synth-led', SynthLED);
+customElements.define('led-panel', SynthLED);
 

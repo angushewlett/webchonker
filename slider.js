@@ -1,4 +1,4 @@
-// synth-slider.js
+// slider-vert.js
 class SynthSlider extends HTMLElement {
   static get observedAttributes() {
     return ['min', 'max', 'value'];
@@ -206,5 +206,5 @@ class SynthSlider extends HTMLElement {
   }
 }
 
-customElements.define('synth-slider', SynthSlider);
+customElements.define('slider-vert', SynthSlider);
 

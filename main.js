@@ -801,7 +801,7 @@ async function startAudio()
   await audioContext.audioWorklet.addModule('wasm-worklet.js');
 
   // Load WASM bytes here (main thread has fetch)
-  const wasmResponse = await fetch("tone.wasm");
+  const wasmResponse = await fetch("chonker.wasm");
   const wasmBytes = await wasmResponse.arrayBuffer();
 
   node = new AudioWorkletNode(audioContext, 'wasm-tone-processor', {

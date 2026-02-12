@@ -125,7 +125,7 @@
             { "knob-tweak":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
         ],
         
-        "osc-j8k-controls": [
+        "osc-j8-stack-controls": [
             { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
             { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
             { "btn-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},

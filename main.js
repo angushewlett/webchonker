@@ -301,7 +301,8 @@ async function loadPanelLayout()
             // === LABEL ===
             const label = document.createElement("div");
             
-            const labelText = paramMap[cfg.id];
+            labelText = paramMap[cfg.id];
+            labelText = cfg.label || labelText;
             
             label.id = cfg.id + ".label";
             label.textContent = labelText || "";

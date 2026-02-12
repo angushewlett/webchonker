@@ -30,7 +30,9 @@ const tweak_divs =
          "osc-vintage-dual-controls",
          "osc-emph-sweep-controls",
          "osc-modern-stack-controls",
-         "osc-chords-controls"],
+         "osc-chords-controls",
+         "osc-j8k-controls"
+        ],
         ["sub-controls"],
         ["noise-controls"],
         ["filter-controls"],

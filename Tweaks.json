@@ -125,6 +125,18 @@
             { "knob-tweak":          { "id": "Osc.Sweep.RandDepth",     "at": "233,70" }}
         ],
         
+        "osc-j8k-controls": [
+            { "label-m":      { "id": "Osc.Tweaks",      "at": "10,10", "text": "VCO Tweaks" }},
+            { "dropdown-m":      { "id": "Osc.Mode.1",      "at": "90,10" }},
+            { "btn-switch": { "id": "Osc.PhaseReset",  "at": "160,9"}},
+            { "knob-tweak":      { "id": "Osc.DetuneHz",            "at": "45,40"  }},
+            { "knob-tweak":      { "id": "Osc.DetuneCt",            "at": "45,70"  }},
+            { "knob-tweak":      { "id": "Osc.Balance",             "at": "90,40" }},
+            { "dropdown-s":  { "id": "Osc.Stack.FilterMode",    "at": "135,40" }},
+            { "knob-tweak":      { "id": "Osc.Stack.FilterOffset",  "at": "135,70" }},
+            { "knob-tweak":      { "id": "Osc.Balance.ModDepth",    "at": "180,40" }}
+        ],
+        
         "sub-controls": [
             { "label-m":      { "id": "Sub.Tweaks",      "at": "10,10", "text": "Sub Tweaks" }},
             { "btn-switch": { "id": "Sub.PhaseReset",  "at": "160,9"}},

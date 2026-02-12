@@ -1,0 +1,117 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXFileReference section */
+		6300377A2EF53AB5006C4060 /* vectorpad.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = vectorpad.js; sourceTree = "<group>"; };
+		6390CB362EE1C85400504E23 /* switch.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = switch.js; sourceTree = "<group>"; };
+		6390CB3B2EE1CA0800504E23 /* led.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = led.js; sourceTree = "<group>"; };
+		6390CB412EE81B5B00504E23 /* divider.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = divider.js; sourceTree = "<group>"; };
+		6390CB422EE9CB4500504E23 /* label.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = label.js; sourceTree = "<group>"; };
+		63A9873D2ED83436005B823D /* dropdown.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = dropdown.js; sourceTree = "<group>"; };
+		63A9873E2ED83436005B823D /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		63A987402ED83436005B823D /* keyboard.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = keyboard.js; sourceTree = "<group>"; };
+		63A987412ED83436005B823D /* knob.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = knob.js; sourceTree = "<group>"; };
+		63A987422ED83436005B823D /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		63A987432ED83436005B823D /* Panel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Panel.json; sourceTree = "<group>"; };
+		63A987442ED83436005B823D /* Parameters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Parameters.json; sourceTree = "<group>"; };
+		63A987452ED83436005B823D /* slider.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = slider.js; sourceTree = "<group>"; };
+		63A987462ED83436005B823D /* wasm-worklet.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "wasm-worklet.js"; sourceTree = "<group>"; };
+		63A987472ED83436005B823D /* webchonker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webchonker.png; sourceTree = "<group>"; };
+		63A987482ED99C38005B823D /* button.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = button.js; sourceTree = "<group>"; };
+		63A9874D2EDB395F005B823D /* mailerlite.css */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mailerlite.css; sourceTree = "<group>"; };
+		63A9874E2EDB4022005B823D /* Tweaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Tweaks.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		633601C92ED8340A00856A99 = {
+			isa = PBXGroup;
+			children = (
+				63A9873E2ED83436005B823D /* index.html */,
+				63A987422ED83436005B823D /* main.js */,
+				63A987432ED83436005B823D /* Panel.json */,
+				63A9874E2EDB4022005B823D /* Tweaks.json */,
+				63A987442ED83436005B823D /* Parameters.json */,
+				63A9874D2EDB395F005B823D /* mailerlite.css */,
+				63A987462ED83436005B823D /* wasm-worklet.js */,
+				6390CB3C2EE1CA2D00504E23 /* widgets */,
+				63A987472ED83436005B823D /* webchonker.png */,
+			);
+			sourceTree = "<group>";
+		};
+		6390CB3C2EE1CA2D00504E23 /* widgets */ = {
+			isa = PBXGroup;
+			children = (
+				6390CB412EE81B5B00504E23 /* divider.js */,
+				63A987482ED99C38005B823D /* button.js */,
+				6300377A2EF53AB5006C4060 /* vectorpad.js */,
+				6390CB422EE9CB4500504E23 /* label.js */,
+				63A9873D2ED83436005B823D /* dropdown.js */,
+				63A987402ED83436005B823D /* keyboard.js */,
+				63A987412ED83436005B823D /* knob.js */,
+				63A987452ED83436005B823D /* slider.js */,
+				6390CB362EE1C85400504E23 /* switch.js */,
+				6390CB3B2EE1CA0800504E23 /* led.js */,
+			);
+			name = widgets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		633601CA2ED8340A00856A99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2610;
+			};
+			buildConfigurationList = 633601CD2ED8340A00856A99 /* Build configuration list for PBXProject "webChonker" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 633601C92ED8340A00856A99;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		633601CE2ED8340A00856A99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		633601CF2ED8340A00856A99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		633601CD2ED8340A00856A99 /* Build configuration list for PBXProject "webChonker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633601CE2ED8340A00856A99 /* Debug */,
+				633601CF2ED8340A00856A99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 633601CA2ED8340A00856A99 /* Project object */;
+}

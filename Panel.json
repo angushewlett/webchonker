@@ -181,11 +181,13 @@
     {"knob-s": {"id": "Layer.Macro1",       "at": "112,222"}},
     {"knob-s": {"id": "Layer.Macro2",       "at": "147,222"}},
     
-    {"btn-power-s": {"id": "Arp.Power",           "at": "180,222" }},
-    {"knob-s":   {"id": "Arp.Speed",          "at": "220,222" }},
+    {"btn-power-s": {"id": "Arp.Power",           "at": "200,222" }},
+    {"label-s":       {"id": "Arp.0", "label":"ARPEGGIATOR", "at": "200,232" }},
+
+    {"knob-s":   {"id": "Arp.Speed",          "at": "210,222" }},
     {"dropdown-m":   {"id": "Arp.Mode",          "at": "250,222" }},
     {"dropdown-m":   {"id": "Arp.Priority",          "at": "310,222" }},
-    {"knob-s":   {"id": "Arp.Range",          "at": "340,222" }},
+    {"knob-s":   {"id": "Arp.Range",          "at": "360,222" }},
 
     {"knob-s": {"id": "Global.Macro1",      "at": "647,222"}},
     {"knob-s": {"id": "Global.Macro2",      "at": "682,222"}},

@@ -1,0 +1,131 @@
+{"controls":[
+    {"label-l":{"id":"UI.LFO.Title","label":"LFO","at":"80,40"}},
+
+    {"label-m":{"id":"UI.LfoRate.Lbl","label":"RATE","at":"40,78"}},
+    {"slider-vert":{"id":"Lfo.Rate","at":"40,100"}},
+
+    {"label-m":{"id":"UI.LfoDelay.Lbl","label":"DELAY","at":"80,78"}},
+    {"slider-vert":{"id":"Lfo.DelayTime","at":"80,100"}},
+
+    {"label-m":{"id":"UI.OscLfoDepth.Lbl","label":"OSC MOD","at":"120,78"}},
+    {"slider-vert":{"id":"Osc.LfoDepth","at":"120,100"}},
+
+
+    {"label-l":{"id":"UI.OSC.Title","label":"OSCILLATOR","at":"240,40"}},
+
+    {"label-m":{"id":"UI.OscRange.Lbl","label":"RANGE","at":"160,78"}},
+    {"switch-panel":{"id":"Osc.Range","at":"160,120"}},
+    {"label-m":{"id":"UI.OscRange.0","label":"16'","at":"190,112"}},
+    {"label-m":{"id":"UI.OscRange.1","label":"8'","at":"190,124"}},
+    {"label-m":{"id":"UI.OscRange.2","label":"4'","at":"190,136"}},
+
+    {"label-m":{"id":"UI.OscSaw.Lbl","label":"SAW","at":"200,78"}},
+    {"slider-vert":{"id":"Osc.Saw","at":"200,100"}},
+
+    {"label-m":{"id":"UI.OscPulse.Lbl","label":"PULSE","at":"240,78"}},
+    {"slider-vert":{"id":"Osc.Pulse","at":"240,100"}},
+
+    {"label-m":{"id":"UI.OscSub.Lbl","label":"SUB","at":"280,78"}},
+    {"slider-vert":{"id":"Osc.SubLevel","at":"280,100"}},
+
+    {"label-m":{"id":"UI.OscNoise.Lbl","label":"NOISE","at":"320,78"}},
+    {"slider-vert":{"id":"Osc.NoiseLevel","at":"320,100"}},
+
+
+    {"label-l":{"id":"UI.FILTER.Title","label":"FILTER","at":"440,40"}},
+
+    {"label-m":{"id":"UI.HpfMode.Lbl","label":"HPF","at":"360,78"}},
+    {"switch-panel":{"id":"Hpf.Mode","at":"360,120"}},
+    {"label-m":{"id":"UI.Hpf.0","label":"OFF","at":"395,112"}},
+    {"label-m":{"id":"UI.Hpf.1","label":"1","at":"395,124"}},
+    {"label-m":{"id":"UI.Hpf.2","label":"2","at":"395,136"}},
+    {"label-m":{"id":"UI.Hpf.3","label":"3","at":"395,148"}},
+
+    {"label-m":{"id":"UI.VcfFreq.Lbl","label":"CUTOFF","at":"400,78"}},
+    {"slider-vert":{"id":"Vcf.Freq","at":"400,100"}},
+
+    {"label-m":{"id":"UI.VcfRes.Lbl","label":"RES","at":"440,78"}},
+    {"slider-vert":{"id":"Vcf.Resonance","at":"440,100"}},
+
+    {"label-m":{"id":"UI.VcfEnvDepth.Lbl","label":"ENV","at":"480,78"}},
+    {"slider-vert":{"id":"Vcf.EnvDepth","at":"480,100"}},
+
+    {"label-m":{"id":"UI.VcfLfoDepth.Lbl","label":"LFO","at":"520,78"}},
+    {"slider-vert":{"id":"Vcf.LfoDepth","at":"520,100"}},
+
+    {"label-m":{"id":"UI.VcfKeytrack.Lbl","label":"KY TRK","at":"560,78"}},
+    {"slider-vert":{"id":"Vcf.KeyTrack","at":"560,100"}},
+
+
+    {"label-l":{"id":"UI.PERF.Title","label":"PERF","at":"680,40"}},
+
+    {"label-m":{"id":"UI.Bend.Lbl","label":"BEND","at":"600,78"}},
+    {"slider-vert":{"id":"Bend","at":"600,100"}},
+
+    {"label-m":{"id":"UI.Glide.Lbl","label":"GLIDE","at":"640,78"}},
+    {"slider-vert":{"id":"Perform.Glide","at":"640,100"}},
+
+    {"label-m":{"id":"UI.Legato.Lbl","label":"LEGATO","at":"680,78"}},
+    {"btn-toggle-s":{"id":"Legato","at":"680,100"}},
+
+    {"label-m":{"id":"UI.Retrig.Lbl","label":"RETRIG","at":"720,78"}},
+    {"btn-toggle-s":{"id":"Retrigger","at":"720,100"}},
+
+
+    {"label-l":{"id":"UI.ROW2.Title","label":"MOD / AMP / ENV","at":"360,150"}},
+
+    {"label-m":{"id":"UI.EnvAtk.Lbl","label":"A","at":"40,158"}},
+    {"slider-vert":{"id":"Env.Atk","at":"40,178"}},
+
+    {"label-m":{"id":"UI.EnvDec.Lbl","label":"D","at":"80,158"}},
+    {"slider-vert":{"id":"Env.Dec","at":"80,178"}},
+
+    {"label-m":{"id":"UI.EnvSus.Lbl","label":"S","at":"120,158"}},
+    {"slider-vert":{"id":"Env.Sus","at":"120,178"}},
+
+    {"label-m":{"id":"UI.EnvRel.Lbl","label":"R","at":"160,158"}},
+    {"slider-vert":{"id":"Env.Rel","at":"160,178"}},
+
+    {"label-m":{"id":"UI.AmpMode.Lbl","label":"AMP MODE","at":"220,158"}},
+    {"switch-panel":{"id":"Amp.Mode","at":"220,178"}},
+    {"label-m":{"id":"UI.AmpMode.0","label":"GATE","at":"250,170"}},
+    {"label-m":{"id":"UI.AmpMode.1","label":"ENV","at":"250,182"}},
+
+    {"label-m":{"id":"UI.AmpLevel.Lbl","label":"LEVEL","at":"280,158"}},
+    {"slider-vert":{"id":"Amp.Level","at":"280,178"}},
+
+    {"label-m":{"id":"UI.MasterVol.Lbl","label":"VOLUME","at":"320,158"}},
+    {"slider-vert":{"id":"Voicing.Volume","at":"320,178"}},
+
+    {"label-m":{"id":"UI.PwmSrc.Lbl","label":"PWM SRC","at":"380,158"}},
+    {"switch-panel":{"id":"Osc.PwmModSource","at":"380,178"}},
+    {"label-m":{"id":"UI.PwmSrc.0","label":"MAN","at":"410,170"}},
+    {"label-m":{"id":"UI.PwmSrc.1","label":"LFO","at":"410,182"}},
+    {"label-m":{"id":"UI.PwmSrc.2","label":"ENV","at":"410,194"}},
+
+    {"label-m":{"id":"UI.PwmDepth.Lbl","label":"PWM DEPTH","at":"420,158"}},
+    {"slider-vert":{"id":"Osc.PwmDepth","at":"420,178"}},
+
+    {"label-m":{"id":"UI.VcfPol.Lbl","label":"ENV POL","at":"480,158"}},
+    {"switch-panel":{"id":"Vcf.EnvPolarity","at":"480,178"}},
+    {"label-m":{"id":"UI.VcfPol.0","label":"+","at":"510,170"}},
+    {"label-m":{"id":"UI.VcfPol.1","label":"-","at":"510,182"}},
+
+    {"label-m":{"id":"UI.Chorus.Lbl","label":"CHORUS","at":"520,158"}},
+    {"switch-panel":{"id":"Chorus.Mode","at":"520,178"}},
+    {"label-m":{"id":"UI.Chorus.0","label":"OFF","at":"550,170"}},
+    {"label-m":{"id":"UI.Chorus.1","label":"I","at":"550,182"}},
+    {"label-m":{"id":"UI.Chorus.2","label":"II","at":"550,194"}},
+
+    {"label-m":{"id":"UI.Priority.Lbl","label":"PRIORITY","at":"600,158"}},
+    {"switch-panel":{"id":"Priority","at":"600,178"}},
+    {"label-m":{"id":"UI.Priority.0","label":"LOW","at":"630,170"}},
+    {"label-m":{"id":"UI.Priority.1","label":"LAST","at":"630,182"}},
+    {"label-m":{"id":"UI.Priority.2","label":"HIGH","at":"630,194"}},
+
+    {"label-m":{"id":"UI.Sustain.Lbl","label":"SUSTAIN","at":"640,158"}},
+    {"btn-toggle-s":{"id":"Control.Sustain","at":"640,178"}}
+  ]
+
+
+}

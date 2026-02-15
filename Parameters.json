@@ -247,5 +247,8 @@
     "Global.Macro1":     "Macro X",
     "Global.Macro2":     "Macro Y",
     "Layer.Voices":      "Voices",
-    "Layer.Unison":      "Unison"
+    "Layer.Unison":      "Unison",
+    
+    "Arp.Speed": "Rate",
+    "Arp.Range": "Range"
 }}

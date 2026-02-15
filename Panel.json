@@ -181,8 +181,8 @@
     {"knob-s": {"id": "Layer.Macro1",       "at": "112,222"}},
     {"knob-s": {"id": "Layer.Macro2",       "at": "147,222"}},
     
-    {"btn-power-s": {"id": "Arp.Power",           "at": "200,222" }},
-    {"label-s":       {"id": "Arp.0", "label":"Arpeggiator", "at": "200,239" }},
+    {"btn-power-s": {"id": "Arp.Power",           "at": "195,222" }},
+    {"label-s":       {"id": "Arp.0", "label":"Arpeggiator", "at": "195,237" }},
 
     {"knob-s":   {"id": "Arp.Speed",          "at": "360,222" }},
     {"dropdown-m":   {"id": "Arp.Mode",          "at": "260,222" }},

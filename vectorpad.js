@@ -28,6 +28,11 @@ class SynthVectorPad extends HTMLElement {
           stroke: #777;
           stroke-width: 1.5;
         }
+    
+        .star {
+             opacity: 0;
+             transition: opacity 80ms ease;
+           }    
 
         .handle {
           fill: var(--accent-color, #7cff7c);
@@ -40,6 +45,11 @@ class SynthVectorPad extends HTMLElement {
         :host([dragging]) .handle {
           opacity: 1;
         }
+    
+        :host([dragging]) .star {
+          opacity: 1;
+        }
+    
       </style>
 
       <svg viewBox="0 0 100 100">
@@ -47,6 +57,12 @@ class SynthVectorPad extends HTMLElement {
         <circle class="outer" cx="50" cy="50" r="48" />
         <!-- inner circle -->
         <circle class="inner" cx="50" cy="50" r="15" />
+    
+        <!-- Eyecandy star (points are around origin; we translate it to centre) -->
+        <g class="star" transform="translate(50 50) scale(0.25)">
+          <polygon class="starPoly"></polygon>
+        </g>
+    
         <!-- handle (only shown while dragging) -->
         <circle class="handle" cx="50" cy="50" r="4" />
       </svg>
@@ -54,8 +70,9 @@ class SynthVectorPad extends HTMLElement {
 
     this._svg    = this.shadowRoot.querySelector('svg');
     this._handle = this.shadowRoot.querySelector('.handle');
-
-    // drag state
+    this._starG   = this.shadowRoot.querySelector('.star');
+    this._starPoly= this.shadowRoot.querySelector('.starPoly');
+      // drag state
     this._dragging   = false;
     this._pointerId  = null;
     this._startX     = 0;   // clientX at pointerdown
@@ -103,7 +120,10 @@ class SynthVectorPad extends HTMLElement {
 
     this._normX = 0;
     this._normY = 0;
-
+      // New star shape + colour each time
+      this._regenStar();
+      this._setStarScale(0.25);
+      
     this._updateHandle(0, 0);
     this.setAttribute('dragging', '');
 
@@ -112,6 +132,7 @@ class SynthVectorPad extends HTMLElement {
       detail: { x: 0, y: 0 }
     }));
   }
+    
 
   _onPointerMove(e) {
     if (!this._dragging) return;
@@ -134,6 +155,11 @@ class SynthVectorPad extends HTMLElement {
     this._normY = -ny;
 
     this._updateHandle(nx, -ny);
+      
+      // Scale star based on Euclidean drag magnitude
+      const mag = Math.min(1, Math.hypot(nx, ny)) * 0.9;
+      const scale = (mag <= 0.25) ? 0.25 : mag; // 0.25..1.0
+      this._setStarScale(scale);
 
     this.dispatchEvent(new CustomEvent('vectormove', {
       bubbles: true,
@@ -152,6 +178,7 @@ class SynthVectorPad extends HTMLElement {
     this._normX = 0;
     this._normY = 0;
     this._updateHandle(0, 0);
+    this._setStarScale(0.25);
     this.removeAttribute('dragging');
 
     this.dispatchEvent(new CustomEvent('vectorend', {
@@ -159,6 +186,54 @@ class SynthVectorPad extends HTMLElement {
       detail: { x: 0, y: 0 }
     }));
   }
+    
+    _setStarScale(scale) {
+      // Star group is already translate(50 50), so we only adjust the scale()
+      // Keep translate first so scaling occurs around centre.
+      this._starG.setAttribute('transform', `translate(50 50) scale(${scale})`);
+    }
+
+    _regenStar() {
+      // 7-point star => 14 vertices (outer/inner alternating)
+      const points = [];
+      const spikes = 7;
+
+      // Base radii in viewBox units (since we scale the whole group)
+      // Outer radius "feel" + a little randomness per point
+      const outerBase = 44; // near outer circle (r=48), but leave margin
+      const innerBase = 22;
+
+      for (let i = 0; i < spikes * 2; i++) {
+        const angle = (Math.PI * 2 * i) / (spikes * 2);
+
+        const isOuter = (i % 2 === 0);
+        const base = isOuter ? outerBase : innerBase;
+
+        // Irregularity: per-point radial jitter
+        const jitter = isOuter
+          ? (0.75 + Math.random() * 0.5)   // 0.75..1.25
+          : (0.75 + Math.random() * 0.6);  // 0.75..1.35
+
+        const r = base * jitter;
+
+        // Points around origin (0,0); group transform moves it to centre
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+
+        points.push(`${x.toFixed(2)},${y.toFixed(2)}`);
+      }
+
+      this._starPoly.setAttribute('points', points.join(' '));
+
+      // Randomise hue only
+      const hue = Math.floor(Math.random() * 360);
+
+      // Slightly translucent fill looks nice over dark panel
+      this._starPoly.setAttribute('fill', `hsla(${hue}, 90%, 55%, 0.35)`);
+      // Optional: subtle outline
+      this._starPoly.setAttribute('stroke', `hsla(${hue}, 90%, 65%, 0.65)`);
+      this._starPoly.setAttribute('stroke-width', '1');
+    }
 
   _updateHandle(nx, ny) {
     
